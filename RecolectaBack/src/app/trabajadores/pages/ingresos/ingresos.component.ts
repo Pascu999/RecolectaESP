@@ -1,7 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgModule, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { generate } from 'rxjs';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { Ingreso } from './ingreso';
+import { Celda } from './celda';
+import { GeneracionIngreso, Ingreso } from './ingreso';
 import { IngresosServicio } from './ingresos.Service';
 
 @Component({
@@ -13,50 +16,57 @@ import { IngresosServicio } from './ingresos.Service';
 
 export class IngresosComponente implements OnInit {
 
-  ingreso : Ingreso={
-    ingreso_id: 1,
-    vehiculo_id: 1,
-    conductor_id: 1,
-    desecho_id: 1,
-    trabajador_id: 1,
-    celda_id: 1,
-    factura_id: 1,
-    ingreso_peso: 1,
-    ingreso_valor_transporte: 1,
-    ingreso_peso_sobrecarga: 1,
-    ingreso_valor_sobrecarga: 1,
-    ingreso_fecha: new Date(),
+  private obtenerFecha(): String {
+    fecha : String;
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = String(today.getFullYear());
+
+    return mm + '/' + dd + '/' + yyyy;
+
+  }
+
+
+
+
+  ngOnInit(
+  ) {
 
 
   }
-  
-  public ingresos: Ingreso[];
-  constructor(private ingresoServicio:  IngresosServicio){}
 
-  ngOnInit() {
+  private nuevoIngreso: GeneracionIngreso = {
+    ingreso_peso : null,
+    conductor_id : null,
+    desecho_id : null,
+    trabajador_id : null,
+    contratista_id : null,
+    vehiculo_id : null,
+    tipo_id : null,
+    centro_disposicion_id : Number(localStorage.getItem("centro_disposicion_id")),
+    ingreso_fecha : this.obtenerFecha()
   }
 
 
-  public obtenerIngresosFactura(factura_id : Number):void{
-    this.ingresoServicio.obtenerIngresosFactura(factura_id).subscribe(
-    (response: Ingreso[])=> {
 
-      this.ingresos = response;
-      console.log(this.ingresos);
-      
 
-    },
-    (error: HttpErrorResponse) =>{
-      alert(error.message);
-      console.log(error.message); 
-      
-    }
+  public ingreso: Ingreso;
+  constructor(private ingresoServicio: IngresosServicio) { }
+
+
+  public onCrearIngreso(formularioIngreso: NgForm): void {
+
+    this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
+      (response: Celda) => {
+        console.log(response.celda_id);
+
+      }
     )
+
   }
 
-  
 
- 
+
 
 }
- 

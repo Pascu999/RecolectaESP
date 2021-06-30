@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'Autenticacion',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./autenticacion/autenticacion.module').then(m => m.AutenticacionModule)
   },
   {
     path: 'Contratistas',

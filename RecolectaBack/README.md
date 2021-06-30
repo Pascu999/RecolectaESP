@@ -113,13 +113,13 @@ argon-dashboard-angular
 │   │   │   │   ├── admin-layout.component.ts
 │   │   │   │   ├── admin-layout.module.ts
 │   │   │   │   └── admin-layout.routing.ts
-│   │   │   └── auth-layout
-│   │   │       ├── auth-layout.component.html
-│   │   │       ├── auth-layout.component.scss
-│   │   │       ├── auth-layout.component.spec.ts
-│   │   │       ├── auth-layout.component.ts
-│   │   │       ├── auth-layout.module.ts
-│   │   │       └── auth-layout.routing.ts
+│   │   │   └── autenticacion-layout
+│   │   │       ├── autenticacion-layout.component.html
+│   │   │       ├── autenticacion-layout.component.scss
+│   │   │       ├── autenticacion-layout.component.spec.ts
+│   │   │       ├── autenticacion-layout.component.ts
+│   │   │       ├── autenticacion-layout.module.ts
+│   │   │       └── autenticacion-layout.routing.ts
 │   │   ├── pages
 │   │   │   ├── dashboard
 │   │   │   │   ├── dashboard.component.html
