@@ -10,11 +10,25 @@ import { IngresosServicio } from './ingresos.Service';
   styleUrls: ['./ingresos.component.scss']
 })
 
-@NgModule({
-  exports:[]
-})
 
 export class IngresosComponente implements OnInit {
+
+  ingreso : Ingreso={
+    ingreso_id: 1,
+    vehiculo_id: 1,
+    conductor_id: 1,
+    desecho_id: 1,
+    trabajador_id: 1,
+    celda_id: 1,
+    factura_id: 1,
+    ingreso_peso: 1,
+    ingreso_valor_transporte: 1,
+    ingreso_peso_sobrecarga: 1,
+    ingreso_valor_sobrecarga: 1,
+    ingreso_fecha: new Date(),
+
+
+  }
   
   public ingresos: Ingreso[];
   constructor(private ingresoServicio:  IngresosServicio){}
