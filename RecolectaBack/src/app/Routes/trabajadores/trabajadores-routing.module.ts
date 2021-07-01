@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IngresosComponente } from './pages/ingresos/ingresos.component';
+import { IngresosComponente } from '../../pages/ingresos/ingresos.component';
 
 
 

@@ -1,9 +1,9 @@
-import {GeneracionIngreso, Ingreso} from './ingreso';
+import {GeneracionIngreso, Ingreso} from '../modelos/ingreso';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Celda } from './celda';
+import { Celda } from '../modelos/celda';
 
 
 @Injectable({
@@ -18,6 +18,9 @@ export class IngresosServicio{
     
         public crearIngreso(ingreso: GeneracionIngreso):Observable<Celda>{
         return this.http.post<any>(`${this.apiServerUrl}/Ingresos/Crear`,ingreso);
+
     }
+
+    
     
 }

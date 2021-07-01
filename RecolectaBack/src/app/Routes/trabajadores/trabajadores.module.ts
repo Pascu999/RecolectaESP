@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { IngresosComponente } from './pages/ingresos/ingresos.component';
 import { TrabajadoresRoutingModule } from './trabajadores-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IngresosComponente } from '../../pages/ingresos/ingresos.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    TrabajadoresRoutingModule
+    TrabajadoresRoutingModule,
+    NgbModule
   ],
   bootstrap:[IngresosComponente]
 })

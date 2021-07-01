@@ -6,15 +6,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'Autenticacion',
-    loadChildren: () => import('./autenticacion/autenticacion.module').then(m => m.AutenticacionModule)
+    loadChildren: () => import('./Routes/autenticacion/autenticacion.module').then(m => m.AutenticacionModule)
   },
   {
     path: 'Contratistas',
-    loadChildren: () => import('./contratistas/contratistas.module').then(m => m.ContratistasModule)
+    loadChildren: () => import('./Routes/contratistas/contratistas.module').then(m => m.ContratistasModule)
   },
   {
     path: 'Trabajadores',
-    loadChildren: () => import('./trabajadores/trabajadores.module').then(m => m.TrabajadoresModule)
+    loadChildren: () => import('./Routes/trabajadores/trabajadores.module').then(m => m.TrabajadoresModule)
   },
   {
     path: '**',

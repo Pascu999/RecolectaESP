@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuContratistasComponent } from './pages/menuContratistas/menuContratistas.component';
+import { MenuContratistasComponent } from 'src/app/pages/menuContratistas/menuContratistas.component';
 
 const routes: Routes = [
   {

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
-import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
+import { LoginContratistaComponent } from '../../pages/loginContratistas/loginContratista.component';
+import { LoginTrabajadorComponent } from '../../pages/loginTrabajadores/loginTrabajador.component';
 
 
 const routes: Routes = [

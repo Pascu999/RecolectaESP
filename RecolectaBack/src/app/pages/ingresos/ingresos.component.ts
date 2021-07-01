@@ -1,11 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { generate } from 'rxjs';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { Celda } from './celda';
-import { GeneracionIngreso, Ingreso } from './ingreso';
-import { IngresosServicio } from './ingresos.Service';
+import { Celda } from 'src/app/modelos/celda';
+import { GeneracionIngreso, Ingreso } from 'src/app/modelos/ingreso';
+import { IngresosServicio } from 'src/app/servicios/ingresos.Service';
 
 @Component({
   selector: 'app-ingresos',
