@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TrabajadoresRoutingModule } from './trabajadores-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { IngresosComponente } from '../../pages/ingresos/ingresos.component';
+import { IngresosComponente } from 'src/app/pages/ingresos/ingresos.component';
 
 @NgModule({
   declarations: [
