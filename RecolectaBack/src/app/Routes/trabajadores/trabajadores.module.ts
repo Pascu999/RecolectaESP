@@ -6,6 +6,7 @@ import { TrabajadoresRoutingModule } from './trabajadores-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IngresosComponente } from 'src/app/pages/ingresos/ingresos.component';
+import { MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { IngresosComponente } from 'src/app/pages/ingresos/ingresos.component';
     CommonModule,
     FormsModule,
     TrabajadoresRoutingModule,
-    NgbModule
+    NgbModule,
+    MatSelectModule
   ],
   bootstrap:[IngresosComponente]
 })

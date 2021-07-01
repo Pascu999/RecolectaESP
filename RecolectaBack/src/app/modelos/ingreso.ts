@@ -21,7 +21,6 @@ export interface GeneracionIngreso {
     trabajador_id: Number;
     contratista_id: Number;
     vehiculo_id: Number;
-    tipo_id: Number;
     centro_disposicion_id: Number,
     ingreso_fecha: String
 

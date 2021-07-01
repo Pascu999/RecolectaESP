@@ -29,7 +29,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-badge"></i></span>
                   </div>
-                  <input [(ngModel)]="nuevoIngreso.conductor_id" name="conductor_id" class="form-control" placeholder="Conductor" type="text">
+                  <input [(ngModel)]="conductor_documento" name="conductor_documento" class="form-control" placeholder="Conductor" type="text">
                 </div>
               </div>
               <div class="form-group">
@@ -37,7 +37,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
                   </div>
-                  <input [(ngModel)]="nuevoIngreso.vehiculo_id" name="vehiculo_id" class="form-control" placeholder="Vehículo" type="text">
+                  <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control" placeholder="Vehículo" type="text">
                 </div>
               </div>
               <div class="form-group">
@@ -45,7 +45,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-delivery-fast"></i></span>
                   </div>
-                  <input [(ngModel)]="nuevoIngreso.ingreso_peso" name="ingreso_peso" class="form-control" placeholder="peso" type="text">
+                  <input [(ngModel)]="nuevoIngreso.ingreso_peso" name="ingreso_peso" class="form-control" placeholder="peso" type="number">
                 </div>
               </div>
   
@@ -57,7 +57,7 @@
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
                       <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input"  id="radioResiduoComercial"
-                       value="comercial" type="radio">
+                       value="1" type="radio">
                       <label class="custom-control-label" for="radioResiduoComercial">Comercial</label>
                     </div>
                   </div>
@@ -67,7 +67,7 @@
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
                       <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoDomiciliario"
-                       value="domiciliario" type="radio">
+                       value="2" type="radio">
                       <label class="custom-control-label" for="radioResiduoDomiciliario">Domiciliario</label>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
-                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoAgricola"  value="agricola" type="radio">
+                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoAgricola"  value="3" type="radio">
                       <label class="custom-control-label" for="radioResiduoAgricola">Agrícola</label>
                     </div>
                   </div>
@@ -87,7 +87,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
-                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoBiomédico" value="biomedico" type="radio">
+                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoBiomédico" value="4" type="radio">
                       <label class="custom-control-label" for="radioResiduoBiomédico">Biomédico</label>
                     </div>
                   </div>
@@ -98,7 +98,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
-                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoIndustrial" value="industrial" type="radio">
+                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" id="radioResiduoIndustrial" value="5" type="radio">
                       <label class="custom-control-label" for="radioResiduoIndustrial">Industrial</label>
                     </div>
                   </div>
@@ -107,7 +107,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="custom-control custom-radio mb-3">
-                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" value="construccion" id="radioResiduoConstruccion"
+                      <input [(ngModel)]="nuevoIngreso.desecho_id" name="tipos_residuos" class="custom-control-input" value="6" id="radioResiduoConstruccion"
                         type="radio">
                       <label class="custom-control-label" for="radioResiduoConstruccion">Construcción</label>
                     </div>

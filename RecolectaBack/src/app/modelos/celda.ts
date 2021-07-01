@@ -1,4 +1,4 @@
 export interface Celda {
-    celda_id : Number
+    celdaId : Number
 
 }
