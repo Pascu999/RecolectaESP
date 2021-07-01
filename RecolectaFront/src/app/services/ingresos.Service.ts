@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { GeneracionIngreso } from '../modelos/ingreso';
-import { Celda } from '../modelos/celda';
-import { Vehiculo } from '../modelos/vehiculo';
-import { Conductor } from '../modelos/conductor';
+import { GeneracionIngreso } from '../models/ingreso';
+import { Celda } from '../models/celda';
+import { Vehiculo } from '../models/vehiculo';
+import { Conductor } from '../models/conductor';
 
 
 @Injectable({

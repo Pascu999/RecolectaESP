@@ -1,10 +1,10 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Celda } from 'src/app/modelos/celda';
-import { Conductor } from 'src/app/modelos/conductor';
-import { GeneracionIngreso, Ingreso } from 'src/app/modelos/ingreso';
-import { Vehiculo } from 'src/app/modelos/vehiculo';
-import { IngresosServicio } from '../../servicios/ingresos.Service';
+import { Celda } from 'src/app/models/celda';
+import { Conductor } from 'src/app/models/conductor';
+import { GeneracionIngreso, Ingreso } from 'src/app/models/ingreso';
+import { Vehiculo } from 'src/app/models/vehiculo';
+import { IngresosServicio } from '../../services/ingresos.Service';
 
 @Component({
   selector: 'app-ingresos',

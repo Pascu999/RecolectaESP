@@ -3,8 +3,8 @@ import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Trabajador } from 'src/app/modelos/trabajador';
-import { LoginTrabajadoresService } from 'src/app/servicios/loginTrabajadores.service';
+import { Trabajador } from 'src/app/models/trabajador';
+import { LoginTrabajadoresService } from 'src/app/services/loginTrabajadores.service';
 
 @Component({
   selector: 'app-loginTrabajador',
