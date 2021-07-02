@@ -15091,7 +15091,7 @@ button.bg-lighter:focus
 
 .bg-gradient-white
 {
-    background: linear-gradient(87deg, #fff 0, white 100%) !important;
+    background: linear-gradient(90deg, #fff 0, white 100%) !important;
 }
 
 .bg-gradient-neutral

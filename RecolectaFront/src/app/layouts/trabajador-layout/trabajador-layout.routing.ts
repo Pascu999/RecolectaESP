@@ -4,13 +4,12 @@ import { IngresosComponente } from 'src/app/pages/ingresos/ingresos.component';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path:'',
     children:[
       
        {path:'registrarIngreso',component: IngresosComponente},
-       
        {path: '**', redirectTo: 'registrarIngreso'}
     ]
   }
@@ -21,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TrabajadoresRoutingModule { }
+export class TrabajadorRoutingModule { }

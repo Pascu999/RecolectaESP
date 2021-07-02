@@ -9,7 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    
   ],
   declarations: [
     NavbarComponent,

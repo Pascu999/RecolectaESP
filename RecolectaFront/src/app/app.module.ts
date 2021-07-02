@@ -10,6 +10,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
+import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
+import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
+import { AdministradorLayoutModule } from './layouts/administrador-layout/administrador-layout.module';
 
 
 @NgModule({
@@ -20,10 +24,14 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AdministradorLayoutModule
   ],
   declarations: [
-    AppComponent 
+    AppComponent,
+    AdministradorLayoutComponent,
+    TrabajadorLayoutComponent,
+    ContratistaLayoutComponent 
   ],
   providers: [],
   bootstrap: [AppComponent]
