@@ -1,0 +1,2 @@
+insert into Rutas (ruta_id, municipio_id, ruta_nombre, ruta_descripcion, ruta_fecha_inicio, ruta_fecha_finalizacion, ruta_estado) values (1, 1, 'Divavu', 'lvyjbucayetqkuf', '13/05/2020', '18/05/2020', 1);
+insert into Rutas (ruta_id, municipio_id, ruta_nombre, ruta_descripcion, ruta_fecha_inicio, ruta_fecha_finalizacion, ruta_estado) values (2, 2, 'Browsezoom', 'pdkgmvzhhscfkpn', '13/05/2020', '18/05/2020', 1);

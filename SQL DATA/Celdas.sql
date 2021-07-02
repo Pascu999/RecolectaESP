@@ -1,0 +1,10 @@
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (1, 2, 'Fluocinonide', 1, 500, 100);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (2, 1, 'Viscum Crataegus', 1, 500, 155);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (3, 2, 'Clonidine Hydrochloride', 1, 500, 151);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (4, 1, 'VITALUMIERE AQUA', 1, 500, 163);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (5, 2, 'Allopurinol', 1, 500, 112);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (6, 1, 'Promethazine Hydrochloride', 1, 500, 144);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (7, 2, 'Cytotec', 1, 500, 117);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (8, 1, 'Necon 10/11', 1, 500, 112);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (9, 2, 'cold and cough', 1, 500, 128);
+insert into Celdas (celda_id, centro_disposicion_id, celda_nombre, celda_estado, celda_capacidad_total, celda_capacidad_usada) values (10, 1, 'Pollens - Trees, Birch Mix', 1, 500, 141);

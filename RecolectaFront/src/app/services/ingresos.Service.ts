@@ -22,16 +22,22 @@ export class IngresosServicio {
     constructor(private http: HttpClient) { }
 
     public crearIngreso(ingreso: GeneracionIngreso): Observable<Celda> {
-        return this.http.post<any>(`${this.apiServerUrl}/Ingresos/Crear`, ingreso);
+        return this.http.post<Celda>(`${this.apiServerUrl}/Ingresos/Crear`, ingreso);
     }
 
     public obtenerVehiculo(vehiculo_placa: String): Observable<Vehiculo>{
-
+        console.log(vehiculo_placa);
+        
         return this.http.get<Vehiculo>(`${this.apiServerUrl}/Vehiculos/Consultar/${vehiculo_placa}`);
     }
 
     public obtenerConductor(conductor_documento: String): Observable<Conductor>{
         return this.http.get<Conductor>(`${this.apiServerUrl}/Conductores/Consultar/${conductor_documento}`)
+    }
+
+    public obtenerCelda():Observable<Celda>{
+        return this.http.get<Celda>(`${this.apiServerUrl}/Ingresos/ConsultarCelda/`)
+
     }
 
 
