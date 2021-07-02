@@ -21,8 +21,8 @@ export class IngresosServicio {
 
     constructor(private http: HttpClient) { }
 
-    public crearIngreso(ingreso: GeneracionIngreso): Observable<Celda> {
-        return this.http.post<Celda>(`${this.apiServerUrl}/Ingresos/Crear`, ingreso);
+    public crearIngreso(ingreso: GeneracionIngreso): Observable<String> {
+        return this.http.post(`${this.apiServerUrl}/Ingresos/Crear`, ingreso , {responseType: 'text'});
     }
 
     public obtenerVehiculo(vehiculo_placa: String): Observable<Vehiculo>{

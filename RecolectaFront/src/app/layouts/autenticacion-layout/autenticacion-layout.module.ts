@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginContratistaComponent } from '../../pages/loginContratistas/loginContratista.component';
-import { AutenticacionRoutingModule } from './autenticacion-routing.module';
 import { LoginTrabajadorComponent } from '../../pages/loginTrabajadores/loginTrabajador.component';
 
 
@@ -12,7 +11,7 @@ import { LoginTrabajadorComponent } from '../../pages/loginTrabajadores/loginTra
     LoginTrabajadorComponent],
   imports: [
     CommonModule,
-    AutenticacionRoutingModule
+    AutenticacionModule
   ]
 })
 export class AutenticacionModule { }

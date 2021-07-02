@@ -1,6 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Celda } from 'src/app/models/celda';
+import { Router } from '@angular/router';
 import { Conductor } from 'src/app/models/conductor';
 import { GeneracionIngreso, Ingreso } from 'src/app/models/ingreso';
 import { Vehiculo } from 'src/app/models/vehiculo';
@@ -34,7 +34,7 @@ export class IngresosComponente implements OnInit {
   }
 
 
-   nuevoIngreso: GeneracionIngreso = {
+  nuevoIngreso: GeneracionIngreso = {
     ingreso_peso: null,
     conductor_id: null,
     desecho_id: null,
@@ -50,7 +50,7 @@ export class IngresosComponente implements OnInit {
 
   public ingreso: Ingreso;
   public vehiculos: Vehiculo[];
-  constructor(private ingresoServicio: IngresosServicio) { }
+  constructor(private ingresoServicio: IngresosServicio, private router: Router) { }
 
 
   public onCrearIngreso(formularioIngreso: NgForm): void {
@@ -70,7 +70,7 @@ export class IngresosComponente implements OnInit {
         this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
           (response: Conductor) => {
             conductorIngresado = response;
-            
+
             vehiculo_contratista = conductorIngresado.contratista.contratistaId
 
             if (conductor_contratista == vehiculo_contratista) {
@@ -81,13 +81,19 @@ export class IngresosComponente implements OnInit {
               this.nuevoIngreso.conductor_id = conductorIngresado.conductorId;
               this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
               this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
-
               console.log(this.nuevoIngreso);
+              console.log('SIN ERROR');
 
               this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
-                (response: Celda) => {
+                (response: String) => {
+                  localStorage.setItem("celda_nombre", String(response))
                   console.log(response);
+                  this.router .navigateByUrl("/Trabajadores/instruccionIngreso")
+                },
+                (error: any) => {
+                  console.log(error);
                 }
+
               )
             }
             else {

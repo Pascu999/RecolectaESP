@@ -9,7 +9,7 @@ import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajado
 const routes: Routes = [
   {
     path: 'Autenticacion',
-    loadChildren: () => import('./routes/autenticacion/autenticacion.module').then(m => m.AutenticacionModule)
+    loadChildren: () => import('./layouts/autenticacion-layout/autenticacion-layout.module').then(m => m.AutenticacionModule)
   },
   {
     path: 'Contratistas',
