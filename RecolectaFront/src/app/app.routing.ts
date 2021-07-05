@@ -3,13 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
 import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
 import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
+import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
+import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
 
 
 
 const routes: Routes = [
   {
-    path: 'Autenticacion',
-    loadChildren: () => import('./layouts/autenticacion-layout/autenticacion-layout.module').then(m => m.AutenticacionModule)
+    path: 'LoginTrabajador',
+    component: LoginTrabajadorComponent
+  },
+  {
+    path: 'LoginContratista',
+    component: LoginContratistaComponent
+  },
+  {
+    path: 'Contratistas',
+    component: ContratistaLayoutComponent,
+    loadChildren: () => import('./layouts/contratista-layout/contratistas-layout.module').then(m => m.ContratistasModule)
   },
   {
     path: 'Contratistas',

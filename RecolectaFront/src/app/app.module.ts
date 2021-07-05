@@ -13,9 +13,7 @@ import { ComponentsModule } from './components/components.module';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
 import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
 import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
-import { AdministradorLayoutModule } from './layouts/administrador-layout/administrador-layout.module';
-import { IngresoInstruccionComponent } from './pages/ingresoInstruccion/ingresoInstruccion.component';
-import { AutenticacionLayoutComponent } from './layouts/autenticacion-layout/autenticacion-layout.component';
+import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
 
 
 @NgModule({
@@ -26,16 +24,14 @@ import { AutenticacionLayoutComponent } from './layouts/autenticacion-layout/aut
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    NgbModule,
-    AdministradorLayoutModule
+    NgbModule
   ],
   declarations: [
     AppComponent,
     AdministradorLayoutComponent,
     TrabajadorLayoutComponent,
     ContratistaLayoutComponent,
-    IngresoInstruccionComponent,
-    AutenticacionLayoutComponent
+    LoginTrabajadorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
