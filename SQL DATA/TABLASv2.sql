@@ -431,6 +431,34 @@ END;
 /
 
 
+CREATE OR REPLACE TRIGGER registrar_factura_ingresos AFTER
+    INSERT ON facturas
+    FOR EACH ROW
+BEGIN
+    UPDATE ingresos i
+    SET
+        factura_id = :new.factura_id,
+        ingreso_estado = 3
+    WHERE
+        i.trabajador_id IN (
+            SELECT
+                trabajador_id
+            FROM
+                trabajadores
+            WHERE
+                centro_disposicion_id = :new.centro_disposicion_id
+        )
+        AND i.vehiculo_id IN (
+            SELECT
+                vehiculo_id
+            FROM
+                vehiculos
+            WHERE
+                contratista_id = :new.contratista_id
+        );
+
+END;
+
 --////////////////////////////////////////////////Datos de Prueba/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--
 
 
