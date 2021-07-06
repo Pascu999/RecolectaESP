@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import { Router } from '@angular/router';
+import { Factura } from 'src/app/models/factura';
+import { MenuTrabajadoresService } from 'src/app/services/menu-trabajadores.service';
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
+
 
 @Component({
   selector: 'app-menuTrabajadores',
@@ -16,45 +12,26 @@ import {
 })
 export class MenuTrabajadoresComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  private FacturasCentro: Factura[];
+
+
+  constructor(private menuTrabajadoresServicio: MenuTrabajadoresService, public router: Router) { }
 
   ngOnInit() {
+    let centro_disposicion = Number(localStorage.getItem("centro_disposicion_id"));
+    this.menuTrabajadoresServicio.obtenerFacturasCentro(centro_disposicion).subscribe(
+      (response: Factura[]) => {
+        this.FacturasCentro = response;
 
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
+        console.log(this.FacturasCentro);
+      },
+      (error: any)=>{
+        console.error(error);
+        
+      }
+    )
 
 
-    var chartOrders = document.getElementById('chart-orders');
 
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
   }
-
-
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
-  }
-
 }

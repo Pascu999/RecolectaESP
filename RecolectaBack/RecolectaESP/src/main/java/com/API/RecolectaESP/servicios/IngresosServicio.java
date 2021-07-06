@@ -24,7 +24,7 @@ public class IngresosServicio {
         this.ingresosRepositorio = ingresosRepositorio;
     }
 
-    public List<Ingresos> obtenerIngresosFactura(Long factura_id){
+    public List<Object> obtenerIngresosFactura(Long factura_id){
 
         return  ingresosRepositorio.findIngresosByFacturaId(factura_id);
     }

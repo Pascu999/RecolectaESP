@@ -14,8 +14,9 @@ import java.util.List;
 public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
 
     @Transactional(readOnly=true)
-    @Query("FROM Ingresos ingreso WHERE ingreso.factura.facturaId = :factura_id")
-    public List<Ingresos> findIngresosByFacturaId(@Param("factura_id") Long factura_id);
+    @Query(value = "SELECT I.vehiculo_id, vehiculo_placa,SUM(ingreso_valor_transporte) Valor_movilizacion FROM INGRESOS I INNER JOIN (SELECT vehiculo_placa,vehiculo_id FROM VEHICULOS) V ON I.vehiculo_id = V.vehiculo_id WHERE I.factura_id= :factura_id GROUP BY I.vehiculo_id,V.vehiculo_placa"
+    ,nativeQuery = true)
+        public List<Object> findIngresosByFacturaId( Long factura_id);
 
 
 

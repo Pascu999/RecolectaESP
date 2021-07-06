@@ -8,11 +8,11 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class LoginTrabajadoresService {
-  
-  private apiServerUrl = environment.apiBaseUrl;
-  constructor(private http: HttpClient){}
-        public SolicitudLoggin(trabajador_documento: String,trabajador_contrasena: String): Observable<Trabajador>{
-            return this.http.get<any>(`${this.apiServerUrl}/Trabajadores/SolicitudLoggin/${trabajador_documento}/${trabajador_contrasena}`);
 
-        }
+  private apiServerUrl = environment.apiBaseUrl;
+  constructor(private http: HttpClient) { }
+  public SolicitudLoggin(trabajador_documento: String, trabajador_contrasena: String): Observable<Trabajador> {
+    return this.http.get<any>(`${this.apiServerUrl}/Trabajadores/SolicitudLoggin/${trabajador_documento}/${trabajador_contrasena}`);
+
+  }
 }

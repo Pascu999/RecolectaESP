@@ -1,0 +1,78 @@
+<body>
+    <header class="clearfix mr-3 mt-4">
+      <div id="logo">
+        <img src="../../../assets/img/brand/recolecta-logo.png">
+      </div>
+
+      <div id="company">
+        <h2 class="name"> <b> {{Factura.contratista.contratistaNombre}}</b></h2>
+        <div>{{Factura.contratista.contratistaDireccion}}</div>
+        <div>{{Factura.contratista.contratistaCelular}}</div>
+        <div> <b> {{Factura.contratista.contratistaCorreo}} </b></div>
+      
+      </div>
+    </header>
+    
+    <main>
+      <div id="details" class="clearfix mr-3">
+        <div id="client">
+          <div class="to">Factura dirigida a:</div>
+          <h2 class="name"> <b> {{Factura.centroDiposicion.centroDisposicionNombre}} </b> </h2>
+          <div class="address">{{Factura.centroDiposicion.centroDisposicionDireccion}}</div>
+          <div class="email"> <b> {{Factura.centroDiposicion.centroDisposicionCorreo}} </b></div>
+        </div>
+        <div id="invoice">
+          <h1>Factura # <b>{{Factura.facturaId}}</b> </h1>
+          <div class="date">Fecha de inicio de facturación: <b> {{Factura.facturaInicioPeriodo}}</b></div>
+          <div class="date">Fecha de fin de facturación: <b>{{Factura.facturaFinPeriodo}}</b> </div>
+        </div>
+      </div>
+      <table   >
+        <thead>
+          <tr>
+            <td colspan="1"></td>
+            <th class="desc"><b>Vehiculo</b></th>
+            <th class="unit"><b>Placa</b></th>
+            <th class="qty"><b>Total</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="1"></td>
+            <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+            <td class="unit">$40.00</td>
+            <td class="total">$1,200.00</td>
+          </tr>
+          <tr>
+            <td colspan="1"></td>
+            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
+            <td class="unit">$40.00</td>
+            <td class="total">$3,200.00</td>
+          </tr>
+          <tr>
+            <td colspan="1"></td>
+            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+            <td class="unit">$40.00</td>
+            <td class="total">$800.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="1">Subtotal</td>
+            <td> <b>${{Factura.facturaCostoTransporte}}</b> </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="1">Multa por exceso de carga:</td>
+            <td> <b>${{Factura.facturaDescuento}}</b> </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="1">Total</td>
+            <td>{{Factura.facturaCostoTransporte - Factura.facturaDescuento}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </main>
+  </body>

@@ -24,4 +24,14 @@ public class FacturasServicio {
 
         return   facturasRepositorio.findFacturasByContratistaId(factura_id);
     }
+
+    public List<Facturas> obtenerFacturasCentro(Long centro_disposicion_id){
+
+        return   facturasRepositorio.findFacturasByCentroDisposionId(centro_disposicion_id);
+    }
+
+    public Facturas obtenerFactura(Long factura_id){
+
+        return facturasRepositorio.findFacturasByFacturaId(factura_id);
+    }
 }

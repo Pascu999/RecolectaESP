@@ -40,6 +40,21 @@ public class FacturasControlador {
         return new ResponseEntity<>(listaFacturas,HttpStatus.OK);
     }
 
+    @GetMapping("/obtenerFacturasCentro/{centro_disposicion_id}")
+    public ResponseEntity<List<Facturas>> obtenerFacturasCentro(
+            @ApiParam(
+                    value = "Id del Centro al que se le obtienen sus facturas",
+                    example = "1",
+                    required = true
+            )
+            @PathVariable ("centro_disposicion_id") Long centro_disposicion_id
+    ){
+        List<Facturas> listaFacturas = facturasServicio.obtenerFacturasCentro(centro_disposicion_id);
+        return new ResponseEntity<>(listaFacturas,HttpStatus.OK);
+    }
+
+
+
     @GetMapping("/GenerarFacturas/{contratista_id}")
     public ResponseEntity<ObjectNode> generarFacturas(
             @ApiParam(
@@ -53,6 +68,21 @@ public class FacturasControlador {
         ObjectNode resultadoGeneracion = null;
         return new ResponseEntity<>(resultadoGeneracion,HttpStatus.OK);
     }
+
+    @GetMapping("/ObtenerFactura/{factura_id}")
+    public ResponseEntity<Facturas> obtenerFactura(
+            @ApiParam(
+
+                    value = "Id de la factura a consultar",
+                    example = "1",
+                    required = true
+            )
+            @PathVariable ("factura_id") Long factura_id
+    ){
+        Facturas facturaEncontrada = facturasServicio.obtenerFactura(factura_id);
+        return new ResponseEntity<>(facturaEncontrada,HttpStatus.OK);
+    }
+
 
 
 }

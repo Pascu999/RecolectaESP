@@ -14,6 +14,7 @@ import { AdministradorLayoutComponent } from './layouts/administrador-layout/adm
 import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
 import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
 import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
+import { FacturaComponent } from './pages/factura/factura.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabaja
     AdministradorLayoutComponent,
     TrabajadorLayoutComponent,
     ContratistaLayoutComponent,
-    LoginTrabajadorComponent
+    LoginTrabajadorComponent,
+    FacturaComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

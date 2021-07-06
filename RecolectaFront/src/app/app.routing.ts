@@ -33,6 +33,8 @@ const routes: Routes = [
     loadChildren: () => import('./layouts/administrador-layout/administrador-layout.module').then(m => m.AdministradorModule )
   },
 
+  
+
   {
     path: '**',
     redirectTo: 'Autenticacion'
