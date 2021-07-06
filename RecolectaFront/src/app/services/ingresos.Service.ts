@@ -26,8 +26,6 @@ export class IngresosServicio {
     }
 
     public obtenerVehiculo(vehiculo_placa: String): Observable<Vehiculo>{
-        console.log(vehiculo_placa);
-        
         return this.http.get<Vehiculo>(`${this.apiServerUrl}/Vehiculos/Consultar/${vehiculo_placa}`);
     }
 

@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IngresosComponente } from 'src/app/pages/ingresos/ingresos.component';
 import { TrabajadorRoutingModule } from './trabajador-layout.routing';
+import { IngresoInstruccionComponent } from 'src/app/pages/ingresoInstruccion/ingresoInstruccion.component';
 
 @NgModule({
   declarations: [
-    IngresosComponente],
+    IngresosComponente,
+    IngresoInstruccionComponent],
   imports: [
     CommonModule,
     FormsModule,

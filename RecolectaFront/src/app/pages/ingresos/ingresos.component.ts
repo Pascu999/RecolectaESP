@@ -17,6 +17,9 @@ export class IngresosComponente implements OnInit {
 
   ngOnInit(
   ) {
+
+    localStorage.setItem("trabajador_id",'1');
+    localStorage.setItem("centro_disposicion_id",'1');
   }
 
   vehiculo_placa: String;
@@ -61,11 +64,14 @@ export class IngresosComponente implements OnInit {
     var vehiculoIngresado: Vehiculo;
     var conductorIngresado: Conductor;
 
-
+    console.log(this.vehiculo_placa);
+    console.log(this.conductor_documento);
+    
     this.ingresoServicio.obtenerVehiculo(this.vehiculo_placa).subscribe(
+
+
       (response: Vehiculo) => {
         vehiculoIngresado = response;
-        console.log(response);
         conductor_contratista = vehiculoIngresado.contratista.contratistaId
         this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
           (response: Conductor) => {

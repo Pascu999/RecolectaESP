@@ -13,4 +13,6 @@ public interface FacturasRepositorio extends JpaRepository<Facturas,Long> {
     @Transactional(readOnly=true)
     @Query("FROM Facturas factura WHERE factura.contratista.contratistaId = :contratista_id")
     public List<Facturas> findFacturasByContratistaId(@Param("contratista_id") Long contratista_id);
+
+
 }

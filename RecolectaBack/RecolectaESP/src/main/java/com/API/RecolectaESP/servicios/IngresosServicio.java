@@ -16,15 +16,6 @@ import java.util.List;
 @Service
 public class IngresosServicio {
 
-    @Value("${spring.datasource.url}")
-        String urlDB;
-
-    @Value("${spring.datasource.username}")
-    String userDB;
-
-    @Value("${spring.datasource.password}")
-    String passDB;
-
     private final IngresosRepositorio ingresosRepositorio;
 
 

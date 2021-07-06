@@ -29,6 +29,8 @@ public class ConductoresControlador {
             )
             @PathVariable ("conductor_documento") String conductor_documento
     ){
+        System.out.println("RECIBIDO");
+        System.out.println(conductor_documento);
         Conductores conductorConsultado = conductoresServicio.consultarConductor(conductor_documento);
 
 

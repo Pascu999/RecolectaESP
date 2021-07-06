@@ -5,6 +5,7 @@ import com.API.RecolectaESP.modelos.Vehiculos;
 import com.API.RecolectaESP.servicios.VehiculosServicio;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/Vehiculos")
 public class VehiculosControlador {
 
-    private final VehiculosServicio vehiculosServicio;
+    @Autowired private final VehiculosServicio vehiculosServicio;
 
     public VehiculosControlador(VehiculosServicio vehiculosServicio){
         this.vehiculosServicio = vehiculosServicio;
@@ -47,6 +48,7 @@ public class VehiculosControlador {
             )
             @PathVariable ("vehiculo_placa") String vehiculo_placa
     ){
+        System.out.println(vehiculo_placa);
         Vehiculos vehiculoConsultado = vehiculosServicio.consultarVehiculo(vehiculo_placa);
         System.out.println(vehiculoConsultado);
 
