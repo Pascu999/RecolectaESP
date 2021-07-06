@@ -2,12 +2,11 @@ package com.API.RecolectaESP.servicios;
 
 
 
+import com.API.RecolectaESP.Proyecciones.IngresosProyeccion;
 import com.API.RecolectaESP.excepciones.IngresoNoRealizadoExcepcion;
-import com.API.RecolectaESP.modelos.Ingresos;
 import com.API.RecolectaESP.repositorios.IngresosRepositorio;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -24,7 +23,7 @@ public class IngresosServicio {
         this.ingresosRepositorio = ingresosRepositorio;
     }
 
-    public List<Object> obtenerIngresosFactura(Long factura_id){
+    public List<IngresosProyeccion> obtenerIngresosFactura(Long factura_id){
 
         return  ingresosRepositorio.findIngresosByFacturaId(factura_id);
     }

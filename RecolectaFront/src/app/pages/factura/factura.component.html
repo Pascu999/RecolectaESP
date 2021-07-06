@@ -1,5 +1,5 @@
 <body>
-    <header class="clearfix mr-3 mt-4">
+    <header class="clearfix ml-3  mr-3 mt-4">
       <div id="logo">
         <img src="../../../assets/img/brand/recolecta-logo.png">
       </div>
@@ -9,12 +9,11 @@
         <div>{{Factura.contratista.contratistaDireccion}}</div>
         <div>{{Factura.contratista.contratistaCelular}}</div>
         <div> <b> {{Factura.contratista.contratistaCorreo}} </b></div>
-      
       </div>
     </header>
     
     <main>
-      <div id="details" class="clearfix mr-3">
+      <div id="details" class="clearfix ml-3 mr-3">
         <div id="client">
           <div class="to">Factura dirigida a:</div>
           <h2 class="name"> <b> {{Factura.centroDiposicion.centroDisposicionNombre}} </b> </h2>
@@ -30,47 +29,33 @@
       <table   >
         <thead>
           <tr>
-            <td colspan="1"></td>
-            <th class="desc"><b>Vehiculo</b></th>
-            <th class="unit"><b>Placa</b></th>
-            <th class="qty"><b>Total</b></th>
+            <th class="desc" ><b>Vehiculo</b></th>
+            <th class="unit" ><b>Placa</b></th>
+            <th class="total"><b>Total</b></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colspan="1"></td>
-            <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="total">$1,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="1"></td>
-            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="total">$3,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="1"></td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="total">$800.00</td>
-          </tr>
+          <tr *ngFor="let IngresosProyeccion of Ingresos">
+            <td class="desc" >{{IngresosProyeccion.marca}}</td>
+            <td class="unit">{{IngresosProyeccion.placa}}</td>
+            <td class="total">{{IngresosProyeccion.valorTransportado}}</td>
+        </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2"></td>
+            <td colspan="0"></td>
             <td colspan="1">Subtotal</td>
-            <td> <b>${{Factura.facturaCostoTransporte}}</b> </td>
+            <td class="unit"> <b>${{Factura.facturaCostoTransporte}}</b> </td>
           </tr>
           <tr>
-            <td colspan="2"></td>
+            <td colspan="1"></td>
             <td colspan="1">Multa por exceso de carga:</td>
-            <td> <b>${{Factura.facturaDescuento}}</b> </td>
+            <td class="unit"> <b>${{Factura.facturaDescuento}}</b> </td>
           </tr>
           <tr>
-            <td colspan="2"></td>
-            <td colspan="1">Total</td>
-            <td>{{Factura.facturaCostoTransporte - Factura.facturaDescuento}}</td>
+            <td colspan="1"></td>
+            <td colspan="1">Total:</td>
+            <td class="unit">{{Factura.facturaCostoTransporte - Factura.facturaDescuento}}</td>
           </tr>
         </tfoot>
       </table>

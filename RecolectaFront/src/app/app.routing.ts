@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
 import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
 import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
+import { FacturaComponent } from './pages/factura/factura.component';
 import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
 import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
 
@@ -17,6 +18,11 @@ const routes: Routes = [
     path: 'LoginContratista',
     component: LoginContratistaComponent
   },
+  {
+    path: 'Factura',
+    component: FacturaComponent
+  }
+  ,
   {
     path: 'Contratistas',
     component: ContratistaLayoutComponent,

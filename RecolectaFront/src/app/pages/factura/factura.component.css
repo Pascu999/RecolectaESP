@@ -12,25 +12,26 @@
   
   body {
     position: relative;
-    width: 21cm;  
-    height: 29.7cm; 
+    width: 45%;  
+    height: 100%; 
     margin: 0 auto; 
     color: #555555;
     background: #FFFFFF; 
     font-family: Arial, sans-serif; 
     font-size: 14px; 
     font-family: Open Sans, sans-serif;
+    
   }
   
   header {
     padding: 10px 0;
     margin-bottom: 20px;
-    border-bottom: 1px solid #AAAAAA;
+    border-bottom: 3px solid #AAAAAA;
   }
   
   #logo {
     float: left;
-    margin-top: 8px;
+    margin-top: 5%;
   }
   
   #logo img {
@@ -38,13 +39,18 @@
   }
   
   #company {
+    
+    margin-top: 5%;
     float: right;
     text-align: right;
+    margin-bottom: 5%;
   }
   
   
   #details {
-    margin-bottom: 50px;
+    margin-bottom: 10%;
+    border-bottom: 6px #555555;
+    
   }
   
   #client {
@@ -82,9 +88,11 @@
   }
   
   table {
-    width: 100%;
+    width: 75%;
     border-collapse: collapse;
     border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
   }
   
@@ -119,15 +127,20 @@
   }
   
   table .desc {
-    text-align: left;
+    text-align: center;
   }
+
   
   table .unit {
+    
+    text-align: center;
     background: #DDDDDD;
   }
   
   
   table .total {
+    
+    text-align: center;
     background: #57B223;
     color: #FFFFFF;
   }
@@ -135,6 +148,7 @@
   table td.unit,
   table td.qty,
   table td.total {
+    
     font-size: 1.2em;
   }
   

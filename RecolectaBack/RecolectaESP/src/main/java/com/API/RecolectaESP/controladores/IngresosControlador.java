@@ -1,8 +1,7 @@
 package com.API.RecolectaESP.controladores;
 
 
-import com.API.RecolectaESP.excepciones.IngresoFallidoExcepcionExcepcion;
-import com.API.RecolectaESP.modelos.Ingresos;
+import com.API.RecolectaESP.Proyecciones.IngresosProyeccion;
 import com.API.RecolectaESP.servicios.IngresosServicio;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.swagger.annotations.Api;
@@ -24,7 +23,7 @@ public class IngresosControlador {
     public IngresosControlador(IngresosServicio ingresosServicio) {this.ingresosServicio = ingresosServicio;}
 
     @GetMapping("/obtenerIngresosFactura/{factura_id}")
-    public ResponseEntity<List<Object>> obtenerIngresosFactura(
+    public ResponseEntity<List<IngresosProyeccion>> obtenerIngresosFactura(
             @ApiParam(
 
                     value = "Id de la factura a la que se le van a obtener sus respectivos ingresos",
@@ -33,7 +32,7 @@ public class IngresosControlador {
             )
             @PathVariable ("factura_id") Long factura_id
     ){
-        List<Object> listaIngresos = ingresosServicio.obtenerIngresosFactura (factura_id);
+        List<IngresosProyeccion> listaIngresos = ingresosServicio.obtenerIngresosFactura (factura_id);
         return new ResponseEntity<>(listaIngresos, HttpStatus.OK);
     }
 
