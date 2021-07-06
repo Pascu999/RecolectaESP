@@ -23,11 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./layouts/contratista-layout/contratistas-layout.module').then(m => m.ContratistasModule)
   },
   {
-    path: 'Contratistas',
-    component: ContratistaLayoutComponent,
-    loadChildren: () => import('./layouts/contratista-layout/contratistas-layout.module').then(m => m.ContratistasModule)
-  },
-  {
     path: 'Trabajadores',
     component:  TrabajadorLayoutComponent,
     loadChildren: () => import('./layouts/trabajador-layout/trabajador-layout.module').then(m => m.TrabajadorModule)
@@ -35,7 +30,7 @@ const routes: Routes = [
   {
     path: 'Administradores',
     component:  AdministradorLayoutComponent,
-    loadChildren: () => import('./layouts/administrador-layout/administrador-layout.component').then(m => m.AdministradorLayoutComponent)
+    loadChildren: () => import('./layouts/administrador-layout/administrador-layout.module').then(m => m.AdministradorModule )
   },
 
   {

@@ -10,11 +10,11 @@ import {
 } from "../../variables/charts";
 
 @Component({
-  selector: 'app-menuContratistas',
-  templateUrl: './menuContratistas.component.html',
-  styleUrls: ['./menuContratistas.component.scss']
+  selector: 'app-menuTrabajadores',
+  templateUrl: './menuTrabajadores.component.html',
+  styleUrls: ['./menuTrabajadores.component.scss']
 })
-export class MenuContratistasComponent implements OnInit {
+export class MenuTrabajadoresComponent implements OnInit {
 
   public datasets: any;
   public data: any;

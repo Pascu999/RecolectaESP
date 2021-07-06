@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuContratistasComponent } from 'src/app/pages/menuContratistas/menuContratistas.component';
+import { MenuTrabajadoresComponent } from 'src/app/pages/menuTrabajadores/menuTrabajadores.component';
 
 export const routes: Routes = [
   {
     path:'',
     children:[
       
-       {path:'menuAdministrador',component: MenuContratistasComponent},
-       {path: '**', redirectTo: 'menuContratistas'}
+       {path:'Menu',component: MenuTrabajadoresComponent},
+       {path: '**', redirectTo: ''}
     ]
   }
 ]
