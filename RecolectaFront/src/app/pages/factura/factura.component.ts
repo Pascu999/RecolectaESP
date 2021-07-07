@@ -7,7 +7,7 @@ import { FacturaService } from 'src/app/services/factura.service';
 @Component({
   selector: 'app-factura',
   templateUrl: './factura.component.html',
-  styleUrls: ['./factura.component.css']
+  styleUrls: ['./factura.component.scss']
 })
 export class FacturaComponent implements OnInit {
 
@@ -18,6 +18,10 @@ export class FacturaComponent implements OnInit {
   constructor(private router: Router, private facturaServicio : FacturaService) { }
 
   ngOnInit(): void {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("bg-default");
+
+
     var factura = Number(localStorage.getItem("factura_id"));
     this.obtenerFactura(factura);
     this.obtenerIngresosFactura(factura);

@@ -20,7 +20,7 @@ public class ContratistasControlador {
     public ContratistasControlador(ContratistasServicio contratistasServicio) {this.contratistasServicio = contratistasServicio;}
 
 
-    @PutMapping(value = "/SolicitudLoggin/{trabajador_nit}/{trabajador_contrasena}",consumes = "application/json", produces = "application/json")
+    @GetMapping("/SolicitudLoggin/{contratista_nit}/{contratista_contrasena}")
 
     public ResponseEntity<Contratistas> SolicitudLoggin(
             @ApiParam(
@@ -28,18 +28,19 @@ public class ContratistasControlador {
                     example = "11111",
                     required = true
             )
-            @PathVariable ("trabajador_nit") String trabajador_nit,
+            @PathVariable ("contratista_nit") String contratista_nit,
             @ApiParam(
                     value = "Contrasena ingresada por el contratista",
                     example = "1111fgd1",
                     required = true
             )
-            @PathVariable ("trabajador_contrasena") String Contrasena
+            @PathVariable ("contratista_contrasena") String contratista_contrasena
             )
 
     {
-
-        Contratistas contratista = contratistasServicio.SolicitudLoggin(trabajador_nit,Contrasena);
+        System.out.println(contratista_nit);
+        System.out.println(contratista_contrasena   );
+        Contratistas contratista = contratistasServicio.SolicitudLoggin(contratista_nit,contratista_contrasena);
         return  new ResponseEntity<>(contratista, HttpStatus.OK);
     }
 

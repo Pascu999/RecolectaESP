@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
-
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
+import { Component, OnInit } from '@angular/core';import { Factura } from 'src/app/models/factura';
+import { FacturaService } from 'src/app/services/factura.service';
+import { MenuContratistasService } from 'src/app/services/menu-contratistas.service';
+;
 
 @Component({
   selector: 'app-menuContratistas',
@@ -16,45 +10,25 @@ import {
 })
 export class MenuContratistasComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  private FacturasContratista: Factura[];
 
+  private UltimaFacturacion:String;
+
+  constructor(private menuContratistasServicio: MenuContratistasService){}
   ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
-  }
-
-
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
+    console.log(localStorage.getItem("ultima_facturacion"));
+    
+    let contratista = Number(localStorage.getItem("contratista_id"));
+    this.menuContratistasServicio.obtenerFacturasContratista(contratista).subscribe(
+      (response: Factura[])=>{
+        this.FacturasContratista = response;
+        this.UltimaFacturacion = localStorage.getItem("ultima_facturacion")
+        console.log(this.FacturasContratista);
+      },
+      (error: any)=>{
+        console.log(error);
+      }
+    )
   }
 
 }
