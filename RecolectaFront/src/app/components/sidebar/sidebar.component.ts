@@ -7,15 +7,14 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
-export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+export const rutasTrabajador: RouteInfo[] = [
+    { path: '/Trabajadores', title: 'Administrar Sedes',  icon: 'ni-building text-primary', class: '' }
 ];
+
+export const rutasContratista: RouteInfo[] = [
+  { path: '/Contratistas/AdministrarVehiculos', title: 'Administrar Vehículos',  icon: 'ni-bus-front-12 text-primary', class: '' }
+];
+
 
 @Component({
   selector: 'app-sidebar',
@@ -24,15 +23,28 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
+  public showRutasTrabajador :boolean = false ;
+  public showRutasContratista :boolean = false ;
+
+  public prueba : String = "xd";
+
   public menuTrabajador: any[];
+  public menuContratista: any[];
   public isCollapsed = true;
+
+  
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.menuTrabajador = ROUTES.filter(menuItem => menuItem);
-    this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
-   });
+    if(localStorage.getItem("trabajador_id") != null){
+      this.showRutasTrabajador = true;
+    }
+    else if(localStorage.getItem("contratista_id")!= null){
+      this.showRutasContratista = true;
+    }
+    this.menuTrabajador = rutasTrabajador.filter(menuItem => menuItem);
+    this.menuContratista = rutasContratista.filter(menuItem => menuItem);
+    
   }
 }

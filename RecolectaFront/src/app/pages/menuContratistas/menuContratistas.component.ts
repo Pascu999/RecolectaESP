@@ -8,9 +8,14 @@ import { MenuContratistasService } from 'src/app/services/menu-contratistas.serv
   templateUrl: './menuContratistas.component.html',
   styleUrls: ['./menuContratistas.component.scss']
 })
+
+
+
 export class MenuContratistasComponent implements OnInit {
 
   private FacturasContratista: Factura[];
+
+  public prueba :String = "XD";
 
   private UltimaFacturacion:String;
 

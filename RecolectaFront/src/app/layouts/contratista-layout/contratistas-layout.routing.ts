@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuContratistasComponent } from 'src/app/pages/menuContratistas/menuContratistas.component';
 
-export const routes: Routes = [
+export const routesContratista: Routes = [
   {
     path:'',
     children:[
@@ -14,7 +14,7 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routesContratista)],
   exports: [RouterModule]
 })
 export class ContratistasRoutingModule { }

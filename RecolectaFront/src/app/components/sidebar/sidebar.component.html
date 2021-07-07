@@ -39,7 +39,8 @@
         </div>
       </form>
       <!-- Navigation -->
-      <ul class="navbar-nav">
+      <ng-container *ngIf="showRutasTrabajador">
+        <ul class="navbar-nav">
           <li *ngFor="let menuTrabajador of menuTrabajador" class="{{menuTrabajador.class}} nav-item">
               <a routerLinkActive="active" [routerLink]="[menuTrabajador.path]" class="nav-link">
                   <i class="ni {{menuTrabajador.icon}}"></i>
@@ -47,6 +48,22 @@
               </a>
           </li>
       </ul>
+
+      </ng-container>
+
+      <ng-container *ngIf="showRutasContratista">
+        <ul class="navbar-nav">
+          <li *ngFor="let menuContratista of menuContratista" class="{{menuContratista.class}} nav-item">
+              <a routerLinkActive="active" [routerLink]="[menuContratista.path]" class="nav-link">
+                  <i class="ni {{menuContratista.icon}}"></i>
+                  {{menuContratista.title}}
+              </a>
+          </li>
+      </ul>
+
+      </ng-container>
+      
+     
     </div>
   </div>
 </nav>
