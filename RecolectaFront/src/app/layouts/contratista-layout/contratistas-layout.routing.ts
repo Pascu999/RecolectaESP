@@ -8,6 +8,7 @@ export const routesContratista: Routes = [
     children:[
       
        {path:'menuContratistas',component: MenuContratistasComponent},
+       {path:'administrarVehiculos',component: MenuContratistasComponent},
        {path: '**', redirectTo: 'menuContratistas'}
     ]
   }

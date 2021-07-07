@@ -77,9 +77,9 @@ public class VehiculosControlador {
                     example = "1",
                     required = true
             )
-            @PathVariable ("contratista_id") String contratista_id
+            @PathVariable ("contratista_id") Long contratista_id
     ){
-        List<Vehiculos> listadoVehiculos = null;
+        List<Vehiculos> listadoVehiculos = vehiculosServicio.obtenerVehiculosContratista(contratista_id);
 
         return new ResponseEntity<>(listadoVehiculos,HttpStatus.OK);
 

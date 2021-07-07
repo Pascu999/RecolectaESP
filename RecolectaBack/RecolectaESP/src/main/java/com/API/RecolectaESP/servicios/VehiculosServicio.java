@@ -7,6 +7,8 @@ import com.API.RecolectaESP.repositorios.VehiculosRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VehiculosServicio {
 
@@ -20,5 +22,10 @@ public class VehiculosServicio {
     public Vehiculos consultarVehiculo(String Placa){
         return vehiculosRepositorio.findVehiculosByVehiculoPlaca(Placa)
                 .orElseThrow(() -> new VehiculoNoEncontradoExcepcion("No se encontró vehiculo con la placa especificada" ));
+    }
+
+    public List<Vehiculos> obtenerVehiculosContratista(Long contratista_id){
+        return  vehiculosRepositorio.findVehiculosByContratistaId(contratista_id);
+
     }
 }
