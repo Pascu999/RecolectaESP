@@ -54,7 +54,7 @@
         <div class="card shadow">
           <div class="card-header border-0">
             <div class="col">
-              <h3 class="mb-0 ml--2">Facturas</h3>
+              <h3 class="mb-0 ml--2">Vehiculos</h3>
             </div>
           </div>
           <div class="table-responsive">
@@ -62,29 +62,21 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th >Inicio Facturacion</th>
-                  <th >Fin Facturacion</th>
-                  <th >Centro</th>
-                  <th >Valor</th>
+                  <th >Ruta</th>
+                  <th >Tipo </th>
+                  <th >Fecha de registro</th>
+                  <th >Estado</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let Factura of FacturasContratista">
-                  <td>{{Factura.facturaInicioPeriodo}}</td>
-                  <td>{{Factura.facturaFinPeriodo}}</td>
-                  <td>{{Factura.centroDiposicion.centroDisposicionNombre}}</td>
-                  <td>{{Factura.facturaCostoTransporte}}</td>
+                <tr *ngFor="let Vehiculo of VehiculosContratista">
+                  <td>{{Vehiculo.ruta.rutaNombre}}</td>
+                  <td>{{Vehiculo.tipo.tipoNombre}}</td>
+                  <td>{{Vehiculo.vehiculoFechaCreacion}}</td>
+                  <td>{{Vehiculo.vehiculoEstado}}</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-  
-        </div>
-  
-        <div class="right mt-2 mr-2">
-         <label for=""><b> Ultima facturación:</b></label>
-          <div class="right mr-2">
-            <label for=""><b>{{UltimaFacturacion}}</b></label>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'; import { Router } from '@angular/router';
 import { Factura } from 'src/app/models/factura';
 import { Vehiculo } from 'src/app/models/vehiculo';
-import { FacturaService } from 'src/app/services/factura.service';
 import { MenuContratistasService } from 'src/app/services/menu-contratistas.service';
 ;
 
@@ -18,7 +17,7 @@ import { MenuContratistasService } from 'src/app/services/menu-contratistas.serv
 export class MenuContratistasComponent implements OnInit {
 
   private FacturasContratista: Factura[];
-  private VehiculossContratista: Vehiculo[];
+  private VehiculosContratista: Vehiculo[];
 
   public showFacturas: boolean;
   public showVehiculos: boolean;
@@ -53,9 +52,9 @@ export class MenuContratistasComponent implements OnInit {
 
       this.menuContratistasServicio.obtenerVehiculosContratista(contratista).subscribe(
         (response: Vehiculo[]) => {
-          this.VehiculossContratista = response;
+          this.VehiculosContratista = response;
           this.showVehiculos = true;
-          console.log(this.VehiculossContratista);
+          console.log(this.VehiculosContratista);
         },
         (error: any) => {
           console.log(error);

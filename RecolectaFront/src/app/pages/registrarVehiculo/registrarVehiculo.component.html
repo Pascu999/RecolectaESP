@@ -1,0 +1,127 @@
+<div class="header bg-ingreso py-7 py-lg-8">
+    <div class="container mt--6">
+        <div class="header-body text-center mt-8 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                    <h1 class="h-registro"> Registrar vehículo </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default " points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt--9 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card carta-vehiculo shadow border-0">
+                <div class="card-body px-lg-5 py-lg-5">
+
+                    <form #formularioVehiculo="ngForm" (ngSubmit)="onCrearVehiculo(formularioVehiculo)">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="xd">Municipio</label>
+
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
+                                            class="form-control" placeholder="Municipio" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="xd">Ruta</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
+                                            placeholder="Ruta" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="xd">Marca</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
+                                            class="form-control" placeholder="Marca" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="xd">Tipo</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
+                                            placeholder="Tipo" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="xd">Modelo</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
+                                            class="form-control" placeholder="Modelo" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="xd">Peso</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
+                                        </div>
+                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
+                                            placeholder="Peso" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" [disabled]="formularioVehiculo.invalid"
+                                class="btn btn-primary mt-4">Registrar</button>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

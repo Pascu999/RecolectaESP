@@ -16,6 +16,7 @@ import { ContratistaLayoutComponent } from './layouts/contratista-layout/contrat
 import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
 import { FacturaComponent } from './pages/factura/factura.component';
 import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
+import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarVehiculo.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { LoginContratistaComponent } from './pages/loginContratistas/loginContra
     ContratistaLayoutComponent,
     LoginTrabajadorComponent,
     LoginContratistaComponent,
-    FacturaComponent
+    FacturaComponent,
+    RegistrarVehiculoComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
