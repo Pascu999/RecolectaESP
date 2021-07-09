@@ -1,4 +1,4 @@
-<div class="header bg-ingreso py-7 py-lg-8">
+<div class="header bg-gradient-warning py-7 py-lg-8">
     <div class="container mt--6">
         <div class="header-body text-center mt-8 mb-5">
             <div class="row justify-content-center">
@@ -20,96 +20,105 @@
     <!-- Table -->
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
-            <div class="card carta-vehiculo shadow border-0">
-                <div class="card-body px-lg-5 py-lg-5">
+            <div class="card bg-gradient-green shadow border-0">
+                <div class="card-body px-lg-5 py-lg-5 ">
 
                     <form #formularioVehiculo="ngForm" (ngSubmit)="onCrearVehiculo(formularioVehiculo)">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="xd">Municipio</label>
+                        <div class="row ">
+                            <div class="col-md-6  ">
+                                <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
+                                <mat-form-field appearance="fill">
+                                    <mat-select requiered [(ngModel)]="municipioIdSeleccionado" name="municipioIdSeleccionado" required>
+                                        <mat-option required style="color: black" class="not-empty-select"  *ngFor="let MunicipioLista of municipios " [value]="MunicipioLista.municipio_id" (click) = "obtenerRutasMunicipio(municipioIdSeleccionado)">
+                                            {{MunicipioLista.municipio_nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
-                                        </div>
-                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
-                                            class="form-control" placeholder="Municipio" type="text">
-                                    </div>
-                                </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="xd">Ruta</label>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
-                                        </div>
-                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
-                                            placeholder="Ruta" type="text">
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-md-6 xd">
+                                
+                                <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
+                                <mat-form-field appearance="fill">
+                                    <mat-select requiered [(ngModel)]="rutaIdSeleccionado" name="rutaIdSeleccionado" required>
+                                        <mat-option  required *ngFor="let RutaLista of rutas" [value]="RutaLista.ruta_id">
+                                            {{RutaLista.ruta_nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
 
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="xd">Marca</label>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
-                                        </div>
-                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
-                                            class="form-control" placeholder="Marca" type="text">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="xd">Tipo</label>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
-                                        </div>
-                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
-                                            placeholder="Tipo" type="text">
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="xd">Modelo</label>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
-                                        </div>
-                                        <input [(ngModel)]="conductor_documento" name="conductor_documento"
-                                            class="form-control" placeholder="Modelo" type="text">
-                                    </div>
-                                </div>
+                                <label for="xd"> <b class="label-vehiculo"> Marca </b></label>
+                                <mat-form-field appearance="fill">
+                                    <mat-select [(ngModel)]="marcaSeleccionada" name="marcaSeleccionada" required>
+                                        <mat-option required *ngFor="let MarcaVehiculo of marcas" [value]="MarcaVehiculo.vehiculo_marca">
+                                            {{MarcaVehiculo.vehiculo_marca}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6 lista">
+                                <label for="xd"> <b class="label-vehiculo"> Tipo </b></label>
+                                <mat-form-field appearance="fill">
+                                    <mat-select [(ngModel)]="tipoVehiculoSeleccionado" name="tipoVehiculoSeleccionado" required>
+                                        <mat-option  required *ngFor="let TipoLista of tipos" [value]="TipoLista.tipo_id">
+                                            {{TipoLista.tipo_nombre}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="xd"> <b class="label-vehiculo">Modelo</b> </label>
+                                <mat-form-field appearance="fill">
+                                    <mat-select [(ngModel)]="modeloSeleccionado" name="modeloSeleccionado" required>
+                                        <mat-option required *ngFor="let modeloVehiculo of modelos" [value]="modeloVehiculo.vehiculo_modelo_codigo">
+                                            {{modeloVehiculo.vehiculo_modelo}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="xd">Peso</label>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
+                                <label for="xd"> <b class="label-vehiculo"> Peso </b></label>
+                                <div class="form-group mt-1">
+                                    <div class="input-group input-group-alternative mb-3 altura">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-bus-front-12"></i></span>
+                                            <span class="input-group-text altura"><i class="ni ni-bus-front-12"></i></span>
                                         </div>
-                                        <input [(ngModel)]="vehiculo_placa" name="vehiculo_placa" class="form-control"
-                                            placeholder="Peso" type="text">
+                                        <input required [(ngModel)]="pesoVehiculoSeleccionado" name="pesoVehiculoSeleccionado" class="form-control altura"
+                                            placeholder="  Peso" type="number">
                                     </div>
                                 </div>
                             </div>
 
+                            
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
+                                <div class="form-group mt-1">
+                                    <div class="input-group input-group-alternative mb-3 altura">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text altura"><i class="ni ni-bus-front-12"></i></span>
+                                        </div>
+                                        <input required [(ngModel)]="placaVehiculo" name="placaVehiculo" class="form-control altura"
+                                            placeholder="  Peso" type="text">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="text-center">

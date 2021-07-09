@@ -17,6 +17,7 @@ import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabaja
 import { FacturaComponent } from './pages/factura/factura.component';
 import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
 import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarVehiculo.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarV
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
@@ -37,7 +39,7 @@ import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarV
     LoginTrabajadorComponent,
     LoginContratistaComponent,
     FacturaComponent,
-    RegistrarVehiculoComponent
+    RegistrarVehiculoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

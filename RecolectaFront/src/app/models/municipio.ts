@@ -1,3 +1,6 @@
 export interface Municipio{
-    municipio_id: Number
+    municipioId: Number;
+    municipioNombre: String;
+    municipioCodigoPostal: String;
+    municipioEstado: Number;
 }

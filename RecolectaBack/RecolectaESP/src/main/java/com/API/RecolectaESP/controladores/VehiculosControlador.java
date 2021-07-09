@@ -1,8 +1,10 @@
 package com.API.RecolectaESP.controladores;
 
 
+import com.API.RecolectaESP.modelos.TiposVehiculos;
 import com.API.RecolectaESP.modelos.Vehiculos;
 import com.API.RecolectaESP.servicios.VehiculosServicio;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,10 @@ import java.util.List;
 @RequestMapping("/Vehiculos")
 public class VehiculosControlador {
 
-    @Autowired private final VehiculosServicio vehiculosServicio;
+    private final VehiculosServicio vehiculosServicio;
 
+
+    @Autowired
     public VehiculosControlador(VehiculosServicio vehiculosServicio){
         this.vehiculosServicio = vehiculosServicio;
     }
@@ -85,6 +89,15 @@ public class VehiculosControlador {
 
     }
 
+    @GetMapping("/Tipos/buscar")
+    public ResponseEntity<List<TiposVehiculos>> obtenerTiposVehiculos(
+    ){
+        List<TiposVehiculos> listadoTipos = vehiculosServicio.otenerTiposVehiculos();
+
+        return new ResponseEntity<>(listadoTipos,HttpStatus.OK);
+
+    }
+
     @PostMapping("/Crear")
     public ResponseEntity<Vehiculos> registrarVehiculo(
             @ApiParam(
@@ -95,7 +108,7 @@ public class VehiculosControlador {
             )
             @RequestBody Vehiculos vehiculo
     ){
-        Vehiculos nuevoVehiculo = null;
+        Vehiculos nuevoVehiculo = vehiculosServicio.registrarVehiculo(vehiculo);
         return new ResponseEntity<>(nuevoVehiculo, HttpStatus.OK);
     }
 }

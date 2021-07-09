@@ -1,5 +1,6 @@
 .h-registro{
-    color: #e3e4bc;
+    color: #172b4d;
+    font-size: 300%;
 }
 
 .carta-vehiculo{
@@ -10,4 +11,40 @@
     text-align: left;
     line-height: normal;
     font-family: Open Sans, sans-serif;
+}
+
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex .mat-select-panel{
+    background-color: white;
+    color: black;
+    font-family: Open Sans, sans-serif;
+    max-height: 80vh !important;
+}
+
+.mat-option{
+    background-color: white;
+    
+    color: black!important;
+}
+
+
+
+ ::ng-deep .mat-select-value{    
+     
+    font-size: 120%;
+    font-style:italic;
+    height: 10%;
+    color: black!important;
+    font-style: inherit;
+
+}
+
+.altura{
+    height: 50px;
+    background-color: white;
+}
+
+.label-vehiculo{
+    color: black;
+    font-size: medium;
 }
