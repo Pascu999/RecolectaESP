@@ -54,6 +54,8 @@ export class MenuContratistasComponent implements OnInit {
         (response: Vehiculo[]) => {
           this.VehiculosContratista = response;
           this.showVehiculos = true;
+          console.log(contratista);
+          
           console.log(this.VehiculosContratista);
         },
         (error: any) => {
