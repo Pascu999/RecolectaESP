@@ -21,4 +21,8 @@ export class MenuContratistasService {
     return this.http.get<Vehiculo[]>(`${this.apiServerUrl}/Vehiculos/Listar/${contratista_id}`);
   }
 
+  public cambiarEstadoVehiculo(vehiculo_id: Number):Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/Vehiculos/CambiarEstado/${vehiculo_id}`);
+  }
+
 }

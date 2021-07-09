@@ -3,7 +3,16 @@
         <div class="header-body text-center mt-8 mb-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-6">
-                    <h1 class="h-registro"> Registrar vehículo </h1>
+                    <ng-container *ngIf="showRegistro">
+
+                        <h1 class="h-registro"> Registrar vehículo </h1>
+                    </ng-container>
+
+                    <ng-container *ngIf="showEdicion">
+
+                        <h1 class="h-registro"> Editar vehículo </h1>
+                    </ng-container>
+
                 </div>
             </div>
         </div>
@@ -20,117 +29,265 @@
     <!-- Table -->
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
+
             <div class="card bg-gradient-green shadow border-0">
+
                 <div class="card-body px-lg-5 py-lg-5 ">
 
-                    <form #formularioVehiculo="ngForm" (ngSubmit)="onCrearVehiculo(formularioVehiculo)">
-                        <div class="row ">
-                            <div class="col-md-6  ">
-                                <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
-                                <mat-form-field appearance="fill">
-                                    <mat-select requiered [(ngModel)]="municipioIdSeleccionado" name="municipioIdSeleccionado" required>
-                                        <mat-option required style="color: black" class="not-empty-select"  *ngFor="let MunicipioLista of municipios " [value]="MunicipioLista.municipio_id" (click) = "obtenerRutasMunicipio(municipioIdSeleccionado)">
-                                            {{MunicipioLista.municipio_nombre}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                    <ng-container *ngIf="showRegistro">
+
+                        <form #formularioVehiculo="ngForm" (ngSubmit)="onCrearVehiculo(formularioVehiculo)">
+                            <div class="row ">
+                                <div class="col-md-6  ">
+                                    <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select requiered [(ngModel)]="municipioIdSeleccionado"
+                                            name="municipioIdSeleccionado" required>
+                                            <mat-option required style="color: black" class="not-empty-select"
+                                                *ngFor="let MunicipioLista of municipios "
+                                                [value]="MunicipioLista.municipio_id"
+                                                (click)="obtenerRutasMunicipio(municipioIdSeleccionado)">
+                                                {{MunicipioLista.municipio_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-6 xd">
+
+                                    <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select requiered [(ngModel)]="rutaIdSeleccionado" name="rutaIdSeleccionado"
+                                            required>
+                                            <mat-option required *ngFor="let RutaLista of rutas"
+                                                [value]="RutaLista.ruta_id">
+                                                {{RutaLista.ruta_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
 
                             </div>
 
-                            <div class="col-md-6 xd">
-                                
-                                <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
-                                <mat-form-field appearance="fill">
-                                    <mat-select requiered [(ngModel)]="rutaIdSeleccionado" name="rutaIdSeleccionado" required>
-                                        <mat-option  required *ngFor="let RutaLista of rutas" [value]="RutaLista.ruta_id">
-                                            {{RutaLista.ruta_nombre}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Marca </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select [(ngModel)]="marcaSeleccionada" name="marcaSeleccionada" required>
+                                            <mat-option required *ngFor="let MarcaVehiculo of marcas"
+                                                [value]="MarcaVehiculo.vehiculo_marca">
+                                                {{MarcaVehiculo.vehiculo_marca}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6 lista">
+                                    <label for="xd"> <b class="label-vehiculo"> Tipo </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select [(ngModel)]="tipoVehiculoSeleccionado"
+                                            name="tipoVehiculoSeleccionado" required>
+                                            <mat-option required *ngFor="let TipoLista of tipos"
+                                                [value]="TipoLista.tipo_id">
+                                                {{TipoLista.tipo_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
 
                             </div>
 
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo">Modelo</b> </label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select [(ngModel)]="modeloSeleccionado" name="modeloSeleccionado" required>
+                                            <mat-option required *ngFor="let modeloVehiculo of modelos"
+                                                [value]="modeloVehiculo.vehiculo_modelo_codigo">
+                                                {{modeloVehiculo.vehiculo_modelo}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="xd"> <b class="label-vehiculo"> Marca </b></label>
-                                <mat-form-field appearance="fill">
-                                    <mat-select [(ngModel)]="marcaSeleccionada" name="marcaSeleccionada" required>
-                                        <mat-option required *ngFor="let MarcaVehiculo of marcas" [value]="MarcaVehiculo.vehiculo_marca">
-                                            {{MarcaVehiculo.vehiculo_marca}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-
-                            <div class="col-md-6 lista">
-                                <label for="xd"> <b class="label-vehiculo"> Tipo </b></label>
-                                <mat-form-field appearance="fill">
-                                    <mat-select [(ngModel)]="tipoVehiculoSeleccionado" name="tipoVehiculoSeleccionado" required>
-                                        <mat-option  required *ngFor="let TipoLista of tipos" [value]="TipoLista.tipo_id">
-                                            {{TipoLista.tipo_nombre}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="xd"> <b class="label-vehiculo">Modelo</b> </label>
-                                <mat-form-field appearance="fill">
-                                    <mat-select [(ngModel)]="modeloSeleccionado" name="modeloSeleccionado" required>
-                                        <mat-option required *ngFor="let modeloVehiculo of modelos" [value]="modeloVehiculo.vehiculo_modelo_codigo">
-                                            {{modeloVehiculo.vehiculo_modelo}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="xd"> <b class="label-vehiculo"> Peso </b></label>
-                                <div class="form-group mt-1">
-                                    <div class="input-group input-group-alternative mb-3 altura">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text altura"><i class="ni ni-bus-front-12"></i></span>
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Peso </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required [(ngModel)]="pesoVehiculoSeleccionado"
+                                                name="pesoVehiculoSeleccionado" class="form-control altura"
+                                                placeholder="  Peso" type="number">
                                         </div>
-                                        <input required [(ngModel)]="pesoVehiculoSeleccionado" name="pesoVehiculoSeleccionado" class="form-control altura"
-                                            placeholder="  Peso" type="number">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required [(ngModel)]="placaVehiculo" name="placaVehiculo"
+                                                class="form-control altura" placeholder="  Peso" type="text">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            
+                            <div class="text-center">
+                                <button type="submit" [disabled]="formularioVehiculo.invalid"
+                                    class="btn btn-primary mt-4">Registrar</button>
+                            </div>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
-                                <div class="form-group mt-1">
-                                    <div class="input-group input-group-alternative mb-3 altura">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text altura"><i class="ni ni-bus-front-12"></i></span>
+                        </form>
+
+                    </ng-container>
+
+                    <ng-container *ngIf="showEdicion">
+
+                        <form #formularioVehiculo="ngForm" (ngSubmit)="onEditarVehiculo(formularioVehiculo)">
+                            <div class="row ">
+                                <div class="col-md-6  ">
+                                    <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select requiered [(ngModel)]="municipioIdEditado"
+                                            name="municipioIdEditado" required>
+                                            <mat-option required style="color: black" class="not-empty-select"
+                                                *ngFor="let MunicipioLista of municipios "
+                                                [value]="MunicipioLista.municipio_id"
+                                                (click)="obtenerRutasMunicipio(municipioIdEditado)">
+                                                {{MunicipioLista.municipio_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-6 xd">
+
+                                    <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select requiered [(ngModel)]="rutaVehiculoEditadoId" name="rutaVehiculoEditadoId"
+                                            required>
+                                            <mat-option required *ngFor="let RutaLista of rutas"
+                                                [value]="RutaLista.ruta_id">
+                                                {{RutaLista.ruta_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Marca </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input disabled required name="marcaVehiculoEditado"
+                                                class="form-control altura" value="{{marcaVehiculoEditado}}" type="text">
                                         </div>
-                                        <input required [(ngModel)]="placaVehiculo" name="placaVehiculo" class="form-control altura"
-                                            placeholder="  Peso" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 lista">
+                                    <label for="xd"> <b class="label-vehiculo"> Tipo </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required disabled  name="tipoVehiculoEditado"
+                                                class="form-control altura" value="{{tipoNombreVehiculoEditado}}" type="text">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo">Modelo</b> </label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required disabled  name="modeloVehiculoEditado"
+                                                class="form-control altura" value="{{modeloVehiculoEditado}}" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Peso </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required disabled  name="pesoVehiculoEditado"
+                                                class="form-control altura" value="{{pesoVehiculoEditado}}" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
+                                    <div class="form-group mt-1">
+                                        <div class="input-group input-group-alternative mb-3 altura">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text altura"><i
+                                                        class="ni ni-bus-front-12"></i></span>
+                                            </div>
+                                            <input required disabled name="placaVehiculoEditado"
+                                                class="form-control altura" value="{{placaVehiculoEditado}}" type="text">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="text-center">
-                            <button type="submit" [disabled]="formularioVehiculo.invalid"
-                                class="btn btn-primary mt-4">Registrar</button>
-                        </div>
+                            <div class="text-center">
+                                <button type="submit" [disabled]="formularioVehiculo.invalid"
+                                    class="btn btn-primary mt-4">Registrar</button>
+                            </div>
+
+                        </form>
 
 
 
-                    </form>
+                    </ng-container>
                 </div>
             </div>
+
+
         </div>
+
     </div>
 </div>

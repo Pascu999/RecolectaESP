@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class CeldasAdmitenDesechos implements Serializable {
     @EmbeddedId
     private CeldasAdmitenDesechosId celdasAdmitenDesechosId;

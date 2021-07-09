@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class ContratistasTarifanDesechos implements Serializable {
     @EmbeddedId
     private ContratistasTarifanDesechosId contratistasTarifanDesechosId;

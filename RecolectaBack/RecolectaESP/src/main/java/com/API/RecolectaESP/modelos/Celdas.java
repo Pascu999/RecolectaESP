@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class Celdas {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "celdas_secuencia")

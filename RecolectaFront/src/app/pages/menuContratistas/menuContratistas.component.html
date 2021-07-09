@@ -66,6 +66,7 @@
                   <th >Tipo </th>
                   <th >Fecha de registro</th>
                   <th >Estado</th>
+                  <th >Editar</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,6 +75,7 @@
                   <td>{{Vehiculo.tipo.tipoNombre}}</td>
                   <td>{{Vehiculo.vehiculoFechaCreacion}}</td>
                   <td>{{Vehiculo.vehiculoEstado}}</td>
+                  <td><button (click)="cambiarEstado(Vehiculo.vehiculoId)" type="primary" class="btn btn-primary mt-4">{{Vehiculo.vehiculoEstado | transformarEstado }}</button></td>
                 </tr>
               </tbody>
             </table>

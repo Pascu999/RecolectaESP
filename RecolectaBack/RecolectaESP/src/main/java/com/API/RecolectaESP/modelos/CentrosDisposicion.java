@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class CentrosDisposicion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "centros_disposicion_id")

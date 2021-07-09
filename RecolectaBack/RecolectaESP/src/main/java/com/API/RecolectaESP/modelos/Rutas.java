@@ -12,6 +12,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class Rutas implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rutas_secuencia")

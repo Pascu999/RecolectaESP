@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 @Table(
         name = "Trabajadores",
         uniqueConstraints = {

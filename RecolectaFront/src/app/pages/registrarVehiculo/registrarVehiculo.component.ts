@@ -108,6 +108,7 @@ export class RegistrarVehiculoComponent implements OnInit {
 
 
 
+  //VEHICULO INGRESO
 
   public contratistaId:Number;
   public municipioIdSeleccionado: Number;
@@ -118,14 +119,30 @@ export class RegistrarVehiculoComponent implements OnInit {
   public pesoVehiculoSeleccionado: Number;
   public placaVehiculo: String;
 
+  //VEHICULO EDITADO
+  
+  public municipioIdEditado: Number;
+  public rutaVehiculoEditadoId: Number;
+  public marcaVehiculoEditado: String;
+  public modeloVehiculoEditado: String;
+  public tipoNombreVehiculoEditado: String;
+  public tipoIdVehiculoEditado: Number;
+  public pesoVehiculoEditado: Number;
+  public placaVehiculoEditado: String;
+
+
+  private showRegistro : Boolean = false;
+  private showEdicion  : Boolean = true;
+  private vehiculoEditar : String = '2T1BU4EE0DC075978';
+  private vehiculoIdEditar : Number;
+
   constructor(private registrarVehiculosService: registrarVehiculosService) { }
 
   ngOnInit(): void {
     this.obtenerMunicipios();
     this.obtenerTiposVehiculo();
+    this.obtenerVehiculoEditar(this.vehiculoEditar);
     this.contratistaId = Number(localStorage.getItem("contratista_id"))
-
-
 
   }
 
@@ -194,6 +211,19 @@ export class RegistrarVehiculoComponent implements OnInit {
 
     )
   }
+  obtenerVehiculoEditar(vehiculo_placa: String){
+    this.registrarVehiculosService.obtenerVehiculo(vehiculo_placa).subscribe(
+      (response: Vehiculo)=>{
+        this.vehiculoIdEditar = response.vehiculoId;
+        this.marcaVehiculoEditado = response.vehiculoMarca
+        this.tipoNombreVehiculoEditado = response.tipo.tipoNombre
+        this.tipoIdVehiculoEditado = response.tipo.tipoId
+        this.modeloVehiculoEditado = response.vehiculoModelo
+        this.pesoVehiculoEditado = response.vehiculoPeso
+        this.placaVehiculoEditado = response.vehiculoPlaca
+      }
+    )
+  }
 
   onCrearVehiculo(vehiculoForm: NgForm){
 
@@ -219,6 +249,31 @@ export class RegistrarVehiculoComponent implements OnInit {
          
        }
      )
+  }
+
+  onEditarVehiculo(formVehiculo : NgForm){
+
+    let editadoVehiculo  = {
+      vehiculoId: this.vehiculoIdEditar,
+      contratista : {contratistaId:this.contratistaId},
+      ruta : {rutaId: this.rutaVehiculoEditadoId},
+      tipo: {tipoId: this.tipoIdVehiculoEditado},
+      vehiculoMarca: this.marcaVehiculoEditado,
+      vehiculoPlaca: this.placaVehiculoEditado,
+      vehiculoPeso: this.pesoVehiculoEditado,
+      vehiculoModelo: this.modeloVehiculoEditado,
+      vehiculoFechaCreacion: this.obtenerFecha()
+     }
+
+     this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
+       (response: Vehiculo)=>{
+         console.log(response);
+         
+       }
+     )
+      
+
+
   }
 
 }

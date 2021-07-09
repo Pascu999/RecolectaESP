@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; import { Router } from '@angular/router';
+import { Component, OnInit, Pipe,PipeTransform } from '@angular/core'; import { Router } from '@angular/router';
 import { Factura } from 'src/app/models/factura';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { MenuContratistasService } from 'src/app/services/menu-contratistas.service';
@@ -10,11 +10,11 @@ import { MenuContratistasService } from 'src/app/services/menu-contratistas.serv
   styleUrls: ['./menuContratistas.component.scss']
 })
 
+@Pipe({name: 'transformarEstado'})
 
 
 
-
-export class MenuContratistasComponent implements OnInit {
+export class MenuContratistasComponent implements OnInit,PipeTransform {
 
   private FacturasContratista: Factura[];
   private VehiculosContratista: Vehiculo[];
@@ -24,6 +24,15 @@ export class MenuContratistasComponent implements OnInit {
   public href: string = "";
 
   private UltimaFacturacion: String;
+
+  transform(input: Number):String{
+    if(input == 0){
+      return 'activar'
+    }
+    else if(input == 1){
+      return 'desactivar'
+    }
+  }
 
   constructor(private menuContratistasServicio: MenuContratistasService, private router: Router) { }
   ngOnInit() {
@@ -69,5 +78,19 @@ export class MenuContratistasComponent implements OnInit {
 
 
   }
+
+  cambiarEstado(vehiculo_id : Number){
+    console.log(vehiculo_id);
+
+    this.menuContratistasServicio.cambiarEstadoVehiculo(vehiculo_id).subscribe(
+      (response: any)=>{
+        console.log(response);
+        
+      }
+    )
+    
+  }
+
+ 
 
 }

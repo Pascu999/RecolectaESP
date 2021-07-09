@@ -27,18 +27,20 @@ public class VehiculosControlador {
     }
 
     @DeleteMapping("/CambiarEstado/{vehiculo_id}")
-    public ResponseEntity<Vehiculos> cambiarEstadoVehiculo(
+    public ResponseEntity<HttpStatus> cambiarEstadoVehiculo(
             @ApiParam(
 
                     value = "Id del vehiculo que se va a desactivar",
                     example = "1",
                     required = true
             )
-            @PathVariable ("vehiculo_id") String vehiculo_id
+            @PathVariable ("vehiculo_id") Long vehiculo_id
     ){
-        Vehiculos vehiculoCambio = null;
 
-        return new ResponseEntity<>(vehiculoCambio,HttpStatus.OK);
+        System.out.println(vehiculo_id);
+         vehiculosServicio.cambiarEstadoVehiculo(vehiculo_id);
+
+         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
@@ -51,6 +53,7 @@ public class VehiculosControlador {
                     required = true
             )
             @PathVariable ("vehiculo_placa") String vehiculo_placa
+
     ){
         System.out.println(vehiculo_placa);
         Vehiculos vehiculoConsultado = vehiculosServicio.consultarVehiculo(vehiculo_placa);
@@ -61,15 +64,23 @@ public class VehiculosControlador {
 
     @PutMapping("/Actualizar/{vehiculo_id}")
     public ResponseEntity<Vehiculos> actualizarVehiculo(
+
             @ApiParam(
 
                     value = "Id del vehiculo al que se le va a actualizar su información",
                     example = "1",
                     required = true
             )
-            @PathVariable ("vehiculo_id") String vehiculo_id
+            @PathVariable ("vehiculo_id") Long vehiculo_id,
+            @ApiParam(
+
+                    value = "Valores nuevos del  vehiculo",
+                    example = "Vehiculo{}",
+                    required = true
+            )
+            @RequestBody Vehiculos vehiculo
     ){
-        Vehiculos vehiculoEditado = null;
+        Vehiculos vehiculoEditado = vehiculosServicio.actualizarVehiculo(vehiculo,vehiculo_id);
         return new ResponseEntity<>(vehiculoEditado, HttpStatus.OK);
     }
 

@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Cacheable(false)
 public class Conductores {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "conductores_id")

@@ -33,6 +33,14 @@ export class registrarVehiculosService {
     return this.http.post<Vehiculo>(`${this.apiServerUrl}/Vehiculos/Crear`,vehiculo);
   }
 
-  
+  public editarVehiculo(vehiculo: VehiculoRegistro,vehiculo_id : Number): Observable<Vehiculo>{
+    return this.http.put<Vehiculo>(`${this.apiServerUrl}/Vehiculos/Actualizar/${vehiculo_id}`,vehiculo);
+  }
+
+  public obtenerVehiculo(vehiculo_placa: String): Observable<Vehiculo>{
+
+    
+    return this.http.get<Vehiculo>(`${this.apiServerUrl}/Vehiculos/Consultar/${vehiculo_placa}`);
+}
 
 }
