@@ -44,10 +44,10 @@
                                         <mat-select requiered [(ngModel)]="municipioIdSeleccionado"
                                             name="municipioIdSeleccionado" required>
                                             <mat-option required style="color: black" class="not-empty-select"
-                                                *ngFor="let MunicipioLista of municipios "
-                                                [value]="MunicipioLista.municipio_id"
+                                                *ngFor="let municipioLista of municipios "
+                                                [value]="municipioLista.municipio_id"
                                                 (click)="obtenerRutasMunicipio(municipioIdSeleccionado)">
-                                                {{MunicipioLista.municipio_nombre}}
+                                                {{municipioLista.municipio_nombre}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -60,9 +60,9 @@
                                     <mat-form-field appearance="fill">
                                         <mat-select requiered [(ngModel)]="rutaIdSeleccionado" name="rutaIdSeleccionado"
                                             required>
-                                            <mat-option required *ngFor="let RutaLista of rutas"
-                                                [value]="RutaLista.ruta_id">
-                                                {{RutaLista.ruta_nombre}}
+                                            <mat-option required *ngFor="let rutaLista of rutas"
+                                                [value]="rutaLista.ruta_id">
+                                                {{rutaLista.ruta_nombre}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -89,9 +89,9 @@
                                     <mat-form-field appearance="fill">
                                         <mat-select [(ngModel)]="tipoVehiculoSeleccionado"
                                             name="tipoVehiculoSeleccionado" required>
-                                            <mat-option required *ngFor="let TipoLista of tipos"
-                                                [value]="TipoLista.tipo_id">
-                                                {{TipoLista.tipo_nombre}}
+                                            <mat-option required *ngFor="let tipoLista of tipos"
+                                                [value]="tipoLista.tipo_id">
+                                                {{tipoLista.tipo_nombre}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -166,10 +166,10 @@
                                         <mat-select requiered [(ngModel)]="municipioIdEditado"
                                             name="municipioIdEditado" required>
                                             <mat-option required style="color: black" class="not-empty-select"
-                                                *ngFor="let MunicipioLista of municipios "
-                                                [value]="MunicipioLista.municipio_id"
+                                                *ngFor="let municipioLista of municipios "
+                                                [value]="municipioLista.municipio_id"
                                                 (click)="obtenerRutasMunicipio(municipioIdEditado)">
-                                                {{MunicipioLista.municipio_nombre}}
+                                                {{municipioLista.municipio_nombre}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -182,9 +182,9 @@
                                     <mat-form-field appearance="fill">
                                         <mat-select requiered [(ngModel)]="rutaVehiculoEditadoId" name="rutaVehiculoEditadoId"
                                             required>
-                                            <mat-option required *ngFor="let RutaLista of rutas"
-                                                [value]="RutaLista.ruta_id">
-                                                {{RutaLista.ruta_nombre}}
+                                            <mat-option required *ngFor="let rutaLista of rutas"
+                                                [value]="rutaLista.ruta_id">
+                                                {{rutaLista.ruta_nombre}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -275,7 +275,7 @@
 
                             <div class="text-center">
                                 <button type="submit" [disabled]="formularioVehiculo.invalid"
-                                    class="btn btn-primary mt-4">Registrar</button>
+                                    class="btn btn-primary mt-4">Actualizar</button>
                             </div>
 
                         </form>

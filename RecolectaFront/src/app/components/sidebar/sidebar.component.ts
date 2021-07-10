@@ -46,7 +46,7 @@ export class SidebarComponent implements OnInit {
     if(this.href  == "/Administradores/MenuAdministradores"){
       this.showRutasTrabajador = true;
     }
-    else if(this.href == "/Contratistas/menuContratistas"){
+    else if(this.href == "/Contratistas/menuContratistas" || this.href == "/Contratistas/administrarVehiculos" || this.href == "/Contratistas/registrarVehiculo" || this.href.includes("/Contratistas/editarVehiculo/")){
       this.showRutasContratista = true;
     }
     

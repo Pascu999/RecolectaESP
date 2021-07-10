@@ -1,6 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Municipio } from 'src/app/models/municipio';
 import { Ruta } from 'src/app/models/ruta';
 import { Tipo } from 'src/app/models/tipo';
@@ -8,31 +8,35 @@ import { Vehiculo, VehiculoRegistro } from 'src/app/models/vehiculo';
 import { registrarVehiculosService } from 'src/app/services/registrarVehiculos.service';
 
 
-interface MunicipioLista {
+//Interfaz para mapear la lista de municipios 
+interface municipioLista {
   municipio_id: Number;
   municipio_nombre: String;
 }
 
-interface RutaLista {
+//Interfaz para mapear la lista de rutas asociada a un municipio
+interface rutaLista {
   ruta_id: Number;
   ruta_nombre: String;
 }
 
-interface MarcaVehiculo {
+//Interfaz para mapear la lista de marcas de vehiculo 
+interface marcaVehiculo {
   vehiculo_marca_codigo: Number;
   vehiculo_marca: String;
 }
 
+//Interfaz para mapear la lista de modelos de vehiculo
 interface modeloVehiculo {
   vehiculo_modelo_codigo: Number;
   vehiculo_modelo: String;
 }
 
-interface TipoLista{
+//Interfaz para mapear la lista de tipos de vehiculo 
+interface tipoLista{
   tipo_id: Number;
   tipo_nombre: String;
 }
-
 
 
 
@@ -42,36 +46,17 @@ interface TipoLista{
   styleUrls: ['./registrarVehiculo.component.scss']
 })
 
-@NgModule({
-  imports: [MatSelectModule]
-})
-
 
 
 export class RegistrarVehiculoComponent implements OnInit {
 
  
+  //Lista de municipios,rutas,tipos,marcas y modelos posibles para elegir
+  public municipios: municipioLista[] = [];
+  public rutas: rutaLista[] = [];
+  public tipos: tipoLista[] = [];
 
-  public municipios: MunicipioLista[] = [];
-  public rutas: RutaLista[] = [];
-  public tipos: TipoLista[] = [];
-
-
-  private municipioAux: MunicipioLista = {
-    municipio_id: null,
-    municipio_nombre: null
-  }
-  private rutaAux: RutaLista = {
-    ruta_id: null,
-    ruta_nombre: null
-  }
-
-  private tipoAux: TipoLista ={
-    tipo_id: null,
-    tipo_nombre: null
-  }
-
-  private marcas: MarcaVehiculo[] = [
+  private marcas: marcaVehiculo[] = [
     { vehiculo_marca: 'Chevrolet', vehiculo_marca_codigo: 1 },
     { vehiculo_marca: 'Dodge', vehiculo_marca_codigo: 2 },
     { vehiculo_marca: 'Ford', vehiculo_marca_codigo: 3 },
@@ -95,55 +80,72 @@ export class RegistrarVehiculoComponent implements OnInit {
     { vehiculo_modelo: '2021', vehiculo_modelo_codigo: 9 }
   ]
 
+
+  //Objetos de tipo municipoLista con los que se llenara la lista de municipios
+  private municipioAux: municipioLista = {
+    municipio_id: null,
+    municipio_nombre: null
+  }
+
+  //Objetos de tipo rutaLista con los que se llenara la lista de rutas
+  private rutaAux: rutaLista = {
+    ruta_id: null,
+    ruta_nombre: null
+  }
+
+  //Objetos de tipo t ipoLista con los que se llenara la lista de tipos
+  private tipoAux: tipoLista ={
+    tipo_id: null,
+    tipo_nombre: null
+  }
+
+
+
+  //Propiedades del vehiculo que se registra
+
+  private contratistaId:Number;
+  private municipioIdSeleccionado: Number;
+  private rutaIdSeleccionado: Number;
+  private marcaSeleccionada: String;
+  private modeloSeleccionado: String;
+  private tipoVehiculoSeleccionado: Number;
+  private pesoVehiculoSeleccionado: Number;
+  private placaVehiculo: String;
+
+  //Propiedades del vehiculo que se edita
   
+  private municipioIdEditado: Number;
+  private rutaVehiculoEditadoId: Number;
+  private marcaVehiculoEditado: String;
+  private modeloVehiculoEditado: String;
+  private tipoNombreVehiculoEditado: String;
+  private tipoIdVehiculoEditado: Number;
+  private pesoVehiculoEditado: Number;
+  private placaVehiculoEditado: String;
 
 
-
-
-
-
-
-
-
-
-
-
-  //VEHICULO INGRESO
-
-  public contratistaId:Number;
-  public municipioIdSeleccionado: Number;
-  public rutaIdSeleccionado: Number;
-  public marcaSeleccionada: String;
-  public modeloSeleccionado: String;
-  public tipoVehiculoSeleccionado: Number;
-  public pesoVehiculoSeleccionado: Number;
-  public placaVehiculo: String;
-
-  //VEHICULO EDITADO
-  
-  public municipioIdEditado: Number;
-  public rutaVehiculoEditadoId: Number;
-  public marcaVehiculoEditado: String;
-  public modeloVehiculoEditado: String;
-  public tipoNombreVehiculoEditado: String;
-  public tipoIdVehiculoEditado: Number;
-  public pesoVehiculoEditado: Number;
-  public placaVehiculoEditado: String;
-
-
-  private showRegistro : Boolean = false;
-  private showEdicion  : Boolean = true;
-  private vehiculoEditar : String = '2T1BU4EE0DC075978';
+  private showRegistro : Boolean = false ;
+  private showEdicion  : Boolean = false ;
+  private vehiculoPlacaEditar : String;
   private vehiculoIdEditar : Number;
 
-  constructor(private registrarVehiculosService: registrarVehiculosService) { }
+  constructor(private registrarVehiculosService: registrarVehiculosService,private aRoute: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
-    this.obtenerMunicipios();
-    this.obtenerTiposVehiculo();
-    this.obtenerVehiculoEditar(this.vehiculoEditar);
-    this.contratistaId = Number(localStorage.getItem("contratista_id"))
 
+    
+    this.vehiculoPlacaEditar = this.aRoute.snapshot.paramMap.get("vehiculo_placa")
+    this.contratistaId = Number(localStorage.getItem("contratista_id"))
+    this.obtenerMunicipios();
+    if(this.router.url == '/Contratistas/registrarVehiculo'){
+      this.showRegistro = true
+    this.obtenerTiposVehiculo();
+    }
+    else if(this.vehiculoPlacaEditar != null){
+      this.showEdicion = true
+      
+      this.obtenerVehiculoEditar(this.vehiculoPlacaEditar);
+    }
   }
 
   obtenerFecha(): String {
@@ -152,19 +154,15 @@ export class RegistrarVehiculoComponent implements OnInit {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = String(today.getFullYear());
-
     return mm + '/' + dd + '/' + yyyy;
-
   }
 
   obtenerMunicipios() {
+
     this.registrarVehiculosService.obtenerMunicipios().subscribe(
       (response: Municipio[]) => {
-
-
         response.forEach(municipio => {
           this.municipioAux = {
-
             municipio_id: municipio.municipioId,
             municipio_nombre: municipio.municipioNombre
           }
@@ -178,9 +176,7 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   obtenerRutasMunicipio(municipio_id: Number) {
 
-
     this.registrarVehiculosService.obtenerRutasMunicipio(municipio_id).subscribe(
-
       (response: Ruta[]) => {
         this.rutas = []
         response.forEach(ruta => {
@@ -191,14 +187,11 @@ export class RegistrarVehiculoComponent implements OnInit {
           this.rutas.push(this.rutaAux);
         })
       }
-
     )
   }
 
   obtenerTiposVehiculo() {
-
     this.registrarVehiculosService.obtenerTiposVehiculos().subscribe(
-
       (response: Tipo[]) => {
         response.forEach(tipo => {
           this.tipoAux = {
@@ -208,9 +201,9 @@ export class RegistrarVehiculoComponent implements OnInit {
           this.tipos.push(this.tipoAux);
         })
       }
-
     )
   }
+
   obtenerVehiculoEditar(vehiculo_placa: String){
     this.registrarVehiculosService.obtenerVehiculo(vehiculo_placa).subscribe(
       (response: Vehiculo)=>{
@@ -227,9 +220,6 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   onCrearVehiculo(vehiculoForm: NgForm){
 
-    console.log("XD");
-    
-
      let nuevoVehiculo : VehiculoRegistro = {
       contratista : {contratistaId:this.contratistaId},
       ruta : {rutaId: this.rutaIdSeleccionado},
@@ -240,8 +230,6 @@ export class RegistrarVehiculoComponent implements OnInit {
       vehiculoModelo: this.modeloSeleccionado,
       vehiculoFechaCreacion: this.obtenerFecha()
      }
-      
-     console.log(nuevoVehiculo);
      
      this.registrarVehiculosService.registrarVehiculo(nuevoVehiculo).subscribe(
        (response:Vehiculo)=>{
@@ -266,14 +254,9 @@ export class RegistrarVehiculoComponent implements OnInit {
      }
 
      this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
-       (response: Vehiculo)=>{
-         console.log(response);
-         
+       (response: Vehiculo)=>{      
        }
      )
-      
-
-
   }
 
 }

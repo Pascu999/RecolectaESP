@@ -46,7 +46,6 @@ export class MenuContratistasComponent implements OnInit,PipeTransform {
         (response: Factura[]) => {
           this.FacturasContratista = response;
           this.UltimaFacturacion = localStorage.getItem("ultima_facturacion")
-
           this.showFacturas = true;
           console.log(this.showFacturas);
         },

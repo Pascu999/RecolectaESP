@@ -62,20 +62,23 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th >Ruta</th>
-                  <th >Tipo </th>
-                  <th >Fecha de registro</th>
-                  <th >Estado</th>
-                  <th >Editar</th>
+                  <th>Ruta</th>
+                  <th>Placa</th>
+                  <th>Tipo </th>
+                  <th>Fecha de registro</th>
+                  <th>Estado</th>
+                  <th>Editar</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let Vehiculo of VehiculosContratista">
                   <td>{{Vehiculo.ruta.rutaNombre}}</td>
+                  <td> {{Vehiculo.vehiculoPlaca}}</td>
                   <td>{{Vehiculo.tipo.tipoNombre}}</td>
                   <td>{{Vehiculo.vehiculoFechaCreacion}}</td>
-                  <td>{{Vehiculo.vehiculoEstado}}</td>
-                  <td><button (click)="cambiarEstado(Vehiculo.vehiculoId)" type="primary" class="btn btn-primary mt-4">{{Vehiculo.vehiculoEstado | transformarEstado }}</button></td>
+                  <td><a routerLinkActive="active" [routerLink]="['/Contratistas/editarVehiculo',Vehiculo.vehiculoPlaca]" class="nav-link"><button type="primary" class="btn btn-editar mt-4">Editar</button></a></td>
+                  <td><button (click)="cambiarEstado(Vehiculo.vehiculoId)" type="primary" class="btn btn-estado mt-4">{{Vehiculo.vehiculoEstado | transformarEstado }}</button></td>
                 </tr>
               </tbody>
             </table>

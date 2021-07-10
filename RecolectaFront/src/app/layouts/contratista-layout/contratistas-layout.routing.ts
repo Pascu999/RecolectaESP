@@ -11,7 +11,7 @@ export const routesContratista: Routes = [
        {path:'menuContratistas',component: MenuContratistasComponent},
        {path:'administrarVehiculos',component: MenuContratistasComponent},
        {path:'registrarVehiculo',component: RegistrarVehiculoComponent},
-       {path:'editarVehiculo',component: RegistrarVehiculoComponent},
+       {path:'editarVehiculo/:vehiculo_placa',component: RegistrarVehiculoComponent},
        {path: '**', redirectTo: 'menuContratistas'}
     ]
   }
