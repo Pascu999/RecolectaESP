@@ -20802,8 +20802,8 @@ textarea[resize='horizontal']
     width: 100%;
     height: 150px;
 
-    transform: translateZ(0);
-    pointer-events: none;
+        transform: translateZ(0);
+        pointer-events: none;
 }
 .separator svg
 {

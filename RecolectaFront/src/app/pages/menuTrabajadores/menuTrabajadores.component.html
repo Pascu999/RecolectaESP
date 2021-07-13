@@ -1,24 +1,36 @@
-<div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
-</div>
-<div class="container-fluid  mt--7 " id="centering">
-  <div class="row mt-5">
-    <div class="col-xl-8 mb-5 mb-xl-0">
+<div class="relativo">
+  <div class="cabecera bg-gradient-info pb-8 pt-5 ">
+  </div>
+  
+      
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-paleta" points="2560 0 2560 300 0 100"></polygon>
+    </svg>
+  </div>
+
+
+<div class="container-fluid  mt--7  " id="centering">
+
+  
+  <div class="row align-items-center">
+    <div class="col">
+      <h3 class="facturasTitulo">Lista de facturas</h3>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-xl-8 mb-xl-0 ">
       <div class="card shadow">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">Facturas</h3>
-            </div>
-          </div>
+        <div class="card-header  border-0">
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table class="table align-items-center table-flush">
+          <table class="table align-items-center table-light table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col" sortable="facturaInicioPeriodo" (sort)="onSort($event)">Inicio Facturacion</th>
-                <th scope="col"sortable="facturaFinPeriodo" (sort)="onSort($event)" >Fin Facturacion</th>
-                <th scope="col" sortable="contratista.contratistaNombre" (sort)="onSort($event)" >Contratista</th>
+                <th scope="col" sortable="facturaFinPeriodo" (sort)="onSort($event)">Fin Facturacion</th>
+                <th scope="col" sortable="contratista.contratistaNombre" (sort)="onSort($event)">Contratista</th>
                 <th scope="col" sortable="facturaCostoTransporte" (sort)="onSort($event)">Valor</th>
               </tr>
             </thead>
@@ -28,11 +40,12 @@
                 <td>{{Factura.facturaFinPeriodo}}</td>
                 <td>{{Factura.contratista.contratistaNombre}}</td>
                 <td>{{Factura.facturaCostoTransporte}}</td>
-            </tr>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

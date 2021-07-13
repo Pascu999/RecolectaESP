@@ -1,4 +1,5 @@
 import { Component, NgModule, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administrador-layout',
@@ -11,11 +12,18 @@ import { Component, NgModule, OnInit } from '@angular/core';
 })
 export class AdministradorLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("bg-default");
+    this.router.events.subscribe((event) => {
+   });
+
   }
   ngOnDestroy() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.remove("bg-default");
   }
 
 }

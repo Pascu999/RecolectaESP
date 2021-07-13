@@ -1,35 +1,26 @@
 .h-registro{
-    color: #172b4d;
-    font-size: 300%;
-}
-
-.carta-vehiculo{
-    border-radius: 5px;
-    border: 1px solid #d7d7d7;
-    background-color: #e3e4bc;
-    color: #000000;
-    text-align: left;
-    line-height: normal;
-    font-family: Open Sans, sans-serif;
+    color: #051f34;
+    font-weight: 500;
+    font-size: 300%
 }
 
 
-::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex .mat-select-panel{
-    background-color: white;
-    color: black;
-    font-family: Open Sans, sans-serif;
-    max-height: 80vh !important;
-}
 
-.mat-option{
-    background-color: white;
+ 
+ .mat-form-field {
+    background-color: #bad6db;
+    border-left: 10px solid #bad6db ;
+    border-right: 10px solid #bad6db ;
+    border-bottom: 5px solid #bad6db ;
+    border-radius: 8px;
+    width: 100%;
+    color: red;
+    height: 50%;
     
-    color: black!important;
 }
 
 
-
- ::ng-deep .mat-select-value{    
+::ng-deep .mat-select-value{    
      
     font-size: 120%;
     font-style:italic;
@@ -41,10 +32,33 @@
 
 .altura{
     height: 50px;
-    background-color: white;
+    color: black;
+    background-color: #bad6db;
 }
 
+
 .label-vehiculo{
-    color: black;
-    font-size: medium;
+    color: #172b4d;
+    font-weight: bold;
+    font-size: 200;
+}
+
+
+ .botonActualizar{
+    background-color: #172b4d;
+    color:#E3E4BC;
+    font-weight: normal;
+
+}
+
+ .botonRegistrar{
+    background-color: #172b4d;
+    color:#E3E4BC;
+    font-weight: normal;
+
+}
+
+.bg-gradient-blanco
+{
+    background: linear-gradient(180deg, #bad6db 0, #fff 100%) !important;
 }

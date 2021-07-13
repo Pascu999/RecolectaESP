@@ -28,8 +28,30 @@
 
 }
 .btn-estado{
-  width: 100%;
+  width: 100px;
   background-color: darkred;
   color: white;
   font-weight: lighter;
+}
+
+.facturasTitulo{
+  color: #051f34;
+  font-weight: 500;
+  font-size: 300%
+}
+
+.fill-paleta{
+  fill: #172b4d;
+}
+
+.cabecera{
+  padding-top: 11rem !important;
+  width:120%;
+}
+.separator{
+  width:120%;
+}
+
+.relativo{
+  position: relative;
 }

@@ -8,15 +8,12 @@ import { Router } from '@angular/router';
 })
 export class ContratistaLayoutComponent implements OnInit {
 
-  public isCollapsed = true;
-
   constructor(private router: Router) { }
 
   ngOnInit() {
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");
     this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
    });
 
   }
