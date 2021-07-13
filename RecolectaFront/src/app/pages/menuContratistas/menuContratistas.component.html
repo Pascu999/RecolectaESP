@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let Factura of FacturasContratista">
-                <td>{{Factura.facturaInicioPeriodo}}</td>
+                <td>{{Factura.facturaInicioPeriodo| date: 'dd/MM/yyyy'}}</td>
                 <td>{{Factura.facturaFinPeriodo}}</td>
                 <td>{{Factura.centroDiposicion.centroDisposicionNombre}}</td>
                 <td>{{Factura.facturaCostoTransporte}}</td>
@@ -37,8 +37,12 @@
       <div class="right mt-2 mr-2">
        <label for=""><b> Ultima facturación:</b></label>
         <div class="right mr-2">
-          <label for=""><b>{{UltimaFacturacion}}</b></label>
+          <label for=""><b>{{UltimaFacturacion | date: 'dd/MM/yyyy'}}</b></label>
         </div>
+      </div>
+
+      <div class="text-center">
+        <button id="btn-iniciar-sesion" type="button" (click)= "generarFacturas()" class="btn btn-primary my-4">Generar Facturacion</button>
       </div>
     </div>
   </div>

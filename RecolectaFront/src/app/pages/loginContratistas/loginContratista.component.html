@@ -26,7 +26,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input required [(ngModel)]="contratista_nit" name="contratista_nit" class="form-control" placeholder="NIT" type="text">
+                <input required [(ngModel)]="contratista_nit" name="contratista_nit" class="form-control"
+                  placeholder="NIT" type="text">
               </div>
             </div>
             <div class="form-group">
@@ -34,15 +35,25 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input required [(ngModel)]="contratista_contrasena" name="contratista_contrasena" class="form-control" placeholder="Contraseña" type="password">
+                <input required [(ngModel)]="contratista_contrasena" name="contratista_contrasena" class="form-control"
+                  placeholder="Contraseña" type="password">
               </div>
             </div>
             <div class="text-center">
-              <button [disabled]= "formularioLoggin.invalid" type="submit" class="btn btn-primary my-4">Iniciar sesión</button>
+              <button [disabled]="formularioLoggin.invalid" type="submit" class="btn botonInicioSesion my-4">Iniciar
+                sesión</button>
             </div>
           </form>
         </div>
       </div>
+      <div class="mt-2  ">
+
+        <label for="xd" class="cambioLogin">¿Es usted Trabajador? <a routerLinkActive="active" [routerLink]="['/LoginTrabajador']">Inicie
+            sesión aquí</a></label>
+
+      </div>
     </div>
+
   </div>
+
 </div>

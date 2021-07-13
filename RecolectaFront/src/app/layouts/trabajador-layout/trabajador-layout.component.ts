@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-trabajador-layout',
   templateUrl: './trabajador-layout.component.html',
-  styleUrls: ['./trabajador-layout.component.css']
+  styleUrls: ['./trabajador-layout.component.scss']
 })
 export class TrabajadorLayoutComponent implements OnInit, OnDestroy {
 
@@ -24,6 +24,13 @@ export class TrabajadorLayoutComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("bg-default");
+  }
+
+  cerrarSesion(){
+    localStorage.clear();
+    if(this.router.url.includes("/Trabajadores")){
+      this.router.navigateByUrl("/LoginTrabajador")
+    }
   }
 
 }

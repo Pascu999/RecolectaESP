@@ -41,13 +41,14 @@ export class LoginTrabajadorComponent implements OnInit, OnDestroy {
   }
 
   public onLoginTrabajador(formularioLoggin: NgForm):void{
-    this.loginTrabajadoresServicio.SolicitudLoggin(this.trabajador_documento,this.trabajador_contrasena).subscribe(
+    
+    this.loginTrabajadoresServicio.SolicitudLogginTrabajador(this.trabajador_documento,this.trabajador_contrasena).subscribe(
       ( response : Trabajador) => {
         this.trabajador = response;
         console.log(response);
         localStorage.setItem("trabajador_id",response.trabajadorId.toString());
         localStorage.setItem("centro_disposicion_id",response.centroDisposicion.centroDisposicionId.toString());
-        localStorage.setItem("trabajador_tipo",response.centroDisposicion.centroDisposicionId.toString());
+        localStorage.setItem("trabajador_tipo",response.trabajadorTipo.toString());
         if(Number(localStorage.getItem("trabajador_tipo")) == 1){
           this.router.navigateByUrl("/Administradores")
         }

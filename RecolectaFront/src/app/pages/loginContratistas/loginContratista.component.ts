@@ -43,13 +43,11 @@ export class LoginContratistaComponent implements OnInit, OnDestroy {
   }
 
   public onLoginContratista(formularioLoggin: NgForm){
-    this.loginContratistasServicio.SolicitudLoggin(this.contratista_nit,this.contratista_contrasena).subscribe(
+    this.loginContratistasServicio.SolicitudLogginContratista(this.contratista_nit,this.contratista_contrasena).subscribe(
       (response: Contratista)=>{
         this.contratista = response;
         console.log(response);
-        localStorage.setItem("contratista_id",response.contratistaId.toString())
-        localStorage.setItem("ultima_facturacion",response.contratistaUltimaFacturacion);
-        console.log(localStorage.getItem("ultima_facturacion"));
+        localStorage.setItem("contratista_id",response.contratistaId.toString());
         
     console.log(localStorage.getItem("ultima_facturacion"));
 

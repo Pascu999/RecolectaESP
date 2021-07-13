@@ -6,6 +6,7 @@ import com.API.RecolectaESP.repositorios.FacturasRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +34,11 @@ public class FacturasServicio {
     public Facturas obtenerFactura(Long factura_id){
 
         return facturasRepositorio.findFacturasByFacturaId(factura_id);
+    }
+
+    public void generarFacturasContratista(Long contratista_id) throws SQLException, ClassNotFoundException {
+
+
+        facturasRepositorio.generarFacturasContratista(contratista_id);
     }
 }

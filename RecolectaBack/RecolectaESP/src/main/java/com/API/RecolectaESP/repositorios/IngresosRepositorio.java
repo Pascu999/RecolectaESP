@@ -26,10 +26,12 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
      Class.forName("oracle.jdbc.driver.OracleDriver");
      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "demo_teamb", "6488");
 
-     CallableStatement cs= con.prepareCall("{call registrar_ingreso.crear_ingreso(?,?,?,?,?,?,?,?,?,?)}");
+     CallableStatement cs= con.prepareCall("{call registrar_ingreso.crear_ingreso(?,?,?,?,?,?,?,?,?)}");
 
      int  peso, conductor, desecho, trabajador, contratista, vehiculo, centro;
-     String fecha;
+
+
+     System.out.println(ingreso);
 
      peso = ingreso.get("ingreso_peso").asInt();
      conductor = ingreso.get("conductor_id").asInt();
@@ -38,7 +40,6 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
      contratista = ingreso.get("contratista_id").asInt();
      vehiculo = ingreso.get("vehiculo_id").asInt();
      centro = ingreso.get("centro_disposicion_id").asInt();
-     fecha = ingreso.get("ingreso_fecha").asText();
 
 
      cs.setInt(1,peso);
@@ -48,15 +49,15 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
      cs.setInt(5,contratista);
      cs.setInt(6,vehiculo);
      cs.setInt(7,centro);
-     cs.setString(8,fecha);
 
 
-     cs.registerOutParameter(9, Types.INTEGER);
-     cs.registerOutParameter(10, Types.VARCHAR);
+     cs.registerOutParameter(8, Types.INTEGER);
+     cs.registerOutParameter(9, Types.VARCHAR);
+
      cs.execute();
 
-     int celda_id = cs.getInt(9);
-     String celda_nombre = cs.getString(10);
+     int celda_id = cs.getInt(8);
+     String celda_nombre = cs.getString(9);
 
 
      return celda_nombre;

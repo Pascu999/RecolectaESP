@@ -32,7 +32,7 @@ export class IngresosComponente implements OnInit {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = String(today.getFullYear());
 
-    return mm + '/' + dd + '/' + yyyy;
+    return  dd + '/' + mm  + '/' + yyyy;
 
   }
 
@@ -44,8 +44,7 @@ export class IngresosComponente implements OnInit {
     trabajador_id: null,
     contratista_id: null,
     vehiculo_id: null,
-    centro_disposicion_id: null,
-    ingreso_fecha: this.obtenerFecha()
+    centro_disposicion_id: null
   }
 
 

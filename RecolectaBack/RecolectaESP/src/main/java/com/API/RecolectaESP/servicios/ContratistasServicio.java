@@ -7,6 +7,8 @@ import com.API.RecolectaESP.repositorios.ContratistasRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 
 @Service
 public class ContratistasServicio {
@@ -29,5 +31,11 @@ public class ContratistasServicio {
         else{
             throw new ContratistaContrasenaIncorrectaExcepcion("Contraseña incorrecta");
         }
+    }
+
+    public String ultimaFacturacion(Long contratista_id){
+        Contratistas obtenerContratista = contratistasRepositorio.findById(contratista_id)
+                .orElseThrow(() -> new ContratistaNoEncontradoExcepcion("No se encontró contratista con el NIT especificado" ));
+        return obtenerContratista.getContratistaUltimaFacturacion().toString();
     }
 }

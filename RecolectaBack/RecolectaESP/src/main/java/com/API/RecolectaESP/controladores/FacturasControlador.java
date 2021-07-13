@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -56,7 +57,7 @@ public class FacturasControlador {
 
 
     @GetMapping("/GenerarFacturas/{contratista_id}")
-    public ResponseEntity<ObjectNode> generarFacturas(
+    public ResponseEntity<HttpStatus> generarFacturas(
             @ApiParam(
 
                     value = "Id del contratista al que se le generan sus facturas",
@@ -64,9 +65,9 @@ public class FacturasControlador {
                     required = true
             )
             @PathVariable ("contratista_id") Long contratista_id
-    ){
-        ObjectNode resultadoGeneracion = null;
-        return new ResponseEntity<>(resultadoGeneracion,HttpStatus.OK);
+    ) throws SQLException, ClassNotFoundException {
+        facturasServicio.generarFacturasContratista(contratista_id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/ObtenerFactura/{factura_id}")

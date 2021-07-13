@@ -11,7 +11,7 @@ export class LoginContratistasServicio {
 
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
-  public SolicitudLoggin(contratista_nit: String, contratista_contrasena: String): Observable<Contratista> {
+  public SolicitudLogginContratista(contratista_nit: String, contratista_contrasena: String): Observable<Contratista> {
     return this.http.get<Contratista>(`${this.apiServerUrl}/Contratistas/SolicitudLoggin/${contratista_nit}/${contratista_contrasena}`);
   }
 }

@@ -8,7 +8,7 @@ export const routes: Routes = [
     children:[
       
        {path:'MenuAdministradores',component: MenuTrabajadoresComponent},
-       {path: '**', redirectTo: ''}
+       {path: '**', redirectTo: 'MenuAdministradores'}
     ]
   }
 ]

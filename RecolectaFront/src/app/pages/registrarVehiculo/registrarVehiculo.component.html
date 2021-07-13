@@ -42,7 +42,7 @@
                                     <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
                                     <mat-form-field appearance="fill">
                                         <mat-select requiered [(ngModel)]="municipioIdSeleccionado"
-                                            name="municipioIdSeleccionado" required>
+                                            name="municipioIdSeleccionado" >
                                             <mat-option required style="color: black" class="not-empty-select"
                                                 *ngFor="let municipioLista of municipios "
                                                 [value]="municipioLista.municipio_id"

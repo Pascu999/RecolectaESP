@@ -13,6 +13,10 @@ export class MenuContratistasService {
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
+  public obtenerUltimaFacturacionContratista(contratista_id: Number): Observable<String>{
+    return this.http.get(`${this.apiServerUrl}/Contratistas/ObtenerUltimaFacturacion/${contratista_id}`, {responseType: 'text'});
+  }
+
   public obtenerFacturasContratista(contratista_id  : Number): Observable<Factura[]>{
     return this.http.get<Factura[]>(`${this.apiServerUrl}/Facturas/obtenerFacturasContratista/${contratista_id}`);
   }
@@ -23,6 +27,10 @@ export class MenuContratistasService {
 
   public cambiarEstadoVehiculo(vehiculo_id: Number):Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/Vehiculos/CambiarEstado/${vehiculo_id}`);
+  }
+
+  public generarFacturacionContratista(contratista_id: Number): Observable<void>{
+    return this.http.get<void>(`${this.apiServerUrl}/Facturas/GenerarFacturas/${contratista_id}`);
   }
 
 }

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 
 @Api(description = "Controlador para acceder a los servicios de los contrastistas")
 @RestController
@@ -43,6 +45,25 @@ public class ContratistasControlador {
         Contratistas contratista = contratistasServicio.SolicitudLoggin(contratista_nit,contratista_contrasena);
         return  new ResponseEntity<>(contratista, HttpStatus.OK);
     }
+
+    @GetMapping("/ObtenerUltimaFacturacion/{contratista_id}")
+    public ResponseEntity<String> UltimaFacturacion(
+            @ApiParam(
+                    value = "NIT ingresado por el contratista",
+                    example = "11111",
+                    required = true
+            )
+            @PathVariable ("contratista_id") Long contratista_id
+    )
+
+    {
+        System.out.println(contratista_id);
+        String contratistaUltimaFacturacion = contratistasServicio.ultimaFacturacion(contratista_id);
+        return  new ResponseEntity<>(contratistaUltimaFacturacion, HttpStatus.OK);
+    }
+
+
+
 
 
 

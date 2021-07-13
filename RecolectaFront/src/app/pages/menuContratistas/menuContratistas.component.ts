@@ -22,6 +22,7 @@ export class MenuContratistasComponent implements OnInit,PipeTransform {
   public showFacturas: boolean;
   public showVehiculos: boolean;
   public href: string = "";
+  public contratista: Number;
 
   private UltimaFacturacion: String;
 
@@ -37,45 +38,58 @@ export class MenuContratistasComponent implements OnInit,PipeTransform {
   constructor(private menuContratistasServicio: MenuContratistasService, private router: Router) { }
   ngOnInit() {
 
-    let contratista = Number(localStorage.getItem("contratista_id"));
+    this.contratista = Number(localStorage.getItem("contratista_id"));
     this.href = this.router.url
 
     if (this.href == '/Contratistas/menuContratistas') {
 
-      this.menuContratistasServicio.obtenerFacturasContratista(contratista).subscribe(
-        (response: Factura[]) => {
-          this.FacturasContratista = response;
-          this.UltimaFacturacion = localStorage.getItem("ultima_facturacion")
-          this.showFacturas = true;
-          console.log(this.showFacturas);
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      )
-
+      this.generarMenuFacturas();
 
     }
     else if (this.href == '/Contratistas/administrarVehiculos') {
 
-      this.menuContratistasServicio.obtenerVehiculosContratista(contratista).subscribe(
-        (response: Vehiculo[]) => {
-          this.VehiculosContratista = response;
-          this.showVehiculos = true;
-          console.log(contratista);
-          
-          console.log(this.VehiculosContratista);
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      )
-
+  
+      this.generarMenuVehiculos();
 
     }
 
 
 
+  }
+
+  generarMenuFacturas(){
+    this.menuContratistasServicio.obtenerFacturasContratista(this.contratista).subscribe(
+      (response: Factura[]) => {
+        this.FacturasContratista = response;
+        this.menuContratistasServicio.obtenerUltimaFacturacionContratista(this.contratista).subscribe(
+          (response: String)=>{
+            this.UltimaFacturacion = response;
+            this.showFacturas = true;
+            console.log(this.showFacturas);
+          }
+        )
+
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    )
+
+  }
+
+  generarMenuVehiculos(){
+    this.menuContratistasServicio.obtenerVehiculosContratista(this.contratista).subscribe(
+      (response: Vehiculo[]) => {
+        this.VehiculosContratista = response;
+        this.showVehiculos = true;
+        console.log(this.contratista);
+        
+        console.log(this.VehiculosContratista);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    )
   }
 
   cambiarEstado(vehiculo_id : Number){
@@ -84,9 +98,27 @@ export class MenuContratistasComponent implements OnInit,PipeTransform {
     this.menuContratistasServicio.cambiarEstadoVehiculo(vehiculo_id).subscribe(
       (response: any)=>{
         console.log(response);
+        this.generarMenuVehiculos();
+      }
+    )
+  }
+
+  generarFacturas(){
+    console.log("Facturando");
+    this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
+      (response:any)=>{
+        console.log(response);
+        this.generarMenuFacturas();
+
+      },
+      (error:any)=>{
+        console.error(error);
         
       }
     )
+
+
+
     
   }
 

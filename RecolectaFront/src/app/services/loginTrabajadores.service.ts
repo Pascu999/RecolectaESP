@@ -11,7 +11,9 @@ export class LoginTrabajadoresService {
 
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
-  public SolicitudLoggin(trabajador_documento: String, trabajador_contrasena: String): Observable<Trabajador> {
+  public SolicitudLogginTrabajador(trabajador_documento: String, trabajador_contrasena: String): Observable<Trabajador> {
+    console.log('INICIA SESION UN TRABAJADOR');
+    
     return this.http.get<any>(`${this.apiServerUrl}/Trabajadores/SolicitudLoggin/${trabajador_documento}/${trabajador_contrasena}`);
 
   }

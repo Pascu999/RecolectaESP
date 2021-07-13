@@ -52,7 +52,7 @@ public class Ingresos implements Serializable {
     private double ingresoPesoSobrecarga;
     @Column(nullable = true,updatable = true)
     private int ingresoValorSobrecarga;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = true,updatable = false)
     private Date ingresoFecha;
     @Column(nullable = true,updatable = false)
     private int ingresoEstado;

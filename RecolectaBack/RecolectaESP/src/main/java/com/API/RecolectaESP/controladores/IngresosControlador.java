@@ -46,7 +46,6 @@ public class IngresosControlador {
             )
             @RequestBody ObjectNode ingreso
     ) throws SQLException, ClassNotFoundException {
-            System.out.println(ingreso);
 
             String nuevoIngreso = IngresosServicio.crearIngreso(ingreso);
 

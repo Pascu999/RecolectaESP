@@ -54,4 +54,16 @@ export class SidebarComponent implements OnInit {
     this.menuContratista = rutasContratista.filter(menuItem => menuItem);
     
   }
+
+  cerrarSesion(){
+    localStorage.clear();
+    if(this.href  == "/Administradores/MenuAdministradores"){
+      this.router.navigateByUrl("/LoginTrabajador");
+    }
+    else if(this.href == "/Contratistas/menuContratistas" || this.href == "/Contratistas/administrarVehiculos" || this.href == "/Contratistas/registrarVehiculo" || this.href.includes("/Contratistas/editarVehiculo/")){
+      this.router.navigateByUrl("/LoginContratista");
+    }
+  }
 }
+
+
