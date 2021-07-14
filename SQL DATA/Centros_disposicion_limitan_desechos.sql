@@ -1,6 +1,0 @@
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (1, 2, 1, 50000, 200);
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (2, 3, 2, 50000, 200);
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (1, 4, 2, 50000, 200);
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (2, 1, 1, 50000, 200);
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (1, 3, 1, 50000, 200);
-insert into  Centros_disposicion_limitan_desechos (centro_disposicion_id, tipo_id, desecho_id, CENTROS_DISPOSICION_LIMITAN_DESECHOS_COSTO_EXCESO, CENTROS_DISPOSICION_LIMITAN_DESECHOS_PESO_MAXIMO) values (1, 4, 2, 50000, 200);
