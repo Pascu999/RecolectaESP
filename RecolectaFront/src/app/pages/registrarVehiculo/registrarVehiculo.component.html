@@ -1,4 +1,3 @@
-
 <div class="header bg-gradient-success py-7 py-lg-8">
     <div class="container mt--6">
         <div class="header-body text-center mt-8 mb-5">
@@ -41,9 +40,9 @@
                             <div class="row ">
                                 <div class="col-md-6  ">
                                     <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <mat-select requiered [(ngModel)]="municipioIdSeleccionado"
-                                            name="municipioIdSeleccionado" >
+                                            name="municipioIdSeleccionado">
                                             <mat-option required style="color: black" class="not-empty-select"
                                                 *ngFor="let municipioLista of municipios "
                                                 [value]="municipioLista.municipio_id"
@@ -58,7 +57,7 @@
                                 <div class="col-md-6 xd">
 
                                     <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <mat-select requiered [(ngModel)]="rutaIdSeleccionado" name="rutaIdSeleccionado"
                                             required>
                                             <mat-option required *ngFor="let rutaLista of rutas"
@@ -75,7 +74,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="xd"> <b class="label-vehiculo"> Marca </b></label>
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <mat-select [(ngModel)]="marcaSeleccionada" name="marcaSeleccionada" required>
                                             <mat-option required *ngFor="let MarcaVehiculo of marcas"
                                                 [value]="MarcaVehiculo.vehiculo_marca">
@@ -87,7 +86,7 @@
 
                                 <div class="col-md-6 lista">
                                     <label for="xd"> <b class="label-vehiculo"> Tipo </b></label>
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <mat-select [(ngModel)]="tipoVehiculoSeleccionado"
                                             name="tipoVehiculoSeleccionado" required>
                                             <mat-option required *ngFor="let tipoLista of tipos"
@@ -104,7 +103,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="xd"> <b class="label-vehiculo">Modelo</b> </label>
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <mat-select [(ngModel)]="modeloSeleccionado" name="modeloSeleccionado" required>
                                             <mat-option required *ngFor="let modeloVehiculo of modelos"
                                                 [value]="modeloVehiculo.vehiculo_modelo_codigo">
@@ -134,18 +133,18 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
-                                    <div class="form-group mt-1">
-                                        <div class="input-group input-group-alternative mb-3 ">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text altura "><i
-                                                        class="ni ni-bus-front-12"></i></span>
+                                        <label for="xd"> <b class="label-vehiculo"> Placa </b></label>
+                                        <div class="form-group mt-1">
+                                            <div class="input-group input-group-alternative mb-3 ">
+                                                <div class="input-group-prepend ">
+                                                    <span class="input-group-text altura"><i
+                                                            class="ni ni-bus-front-12"></i></span>
+                                                </div>
+                                                <input required [(ngModel)]="placaVehiculoSeleccionado" name="placaVehiculoSeleccionado"
+                                                    class="form-control altura" placeholder="  Placa" type="text">
                                             </div>
-                                            <input required [(ngModel)]="placaVehiculo" name="placaVehiculo"
-                                                class="form-control altura" placeholder="  Placa" type="text">
                                         </div>
                                     </div>
-                                </div>
                             </div>
 
                             <div class="text-center">
@@ -163,9 +162,9 @@
                             <div class="row ">
                                 <div class="col-md-6  ">
                                     <label for="xd"> <b class="label-vehiculo"> Municipio </b></label>
-                                    <mat-form-field >
-                                        <mat-select requiered [(ngModel)]="municipioIdEditado"
-                                            name="municipioIdEditado" required>
+                                    <mat-form-field>
+                                        <mat-select requiered [(ngModel)]="municipioIdEditado" name="municipioIdEditado"
+                                            required>
                                             <mat-option required style="color: black" class="not-empty-select"
                                                 *ngFor="let municipioLista of municipios "
                                                 [value]="municipioLista.municipio_id"
@@ -180,9 +179,9 @@
                                 <div class="col-md-6 xd">
 
                                     <label for="xd"> <b class="label-vehiculo"> Ruta </b></label>
-                                    <mat-form-field >
-                                        <mat-select requiered [(ngModel)]="rutaVehiculoEditadoId" name="rutaVehiculoEditadoId"
-                                            required>
+                                    <mat-form-field>
+                                        <mat-select requiered [(ngModel)]="rutaVehiculoEditadoId"
+                                            name="rutaVehiculoEditadoId" required>
                                             <mat-option required *ngFor="let rutaLista of rutas"
                                                 [value]="rutaLista.ruta_id">
                                                 {{rutaLista.ruta_nombre}}
@@ -204,7 +203,8 @@
                                                         class="ni ni-bus-front-12"></i></span>
                                             </div>
                                             <input disabled required name="marcaVehiculoEditado"
-                                                class="form-control altura" value="{{marcaVehiculoEditado}}" type="text">
+                                                class="form-control altura" value="{{marcaVehiculoEditado}}"
+                                                type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -217,8 +217,9 @@
                                                 <span class="input-group-text altura"><i
                                                         class="ni ni-bus-front-12"></i></span>
                                             </div>
-                                            <input required disabled  name="tipoVehiculoEditado"
-                                                class="form-control altura" value="{{tipoNombreVehiculoEditado}}" type="text">
+                                            <input required disabled name="tipoVehiculoEditado"
+                                                class="form-control altura" value="{{tipoNombreVehiculoEditado}}"
+                                                type="text">
                                         </div>
                                     </div>
 
@@ -235,8 +236,9 @@
                                                 <span class="input-group-text altura"><i
                                                         class="ni ni-bus-front-12"></i></span>
                                             </div>
-                                            <input required disabled  name="modeloVehiculoEditado"
-                                                class="form-control altura" value="{{modeloVehiculoEditado}}" type="text">
+                                            <input required disabled name="modeloVehiculoEditado"
+                                                class="form-control altura" value="{{modeloVehiculoEditado}}"
+                                                type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +251,7 @@
                                                 <span class="input-group-text altura"><i
                                                         class="ni ni-bus-front-12"></i></span>
                                             </div>
-                                            <input required disabled  name="pesoVehiculoEditado"
+                                            <input required disabled name="pesoVehiculoEditado"
                                                 class="form-control altura" value="{{pesoVehiculoEditado}}" type="text">
                                         </div>
                                     </div>
@@ -268,7 +270,8 @@
                                                         class="ni ni-bus-front-12"></i></span>
                                             </div>
                                             <input required disabled name="placaVehiculoEditado"
-                                                class="form-control altura" value="{{placaVehiculoEditado}}" type="text">
+                                                class="form-control altura" value="{{placaVehiculoEditado}}"
+                                                type="text">
                                         </div>
                                     </div>
                                 </div>

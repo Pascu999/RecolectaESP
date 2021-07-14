@@ -127,7 +127,11 @@ table {
     text-align: center;
     background: #DDDDDD;
   }
-
+  .descuento{
+      text-align: center;
+      background: #DDDDDD;
+      color: red;
+  }
   .total {
     text-align: center;
     background: #57B223;
@@ -194,5 +198,17 @@ footer {
   bottom: 0;
   border-top: 1px solid #AAAAAA;
   padding: 8px 0;
+  text-align: center;
+}
+
+.btn-cerrar{
+  background-color: darkred;
+  color: white;
+  font-weight: normal;
+  margin-left: 3%;
+  margin-top: 3%;
+}
+.centrar{
+  margin-top: 15%;
   text-align: center;
 }

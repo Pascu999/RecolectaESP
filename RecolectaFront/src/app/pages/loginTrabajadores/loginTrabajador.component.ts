@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Trabajador } from 'src/app/models/trabajador';
 import { LoginTrabajadoresService } from 'src/app/services/loginTrabajadores.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-loginTrabajador',
@@ -33,6 +35,9 @@ export class LoginTrabajadorComponent implements OnInit, OnDestroy {
     if(Number(localStorage.getItem("trabajador_tipo")) == 1){
       this.router.navigateByUrl("/Administradores")
     }
+    if(localStorage.getItem("contratista_id") != null){
+      this.router.navigateByUrl("/Contratistas")
+    }
     else if(Number(localStorage.getItem("trabajador_tipo")) == 2){
       this.router.navigateByUrl("/Trabajadores")
     }
@@ -51,17 +56,51 @@ export class LoginTrabajadorComponent implements OnInit, OnDestroy {
         localStorage.setItem("trabajador_tipo",response.trabajadorTipo.toString());
         if(Number(localStorage.getItem("trabajador_tipo")) == 1){
           this.router.navigateByUrl("/Administradores")
+          Swal.fire({
+            title: '¡Bienvenido, Administrador!',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            width: '20%',
+            backdrop: false,
+            timer: 3000,
+            toast: true,
+            position:'top-end'
+          })
+          
         }
         else if(Number(localStorage.getItem("trabajador_tipo")) == 2){
           this.router.navigateByUrl("/Trabajadores")
+          Swal.fire({
+            title: '¡Bienvenido, Operador!',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            width: '20%',
+            backdrop: false,
+            timer: 3000,
+            toast: true,
+            position: 'top-end'
+          })
         }
         
       } ,
       (error: HttpErrorResponse) => {
-        alert(error.message);
-        console.log(error.message);
+        if(error.status == 500){
+          Swal.fire({
+            title: 'No se pudo iniciar sesión',
+            text: 'información de ingreso incorrecta',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            width: '30%',
+            padding: '1rem',
+            heightAuto: true,
+            backdrop: true,
+            timer: 3000,
+            position:'center'
+          })
+
+        }
       }
-    );
+    )
 
   }
 

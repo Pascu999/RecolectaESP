@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { Ruta } from 'src/app/models/ruta';
 import { Tipo } from 'src/app/models/tipo';
 import { Vehiculo, VehiculoRegistro } from 'src/app/models/vehiculo';
 import { registrarVehiculosService } from 'src/app/services/registrarVehiculos.service';
+import Swal from 'sweetalert2';
 
 
 //Interfaz para mapear la lista de municipios 
@@ -110,7 +112,7 @@ export class RegistrarVehiculoComponent implements OnInit {
   private modeloSeleccionado: String;
   private tipoVehiculoSeleccionado: Number;
   private pesoVehiculoSeleccionado: Number;
-  private placaVehiculo: String;
+  private placaVehiculoSeleccionado: String;
 
   //Propiedades del vehiculo que se edita
   
@@ -219,13 +221,12 @@ export class RegistrarVehiculoComponent implements OnInit {
   }
 
   onCrearVehiculo(vehiculoForm: NgForm){
-
      let nuevoVehiculo : VehiculoRegistro = {
       contratista : {contratistaId:this.contratistaId},
       ruta : {rutaId: this.rutaIdSeleccionado},
       tipo: {tipoId: this.tipoVehiculoSeleccionado},
       vehiculoMarca: this.marcaSeleccionada,
-      vehiculoPlaca: this.placaVehiculo,
+      vehiculoPlaca: this.placaVehiculoSeleccionado,
       vehiculoPeso: this.pesoVehiculoSeleccionado,
       vehiculoModelo: this.modeloSeleccionado,
       vehiculoFechaCreacion: this.obtenerFecha()
@@ -233,8 +234,39 @@ export class RegistrarVehiculoComponent implements OnInit {
      
      this.registrarVehiculosService.registrarVehiculo(nuevoVehiculo).subscribe(
        (response:Vehiculo)=>{
+
+        Swal.fire({
+          title: 'Vehículo registrado exitosamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          width: '20%',
+          backdrop: false,
+          timer: 3000,
+          toast: true,
+          position:'top-end'
+        })    
+        
+        this.router.navigateByUrl("/Contratistas/administrarVehiculos")
          console.log(response);
          
+       },
+       (error: HttpErrorResponse) => {
+         if(error.status == 500){
+           Swal.fire({
+             title: 'Error al registrar el vehículo',
+             text: 'Ya hay un vehículo registrado con esta placa',
+             icon: 'error',
+             confirmButtonText: 'Aceptar',
+             width: '20%',
+             padding: '1rem',
+             heightAuto: true,
+             backdrop: true,
+             timer: 3000,
+             toast:true,
+             position:'bottom-end'
+           })
+ 
+         }
        }
      )
   }
@@ -254,7 +286,18 @@ export class RegistrarVehiculoComponent implements OnInit {
      }
 
      this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
-       (response: Vehiculo)=>{      
+       (response: Vehiculo)=>{
+        Swal.fire({
+          title: '¡Edición exitosa!',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          width: '20%',
+          backdrop: false,
+          timer: 3000,
+          toast: true,
+          position:'top-end'
+        })    
+        this.router.navigateByUrl("/Contratistas/administrarVehiculos")
        }
      )
   }

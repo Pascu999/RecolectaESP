@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Contratista } from 'src/app/models/contratista';
 import { LoginContratistasServicio } from 'src/app/services/loginContratistas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-loginContratista',
@@ -45,6 +47,16 @@ export class LoginContratistaComponent implements OnInit, OnDestroy {
   public onLoginContratista(formularioLoggin: NgForm){
     this.loginContratistasServicio.SolicitudLogginContratista(this.contratista_nit,this.contratista_contrasena).subscribe(
       (response: Contratista)=>{
+        Swal.fire({
+          title: '¡Bienvenido, Contratista!',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          width: '20%',
+          backdrop: false,
+          timer: 3000,
+          toast: true,
+          position:'top-end'
+        })
         this.contratista = response;
         console.log(response);
         localStorage.setItem("contratista_id",response.contratistaId.toString());
@@ -54,6 +66,26 @@ export class LoginContratistaComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl("/Contratistas")
         
       }
+      ,
+      (error: HttpErrorResponse) => {
+        if(error.status == 500){
+          Swal.fire({
+            title: 'No se pudo iniciar sesión',
+            text: 'información de ingreso incorrecta',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            width: '30%',
+            padding: '1rem',
+            heightAuto: true,
+            backdrop: true,
+            timer: 3000,
+            position:'center'
+          })
+
+        }
+      }
+
+      
     )
   }
 

@@ -18,6 +18,7 @@ import { FacturaComponent } from './pages/factura/factura.component';
 import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
 import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarVehiculo.component';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     RouterModule,
     AppRoutingModule,
     NgbModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   declarations: [
     AppComponent,

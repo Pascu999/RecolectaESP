@@ -23,6 +23,7 @@
           <div class="card shadow">
             <div class="card-header border-0">
             </div>
+            
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
@@ -32,14 +33,18 @@
                     <th>Fin Facturacion</th>
                     <th>Centro</th>
                     <th>Valor</th>
+                    <th>Información detallada</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let Factura of FacturasContratista">
-                    <td>{{Factura.facturaInicioPeriodo| date: 'dd/MM/yyyy'}}</td>
+                    <td>{{Factura.facturaInicioPeriodo}}</td>
                     <td>{{Factura.facturaFinPeriodo}}</td>
                     <td>{{Factura.centroDiposicion.centroDisposicionNombre}}</td>
                     <td>{{Factura.facturaCostoTransporte}}</td>
+                    <td><a routerLinkActive="active"
+                      [routerLink]="['/Factura',Factura.facturaId]" class="nav-link"><button
+                        type="primary" class="btn btn-editar mt-4">Ver</button></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -86,8 +91,8 @@
                     <th>Placa</th>
                     <th>Tipo </th>
                     <th>Fecha de registro</th>
-                    <th>Estado</th>
                     <th>Editar</th>
+                    <th>Estado</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -101,7 +106,7 @@
                         [routerLink]="['/Contratistas/editarVehiculo',Vehiculo.vehiculoPlaca]" class="nav-link"><button
                           type="primary" class="btn btn-editar mt-4">Editar</button></a></td>
                     <td><button (click)="cambiarEstado(Vehiculo.vehiculoId)" type="primary"
-                        class="btn btn-estado mt-4">{{Vehiculo.vehiculoEstado | transformarEstado }}</button></td>
+                        class="btn btn-estado mt-4 ">{{Vehiculo.vehiculoEstado | transformarEstado }}</button></td>
                   </tr>
                 </tbody>
               </table>

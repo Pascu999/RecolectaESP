@@ -19,7 +19,7 @@ const routes: Routes = [
     component: LoginContratistaComponent
   },
   {
-    path: 'Factura',
+    path: 'Factura/:factura_id',
     component: FacturaComponent
   }
   ,

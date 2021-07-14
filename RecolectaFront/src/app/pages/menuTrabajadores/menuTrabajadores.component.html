@@ -32,6 +32,7 @@
                 <th scope="col" sortable="facturaFinPeriodo" (sort)="onSort($event)">Fin Facturacion</th>
                 <th scope="col" sortable="contratista.contratistaNombre" (sort)="onSort($event)">Contratista</th>
                 <th scope="col" sortable="facturaCostoTransporte" (sort)="onSort($event)">Valor</th>
+                <th>Informacion Detallada</th>
               </tr>
             </thead>
             <tbody>
@@ -40,6 +41,9 @@
                 <td>{{Factura.facturaFinPeriodo}}</td>
                 <td>{{Factura.contratista.contratistaNombre}}</td>
                 <td>{{Factura.facturaCostoTransporte}}</td>
+                <td><a routerLinkActive="active"
+                  [routerLink]="['/Factura',Factura.facturaId]" class="nav-link"><button
+                    type="primary" class="btn btn-editar mt-4">Ver</button></a></td>
               </tr>
             </tbody>
           </table>

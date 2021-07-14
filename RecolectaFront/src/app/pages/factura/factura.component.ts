@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Factura } from 'src/app/models/factura';
 import { IngresosProyeccion } from 'src/app/models/ingresosProyeccion';
 import { FacturaService } from 'src/app/services/factura.service';
@@ -11,23 +11,22 @@ import { FacturaService } from 'src/app/services/factura.service';
 })
 export class FacturaComponent implements OnInit {
 
+  private factura_id: Number;
+  private Factura : Factura ;
+  private Ingresos: IngresosProyeccion[];
 
-  private Factura : Factura 
-  private Ingresos: IngresosProyeccion[]
-
-  constructor(private router: Router, private facturaServicio : FacturaService) { }
+  constructor(private router: Router, private facturaServicio : FacturaService,private aRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");
 
-
-    var factura = Number(localStorage.getItem("factura_id"));
-    this.obtenerFactura(factura);
-    this.obtenerIngresosFactura(factura);
+    this.factura_id = Number(this.aRoute.snapshot.paramMap.get("factura_id"));
+    this.obtenerFactura(this.factura_id);
+    this.obtenerIngresosFactura(this.factura_id);
   }
 
-  public obtenerFactura(factura_id: Number): void {
+   obtenerFactura(factura_id: Number): void {
      this.facturaServicio.obtenerFacturasCentro(factura_id).subscribe(
        (response: Factura)=>{
          this.Factura = response
@@ -39,7 +38,7 @@ export class FacturaComponent implements OnInit {
      }
   }
 
-  public obtenerIngresosFactura(factura_id: Number): void{
+   obtenerIngresosFactura(factura_id: Number): void{
     this.facturaServicio.obtenerIngresosFactura(factura_id).subscribe(
       (response: IngresosProyeccion[])=>{
         this.Ingresos = response
@@ -51,6 +50,19 @@ export class FacturaComponent implements OnInit {
       }
     )
   }
+
+   cerrarFactura(){
+     let contratistaLoggeado = localStorage.getItem("contratista_id");
+
+     if(contratistaLoggeado != null){
+       this.router.navigateByUrl("/Contratistas/menuContratistas");
+
+     }
+     else{
+       this.router.navigateByUrl("/Administradores/menuAdministradores");
+     }
+
+   }
 
 
 }

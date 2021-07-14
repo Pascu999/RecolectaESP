@@ -2,7 +2,10 @@ import { Component, OnInit, Pipe,PipeTransform } from '@angular/core'; import { 
 import { Factura } from 'src/app/models/factura';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { MenuContratistasService } from 'src/app/services/menu-contratistas.service';
-;
+import Swal from 'sweetalert2';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-menuContratistas',
@@ -99,15 +102,26 @@ export class MenuContratistasComponent implements OnInit,PipeTransform {
       (response: any)=>{
         console.log(response);
         this.generarMenuVehiculos();
+        Swal.fire({
+          title: 'Vehiculo desactivado/activado',
+          icon: 'warning',
+          confirmButtonText: 'Aceptar',
+          width: '20%',
+          backdrop: false,
+          timer: 3000,
+          toast: true,
+          position:'top-end'
+        })
       }
     )
   }
 
   generarFacturas(){
     console.log("Facturando");
+    console.log(this.contratista);
+    
     this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
       (response:any)=>{
-        console.log(response);
         this.generarMenuFacturas();
 
       },

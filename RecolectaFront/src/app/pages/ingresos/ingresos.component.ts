@@ -5,6 +5,8 @@ import { Conductor } from 'src/app/models/conductor';
 import { GeneracionIngreso, Ingreso } from 'src/app/models/ingreso';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { IngresosServicio } from '../../services/ingresos.Service';
+import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ingresos',
@@ -17,9 +19,12 @@ export class IngresosComponente implements OnInit {
 
   ngOnInit(
   ) {
-
-    localStorage.setItem("trabajador_id",'1');
-    localStorage.setItem("centro_disposicion_id",'1');
+    if(localStorage.getItem("contratista_id") == null && localStorage.getItem("trabajador_id") == null){
+      this.router.navigateByUrl("/LoginTrabajador")
+    }
+    else if(localStorage.getItem("contratista_id") != null){
+      this.router.navigateByUrl("/Contratistas")
+    }
   }
 
   vehiculo_placa: String;
@@ -94,15 +99,52 @@ export class IngresosComponente implements OnInit {
                   localStorage.setItem("celda_nombre", String(response))
                   console.log(response);
                   this.router .navigateByUrl("/Trabajadores/instruccionIngreso")
+                  Swal.fire({
+                    title: '¡Ingreso Exitoso!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    width: '20%',
+                    backdrop: false,
+                    timer: 3000,
+                    toast: true,
+                    position:'top-end'
+                  })
                 },
-                (error: any) => {
-                  console.log(error);
+                (error: HttpErrorResponse) => {
+                  if(error.status == 500){
+                    Swal.fire({
+                      title: 'No se pudo realizar el ingreso',
+                      text: 'no existe una celda que pueda admitir el ingreso',
+                      icon: 'error',
+                      confirmButtonText: 'Aceptar',
+                      width: '30%',
+                      padding: '1rem',
+                      heightAuto: true,
+                      backdrop: true,
+                      timer: 3000,
+                      position:'center'
+                    })
+          
+                  }
                 }
+          
 
               )
             }
             else {
               console.log("Conductor y/o contratistas invalidos");
+              Swal.fire({
+                title: 'No se pudo realizar el ingreso',
+                text: 'inconsistencia entre el vehiculo y el conductor que ingresa',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar',
+                width: '30%',
+                padding: '1rem',
+                heightAuto: true,
+                backdrop: true,
+                timer: 3000,
+                position:'center'
+              })
             }
 
           }
