@@ -79,25 +79,10 @@ table {
   width: 100%;
 }
 
-::ng-deep .mat-paginator {
-  .mat-paginator-container {
-      justify-content: start;
-      
-  }
 
 
-  // override material paginator page switch
-  .mat-paginator-range-label {
-      order: 2;
-  }
 
-  .mat-paginator-navigation-previous {
-      order: 1;
-  }
-  .mat-paginator-navigation-next {
-      order: 3;
-  }
-}
+  
 
 
 
@@ -109,20 +94,63 @@ table {
   color: rgb(85, 83, 83);
 }
 
- .mat-select{
-  border-left: 10px solid #bad6db ;
-  border-top: 5px solid #bad6db ;
-    border-right: 10px solid #bad6db ;
-    border-bottom: 5px solid #bad6db ;
-    border-radius: 3px;
-  background-color: #bad6db;
+
+.mat-form-field {
+  border-radius: 8px;
+  width: 100%;
+  color: black;
+  height: 60%;
 }
-::ng-deep .mat-select-value{    
+
+
+::ng-deep .tabla-vehiculos{
+  .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    color: white;
+    background-color:  white !important;;
+   }
+   .mat-form-field-underline {
+    /*change color of underline*/
+    background-color: white !important;
+  }
+  .mat-form-field-label{
+    color: white !important;
+   }
+
+   .mat-focused  {
+    /*change color of label*/
+    color: white !important;
+   }
+   .mat-form-field-empty.mat-form-field-label {
+    color: white;
+}
+
+
+   .mat-select-value{    
      
-  font-size: 120%;
-  font-style:italic;
-  height: 10%;
-  color: black!important;
-  font-style: inherit;
+    font-size: 120%;
+    font-style:italic;
+    height: 10%;
+    color: black!important;
+    font-style: inherit;
+  
+  }
+  .mat-paginator {
+    .mat-paginator-container {
+        justify-content: start;
+        // override material paginator page switch
+  .mat-paginator-range-label {
+    order: 2;
+}
+
+.mat-paginator-navigation-previous {
+    order: 1;
+}
+.mat-paginator-navigation-next {
+    order: 3;
+}
+        
+    }
+  }
 
 }

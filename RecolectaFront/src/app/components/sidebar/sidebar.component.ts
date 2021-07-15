@@ -12,8 +12,8 @@ export const rutasAdministrador: RouteInfo[] = [
 ];
 
 export const rutasContratista: RouteInfo[] = [
-  { path: '/Contratistas/menuContratistas', title: 'Menú principal',  icon: 'ni-istanbul text-primary', class: '' },
-  { path: '/Contratistas/menuVehiculos', title: 'Administrar Vehículos',  icon: 'ni-settings text-primary', class: ''  },
+  { path: '/Contratistas/menuContratistas', title: 'Facturas',  icon: 'ni-istanbul text-primary', class: '' },
+  { path: '/Contratistas/menuVehiculos', title: 'Vehículos',  icon: 'ni-settings text-primary', class: ''  },
   { path: '/Contratistas/registrarVehiculo', title: 'Registrar Vehículo',  icon: 'ni-ambulance text-primary', class: '' }
   
 ];

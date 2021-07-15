@@ -53,10 +53,10 @@ export class TablavehiculosComponent implements OnInit {
 
   transform(input: number): string {
     if (input == 0) {
-      return 'activado'
+      return 'desactivado'
     }
     else if (input == 1) {
-      return 'desactivado'
+      return 'activado'
     }
   }
 

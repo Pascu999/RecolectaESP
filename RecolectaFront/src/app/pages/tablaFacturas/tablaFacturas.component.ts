@@ -30,7 +30,7 @@ export class TablafacturasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  private contratista: Number;
+  private contratista: number;
 
   private facturaAux: facturasTabla = {
     id: null,
@@ -84,21 +84,29 @@ export class TablafacturasComponent implements OnInit {
 
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceFacturas.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourceFacturas.paginator) {
+      this.dataSourceFacturas.paginator.firstPage();
+    }
+  }
+
   generarFacturas() {
     console.log("Facturando");
     console.log(this.contratista);
-
+    
     this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
       (response: any) => {
-        this.generarMenuFacturas();
-
+        location.reload();
       },
       (error: any) => {
         console.error(error);
 
       }
     )
-
+      
 
 
 

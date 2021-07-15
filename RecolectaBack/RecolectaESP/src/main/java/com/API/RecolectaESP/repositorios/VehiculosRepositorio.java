@@ -18,7 +18,7 @@ public interface VehiculosRepositorio extends JpaRepository<Vehiculos,Long> {
     public Optional<Vehiculos> findVehiculosByVehiculoPlaca(String Placa);
 
     @Transactional(readOnly = true)
-    @Query("FROM Vehiculos vehiculo WHERE vehiculo.contratista.contratistaId = :contratista_id")
+    @Query("FROM Vehiculos vehiculo WHERE vehiculo.contratista.contratistaId = :contratista_id ORDER BY vehiculo.vehiculoFechaCreacion DESC")
     public List<Vehiculos> findVehiculosByContratistaId(@Param("contratista_id") Long contratista_id);
 
 

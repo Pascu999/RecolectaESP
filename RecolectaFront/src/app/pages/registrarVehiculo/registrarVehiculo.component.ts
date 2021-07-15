@@ -228,6 +228,9 @@ export class RegistrarVehiculoComponent implements OnInit {
         this.pesoVehiculoEditado = response.vehiculoPeso
         this.placaVehiculoEditado = response.vehiculoPlaca
         this.estadoVehiculoEditado = response.vehiculoEstado
+
+        console.log(this.estadoVehiculoEditado);
+        
       }
     )
   }
@@ -297,7 +300,9 @@ export class RegistrarVehiculoComponent implements OnInit {
       vehiculoFechaCreacion: this.obtenerFecha(),
       vehiculoEstado: this.estadoVehiculoEditado,
      }
-     console.log(editadoVehiculo);
+     console.log("NuevoEstado");
+     
+     console.log(editadoVehiculo.vehiculoEstado);
      this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
        
        

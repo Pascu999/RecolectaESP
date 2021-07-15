@@ -19,16 +19,20 @@
         <div class="row mt-2">
 
             <div class="col-xl-8 mb-xl-0">
-
-                    <div class="table-responsive">
+                
+                    <div class="tabla-facturas mt-5">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Filtrar</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                        </mat-form-field>
                         <!-- Projects table -->
                         <table mat-table [dataSource]="dataSourceFacturas" matSort>
                             <ng-container matColumnDef="inicio">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Inicio</th>
+                                <th mat-header-cell *matHeaderCellDef >Inicio</th>
                                 <td mat-cell *matCellDef="let facturasTabla"> {{facturasTabla.inicio}}</td>
                             </ng-container>
                             <ng-container matColumnDef="fin">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fin</th>
+                                <th mat-header-cell *matHeaderCellDef >Fin</th>
                                 <td mat-cell *matCellDef="let facturasTabla"> {{facturasTabla.fin}} </td>
                             </ng-container>
                             <ng-container matColumnDef="centro">

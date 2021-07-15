@@ -11,7 +11,7 @@ import { RegistrarVehiculoComponent } from 'src/app/pages/registrarVehiculo/regi
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { TablafacturasComponent } from 'src/app/pages/tablaFacturas/tablaFacturas.component';
 import { TablavehiculosComponent } from 'src/app/pages/tablaVehiculos/tablaVehiculos.component';
 
@@ -22,8 +22,8 @@ import { TablavehiculosComponent } from 'src/app/pages/tablaVehiculos/tablaVehic
     TablavehiculosComponent
   ],
   imports: [
-    CommonModule,
     ContratistasRoutingModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
