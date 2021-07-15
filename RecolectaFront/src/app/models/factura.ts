@@ -2,9 +2,9 @@ import { CentroDisposicion } from "./centroDisposicion";
 import { Contratista } from "./contratista";
 
 export interface Factura{
-    facturaId : Number
-    facturaCostoTransporte: Number
-    facturaDescuento:Number
+    facturaId : number
+    facturaCostoTransporte: number
+    facturaDescuento:number
     facturaFinPeriodo: Date
     facturaInicioPeriodo: Date
     centroDisposicion : CentroDisposicion

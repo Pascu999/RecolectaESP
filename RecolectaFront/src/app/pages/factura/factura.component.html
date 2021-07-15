@@ -6,10 +6,10 @@
       </div>
 
       <div id="company">
-        <h2 class="name"> <b> {{Factura.contratista.contratistaNombre}}</b></h2>
-        <div>{{Factura.contratista.contratistaDireccion}}</div>
-        <div>{{Factura.contratista.contratistaCelular}}</div>
-        <div> <b> {{Factura.contratista.contratistaCorreo}} </b></div>
+        <h2 class="name"> <b> {{detalles_factura.contratistaNombre}}</b></h2>
+        <div>{{detalles_factura.contratistaDireccion}}</div>
+        <div>{{detalles_factura.contratistaCelular}}</div>
+        <div> <b> {{detalles_factura.contratistaCorreo}} </b></div>
       </div>
     </header>
     
@@ -17,14 +17,14 @@
       <div id="details" class="clearfix ml-3 mr-3">
         <div id="client">
           <div class="to">Factura dirigida a:</div>
-          <h2 class="name"> <b> {{Factura.centroDiposicion.centroDisposicionNombre}} </b> </h2>
-          <div class="address">{{Factura.centroDiposicion.centroDisposicionDireccion}}</div>
-          <div class="email"> <b> {{Factura.centroDiposicion.centroDisposicionCorreo}} </b></div>
+          <h2 class="name"> <b> {{detalles_factura.centroDisposicionNombre}} </b> </h2>
+          <div class="address">{{detalles_factura.centroDisposicionDireccion}}</div>
+          <div class="email"> <b> {{detalles_factura.centroDisposicionCorreo}} </b></div>
         </div>
         <div id="invoice">
-          <h1>Factura # <b>{{Factura.facturaId}}</b> </h1>
-          <div class="date">Fecha de inicio de facturación: <b> {{Factura.facturaInicioPeriodo}}</b></div>
-          <div class="date">Fecha de fin de facturación: <b>{{Factura.facturaFinPeriodo}}</b> </div>
+          <h1>Factura # <b>{{detalles_factura.facturaId}}</b> </h1>
+          <div class="date">Fecha de inicio de facturación: <b> {{detalles_factura.facturaInicioPeriodo}}</b></div>
+          <div class="date">Fecha de fin de facturación: <b>{{detalles_factura.facturaFinPeriodo}}</b> </div>
         </div>
       </div>
       <table   >
@@ -46,17 +46,17 @@
           <tr>
             <td colspan="0"></td>
             <td colspan="1">Subtotal</td>
-            <td class="unit"> <b>${{Factura.facturaCostoTransporte}}</b> </td>
+            <td class="unit"> <b>${{detalles_factura.facturaCostoTransporte}}</b> </td>
           </tr>
           <tr>
             <td colspan="1"></td>
             <td colspan="1">Multa por exceso de carga:</td>
-            <td class="descuento"> <b>${{Factura.facturaDescuento}}</b> </td>
+            <td class="descuento"> <b>${{detalles_factura.facturaDescuento}}</b> </td>
           </tr>
           <tr>
             <td colspan="1"></td>
             <td colspan="1">Total:</td>
-            <td class="unit">{{Factura.facturaCostoTransporte - Factura.facturaDescuento}}</td>
+            <td class="unit">{{detalles_factura.facturaCostoTransporte - detalles_factura.facturaDescuento}}</td>
           </tr>
         </tfoot>
       </table>

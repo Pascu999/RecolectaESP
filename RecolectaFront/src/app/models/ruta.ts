@@ -1,7 +1,7 @@
 import { Municipio } from "./municipio";
 
 export interface Ruta {
-    rutaId : Number,
-    rutaNombre : String,
+    rutaId : number,
+    rutaNombre : string,
     municipio: Municipio
 }

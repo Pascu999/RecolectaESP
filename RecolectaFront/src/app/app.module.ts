@@ -16,9 +16,8 @@ import { ContratistaLayoutComponent } from './layouts/contratista-layout/contrat
 import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
 import { FacturaComponent } from './pages/factura/factura.component';
 import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
-import { RegistrarVehiculoComponent } from './pages/registrarVehiculo/registrarVehiculo.component';
-import { MatSelectModule } from '@angular/material/select';
-import {MatTableModule} from '@angular/material/table';
+import { TablafacturasComponent } from './pages/tablaFacturas/tablaFacturas.component';
+import { TablavehiculosComponent } from './pages/tablaVehiculos/tablaVehiculos.component';
 
 
 @NgModule({
@@ -30,8 +29,6 @@ import {MatTableModule} from '@angular/material/table';
     RouterModule,
     AppRoutingModule,
     NgbModule,
-    MatSelectModule,
-    MatTableModule
   ],
   declarations: [
     AppComponent,
@@ -41,7 +38,6 @@ import {MatTableModule} from '@angular/material/table';
     LoginTrabajadorComponent,
     LoginContratistaComponent,
     FacturaComponent,
-    RegistrarVehiculoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

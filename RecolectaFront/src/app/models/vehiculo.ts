@@ -3,28 +3,28 @@ import { Ruta } from "./ruta";
 import { Tipo } from "./tipo";
 
 export interface Vehiculo {
-    vehiculoId :  Number,
+    vehiculoId :  number,
     contratista : Contratista,
     ruta: Ruta,
     tipo: Tipo,
-    vehiculoMarca: String,
-    vehiculoPlaca : String,
-    vehiculoPeso: Number,
-    vehiculoModelo: String,
-    vehiculoFechaCreacion: String,
-    vehiculoEstado: Number
+    vehiculoMarca: string,
+    vehiculoPlaca : string,
+    vehiculoPeso: number,
+    vehiculoModelo: string,
+    vehiculoFechaCreacion: Date,
+    vehiculoEstado: number
 
 }
 
 export interface VehiculoRegistro{
-    contratista:  {contratistaId:Number},
-    ruta: {rutaId:Number},
-    tipo: {tipoId:Number},
-    vehiculoMarca: String,
-    vehiculoPlaca: String,
-    vehiculoPeso: Number,
-    vehiculoModelo: String,
-    vehiculoFechaCreacion: String
+    contratista:  {contratistaId:number},
+    ruta: {rutaId:number},
+    tipo: {tipoId:number},
+    vehiculoMarca: string,
+    vehiculoPlaca: string,
+    vehiculoPeso: number,
+    vehiculoModelo: string,
+    vehiculoFechaCreacion: string
     
   }
   

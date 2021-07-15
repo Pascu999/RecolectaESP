@@ -275,6 +275,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <label for="xd"> <b class="label-vehiculo"> Estado </b></label>
+                                    <mat-form-field>
+                                        <mat-select [(ngModel)]="estadoVehiculoEditado" name="estadoVehiculoEditado" required>
+                                            <mat-option required *ngFor="let estadoLista of estados"
+                                                [value]="estadoLista.estado_id">
+                                                {{estadoLista.estado_nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
                             </div>
 
                             <div class="text-center">

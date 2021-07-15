@@ -1,5 +1,5 @@
 export interface Tipo{
-    tipoId: Number,
-    tipoNombre: String,
-    tipoDescripcion: String
+    tipoId: number,
+    tipoNombre: string,
+    tipoDescripcion: string
 }

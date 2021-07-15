@@ -31,7 +31,7 @@ public class Facturas implements Serializable {
     private Contratistas contratista;
     @ManyToOne
     @JoinColumn(name ="centro_disposicion_id",referencedColumnName = "centro_disposicion_id",foreignKey = @ForeignKey(name = "FK_factura_centro"),nullable = false)
-    private CentrosDisposicion centroDiposicion;
+    private CentrosDisposicion centroDisposicion;
     @Column(nullable = false,updatable = false)
     private Date facturaInicioPeriodo;
     @Column(nullable = false,updatable = false)

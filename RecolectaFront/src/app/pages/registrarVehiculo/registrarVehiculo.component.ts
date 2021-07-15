@@ -12,32 +12,37 @@ import Swal from 'sweetalert2';
 
 //Interfaz para mapear la lista de municipios 
 interface municipioLista {
-  municipio_id: Number;
-  municipio_nombre: String;
+  municipio_id: number;
+  municipio_nombre: string;
 }
 
 //Interfaz para mapear la lista de rutas asociada a un municipio
 interface rutaLista {
-  ruta_id: Number;
-  ruta_nombre: String;
+  ruta_id: number;
+  ruta_nombre: string;
 }
 
 //Interfaz para mapear la lista de marcas de vehiculo 
 interface marcaVehiculo {
-  vehiculo_marca_codigo: Number;
-  vehiculo_marca: String;
+  vehiculo_marca_codigo: number;
+  vehiculo_marca: string;
 }
 
 //Interfaz para mapear la lista de modelos de vehiculo
 interface modeloVehiculo {
-  vehiculo_modelo_codigo: Number;
-  vehiculo_modelo: String;
+  vehiculo_modelo_codigo: number;
+  vehiculo_modelo: string;
 }
 
 //Interfaz para mapear la lista de tipos de vehiculo 
 interface tipoLista{
-  tipo_id: Number;
-  tipo_nombre: String;
+  tipo_id: number;
+  tipo_nombre: string;
+}
+//Interfaz para mapear los estados disponibles
+interface estadoLista {
+  estado_id: number;
+  estado_nombre: string;
 }
 
 
@@ -82,6 +87,11 @@ export class RegistrarVehiculoComponent implements OnInit {
     { vehiculo_modelo: '2021', vehiculo_modelo_codigo: 9 }
   ]
 
+  private estados: estadoLista[] = [
+    {estado_id: 1, estado_nombre: 'Activado'},
+    {estado_id: 0, estado_nombre: 'Desactivado'}
+  ]
+
 
   //Objetos de tipo municipoLista con los que se llenara la lista de municipios
   private municipioAux: municipioLista = {
@@ -105,31 +115,32 @@ export class RegistrarVehiculoComponent implements OnInit {
 
   //Propiedades del vehiculo que se registra
 
-  private contratistaId:Number;
-  private municipioIdSeleccionado: Number;
-  private rutaIdSeleccionado: Number;
-  private marcaSeleccionada: String;
-  private modeloSeleccionado: String;
-  private tipoVehiculoSeleccionado: Number;
-  private pesoVehiculoSeleccionado: Number;
-  private placaVehiculoSeleccionado: String;
+  private contratistaId:number;
+  private municipioIdSeleccionado: number;
+  private rutaIdSeleccionado: number;
+  private marcaSeleccionada: string;
+  private modeloSeleccionado: string;
+  private tipoVehiculoSeleccionado: number;
+  private pesoVehiculoSeleccionado: number;
+  private placaVehiculoSeleccionado: string;
 
   //Propiedades del vehiculo que se edita
   
-  private municipioIdEditado: Number;
-  private rutaVehiculoEditadoId: Number;
-  private marcaVehiculoEditado: String;
-  private modeloVehiculoEditado: String;
-  private tipoNombreVehiculoEditado: String;
-  private tipoIdVehiculoEditado: Number;
-  private pesoVehiculoEditado: Number;
-  private placaVehiculoEditado: String;
+  private municipioIdEditado: number;
+  private rutaVehiculoEditadoId: number;
+  private marcaVehiculoEditado: string;
+  private modeloVehiculoEditado: string;
+  private tipoNombreVehiculoEditado: string;
+  private tipoIdVehiculoEditado: number;
+  private pesoVehiculoEditado: number;
+  private placaVehiculoEditado: string;
+  private estadoVehiculoEditado: number;
 
 
   private showRegistro : Boolean = false ;
   private showEdicion  : Boolean = false ;
-  private vehiculoPlacaEditar : String;
-  private vehiculoIdEditar : Number;
+  private vehiculoPlacaEditar : string;
+  private vehiculoIdEditar : number;
 
   constructor(private registrarVehiculosService: registrarVehiculosService,private aRoute: ActivatedRoute, private router : Router) { }
 
@@ -150,8 +161,8 @@ export class RegistrarVehiculoComponent implements OnInit {
     }
   }
 
-  obtenerFecha(): String {
-    fecha: String;
+  obtenerFecha(): string {
+    let fecha: string;
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -176,7 +187,7 @@ export class RegistrarVehiculoComponent implements OnInit {
     )
   }
 
-  obtenerRutasMunicipio(municipio_id: Number) {
+  obtenerRutasMunicipio(municipio_id: number) {
 
     this.registrarVehiculosService.obtenerRutasMunicipio(municipio_id).subscribe(
       (response: Ruta[]) => {
@@ -206,7 +217,7 @@ export class RegistrarVehiculoComponent implements OnInit {
     )
   }
 
-  obtenerVehiculoEditar(vehiculo_placa: String){
+  obtenerVehiculoEditar(vehiculo_placa: string){
     this.registrarVehiculosService.obtenerVehiculo(vehiculo_placa).subscribe(
       (response: Vehiculo)=>{
         this.vehiculoIdEditar = response.vehiculoId;
@@ -216,6 +227,7 @@ export class RegistrarVehiculoComponent implements OnInit {
         this.modeloVehiculoEditado = response.vehiculoModelo
         this.pesoVehiculoEditado = response.vehiculoPeso
         this.placaVehiculoEditado = response.vehiculoPlaca
+        this.estadoVehiculoEditado = response.vehiculoEstado
       }
     )
   }
@@ -282,10 +294,13 @@ export class RegistrarVehiculoComponent implements OnInit {
       vehiculoPlaca: this.placaVehiculoEditado,
       vehiculoPeso: this.pesoVehiculoEditado,
       vehiculoModelo: this.modeloVehiculoEditado,
-      vehiculoFechaCreacion: this.obtenerFecha()
+      vehiculoFechaCreacion: this.obtenerFecha(),
+      vehiculoEstado: this.estadoVehiculoEditado,
      }
-
+     console.log(editadoVehiculo);
      this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
+       
+       
        (response: Vehiculo)=>{
         Swal.fire({
           title: '¡Edición exitosa!',
@@ -297,7 +312,7 @@ export class RegistrarVehiculoComponent implements OnInit {
           toast: true,
           position:'top-end'
         })    
-        this.router.navigateByUrl("/Contratistas/administrarVehiculos")
+        this.router.navigateByUrl("/Contratistas/menuVehiculos")
        }
      )
   }

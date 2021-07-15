@@ -38,6 +38,7 @@ public class FacturasControlador {
             @PathVariable ("contratista_id") Long contratista_id
     ){
         List<Facturas> listaFacturas = facturasServicio.obtenerFacturasContratista(contratista_id);
+        System.out.println(contratista_id);
         return new ResponseEntity<>(listaFacturas,HttpStatus.OK);
     }
 

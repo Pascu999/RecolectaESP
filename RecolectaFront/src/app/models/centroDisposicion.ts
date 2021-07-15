@@ -1,8 +1,11 @@
 import { Municipio } from "./municipio";
 
 export interface CentroDisposicion{
-    centroDisposicionId: Number
-    centroDisposicionNombre : String
+    centroDisposicionId: number
+    centroDisposicionNombre : string
+    centroDisposicionDireccion: string
+    centroDisposicionCorreo: string
+    centroDisposicionCelular: string
     municipio: Municipio
 
 }

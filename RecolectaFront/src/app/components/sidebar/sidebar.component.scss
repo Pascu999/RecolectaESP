@@ -5,11 +5,12 @@
     width: 50%;
     margin-top: 310%;
     >button{
-        background-color:red;
+        background-color: #db2007;
+        
+    border-radius: 40px;
     color: white;
     font-weight:normal;
     justify-content: center;
-    border-radius: 4px;
     
     }
     
@@ -18,3 +19,13 @@
     
   position: absolute;
 }
+
+i p{
+  line-height:50px;
+  vertical-align:center;
+}
+
+i:hover p{
+  line-height:70px;
+}
+

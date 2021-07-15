@@ -20,6 +20,6 @@ public class MunicipiosServicio {
 
 
     public List<Municipios> obtenerMunicipios(){
-        return municipiosRepositorio.findAll();
+        return municipiosRepositorio.findMunicipios();
     }
 }
