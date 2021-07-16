@@ -8,127 +8,7 @@ import { IngresosService } from '../../services/ingresos.Service';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 
-const datos = [{
-  "ingreso_peso": 499,
-  "conductor_id": 2,
-  "desecho_id": 3,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 343,
-  "conductor_id": 1,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 2,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 365,
-  "conductor_id": 1,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 324,
-  "conductor_id": 1,
-  "desecho_id": 3,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 393,
-  "conductor_id": 1,
-  "desecho_id": 1,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 383,
-  "conductor_id": 1,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 2,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 262,
-  "conductor_id": 1,
-  "desecho_id": 3,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 331,
-  "conductor_id": 2,
-  "desecho_id": 1,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 282,
-  "conductor_id": 1,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 222,
-  "conductor_id": 1,
-  "desecho_id": 3,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 326,
-  "conductor_id": 2,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 2,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 329,
-  "conductor_id": 1,
-  "desecho_id": 1,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 255,
-  "conductor_id": 1,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 364,
-  "conductor_id": 2,
-  "desecho_id": 2,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 1,
-  "centro_disposicion_id": 1
-}, {
-  "ingreso_peso": 489,
-  "conductor_id": 1,
-  "desecho_id": 3,
-  "trabajador_id": 1,
-  "contratista_id": 1,
-  "vehiculo_id": 2,
-  "centro_disposicion_id": 1
-}]
+
 @Component({
   selector: 'app-ingresos',
   templateUrl: './ingresos.component.html',
@@ -138,40 +18,20 @@ const datos = [{
 
 export class IngresosComponent implements OnInit {
 
-  ngOnInit(
+  ngOnInit() {
 
-    
-  ) {
-    datos.forEach(ingreso=>{
-      this.ingresoServicio.crearIngreso(ingreso).subscribe(
-        (repsuesta : any)=>{
-          console.log(true);
-          
-        }
-      )
-    })
-
-    if(localStorage.getItem("contratista_id") == null && localStorage.getItem("trabajador_id") == null){
+    if (localStorage.getItem("contratista_id") == null && localStorage.getItem("trabajador_id") == null) {
       this.router.navigateByUrl("/LoginTrabajador")
     }
-    else if(localStorage.getItem("contratista_id") != null){
+    else if (localStorage.getItem("contratista_id") != null) {
       this.router.navigateByUrl("/Contratistas")
     }
   }
 
-  vehiculo_placa: String;
-  conductor_documento: String;
+  vehiculo_placa: string;
+  conductor_documento: string;
 
-  private obtenerFecha(): String {
-    fecha: String;
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = String(today.getFullYear());
 
-    return  dd + '/' + mm  + '/' + yyyy;
-
-  }
 
 
   nuevoIngreso: GeneracionIngreso = {
@@ -200,88 +60,150 @@ export class IngresosComponent implements OnInit {
     var vehiculoIngresado: Vehiculo;
     var conductorIngresado: Conductor;
 
-    console.log(this.vehiculo_placa);
-    console.log(this.conductor_documento);
-    
-    this.ingresoServicio.obtenerVehiculo(this.vehiculo_placa).subscribe(
+
+    if (this.nuevoIngreso.ingreso_peso < 0) {
+      Swal.fire({
+        title: 'El peso del ingreso debe ser mayor a cero',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        width: '20%',
+        backdrop: false,
+        timer: 3000,
+        toast: true,
+        position: 'top-end'
+      })
+    }
+
+    else if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(this.vehiculo_placa))) {
+      Swal.fire({
+        title: 'Formato de placa no valido',
+        text: 'La placa del vehiculo debe tener tres letras mayusculas, seguidas de un guion y tres numeros',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        width: '20%',
+        backdrop: false,
+        timer: 8000,
+        toast: true,
+        position: 'top-end'
+      })
+    }
+
+    else {
+      this.ingresoServicio.obtenerVehiculo(this.vehiculo_placa).subscribe(
 
 
-      (response: Vehiculo) => {
-        vehiculoIngresado = response;
-        conductor_contratista = vehiculoIngresado.contratista.contratistaId
-        this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
-          (response: Conductor) => {
-            conductorIngresado = response;
-
-            vehiculo_contratista = conductorIngresado.contratista.contratistaId
-
-            if (conductor_contratista == vehiculo_contratista) {
-
-              this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
-              this.nuevoIngreso.contratista_id = conductor_contratista;
-              this.nuevoIngreso.vehiculo_id = vehiculoIngresado.vehiculoId;
-              this.nuevoIngreso.conductor_id = conductorIngresado.conductorId;
-              this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
-              this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
-              console.log(this.nuevoIngreso);
-              console.log('SIN ERROR');
-
-              this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
-                (response: String) => {
-                  localStorage.setItem("celda_nombre", String(response))
-                  console.log(response);
-                  this.router .navigateByUrl("/Trabajadores/instruccionIngreso")
-                  Swal.fire({
-                    title: '¡Ingreso Exitoso!',
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar',
-                    width: '20%',
-                    backdrop: false,
-                    timer: 3000,
-                    toast: true,
-                    position:'top-end'
-                  })
-                },
-                (error: HttpErrorResponse) => {
-                  if(error.status == 500){
+        (response: Vehiculo) => {
+          vehiculoIngresado = response;
+          conductor_contratista = vehiculoIngresado.contratista.contratistaId
+          this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
+            (response: Conductor) => {
+              conductorIngresado = response;
+  
+              vehiculo_contratista = conductorIngresado.contratista.contratistaId
+  
+              if (conductor_contratista == vehiculo_contratista) {
+  
+                this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
+                this.nuevoIngreso.contratista_id = conductor_contratista;
+                this.nuevoIngreso.vehiculo_id = vehiculoIngresado.vehiculoId;
+                this.nuevoIngreso.conductor_id = conductorIngresado.conductorId;
+                this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
+                this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
+  
+                this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
+                  (response: String) => {
+                    localStorage.setItem("celda_nombre", String(response))
+                    console.log(response);
+                    this.router.navigateByUrl("/Trabajadores/instruccionIngreso")
                     Swal.fire({
-                      title: 'No se pudo realizar el ingreso',
-                      text: 'no existe una celda que pueda admitir el ingreso',
-                      icon: 'error',
+                      title: '¡Ingreso Exitoso!',
+                      icon: 'success',
                       confirmButtonText: 'Aceptar',
-                      width: '30%',
-                      padding: '1rem',
-                      heightAuto: true,
-                      backdrop: true,
+                      width: '20%',
+                      backdrop: false,
                       timer: 3000,
-                      position:'center'
+                      toast: true,
+                      position: 'top-end'
                     })
-          
+                  },
+                  (error: HttpErrorResponse) => {
+                    if (error.status == 500) {
+                      Swal.fire({
+                        title: 'No se pudo realizar el ingreso',
+                        text: 'no existe una celda que pueda admitir el ingreso',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                        width: '30%',
+                        padding: '1rem',
+                        heightAuto: true,
+                        backdrop: true,
+                        timer: 3000,
+                        position: 'center'
+                      })
+  
+                    }
                   }
-                }
-          
+  
+  
+                )
+              }
+              else {
+                console.log("Conductor y/o contratistas invalidos");
+                Swal.fire({
+                  title: 'No se pudo realizar el ingreso',
+                  text: 'inconsistencia entre el vehiculo y el conductor que ingresa',
+                  icon: 'warning',
+                  confirmButtonText: 'Aceptar',
+                  width: '30%',
+                  padding: '1rem',
+                  heightAuto: true,
+                  backdrop: true,
+                  timer: 3000,
+                  position: 'center'
+                })
+              }
+  
+            },
+            (error: HttpErrorResponse) => {
+              if (error.status == 500) {
+                Swal.fire({
+                  title: 'No se pudo realizar el ingreso',
+                  text: 'no existe un registro del conductor ingresado',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar',
+                  width: '30%',
+                  padding: '1rem',
+                  heightAuto: true,
+                  backdrop: true,
+                  timer: 3000,
+                  position: 'center'
+                })
 
-              )
+              }
             }
-            else {
-              console.log("Conductor y/o contratistas invalidos");
-              Swal.fire({
-                title: 'No se pudo realizar el ingreso',
-                text: 'inconsistencia entre el vehiculo y el conductor que ingresa',
-                icon: 'warning',
-                confirmButtonText: 'Aceptar',
-                width: '30%',
-                padding: '1rem',
-                heightAuto: true,
-                backdrop: true,
-                timer: 3000,
-                position:'center'
-              })
-            }
+
+          )
+        },
+        (error: HttpErrorResponse) => {
+          if (error.status == 500) {
+            Swal.fire({
+              title: 'No se pudo realizar el ingreso',
+              text: 'no existe un registro del vehiculo ingresado',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+              width: '30%',
+              padding: '1rem',
+              heightAuto: true,
+              backdrop: true,
+              timer: 3000,
+              position: 'center'
+            })
 
           }
-        )
-      }
-    )
+        }
+      )
+
+    }
+    
   }
 }

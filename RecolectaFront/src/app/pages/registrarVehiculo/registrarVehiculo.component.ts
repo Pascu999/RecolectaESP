@@ -147,6 +147,8 @@ export class RegistrarVehiculoComponent implements OnInit {
   ngOnInit(): void {
 
     
+
+    
     this.vehiculoPlacaEditar = this.aRoute.snapshot.paramMap.get("vehiculo_placa")
     this.contratistaId = Number(localStorage.getItem("contratista_id"))
     this.obtenerMunicipios();
@@ -235,7 +237,7 @@ export class RegistrarVehiculoComponent implements OnInit {
     )
   }
 
-  onCrearVehiculo(vehiculoForm: NgForm){
+  onCrearVehiculo(){
      let nuevoVehiculo : VehiculoRegistro = {
       contratista : {contratistaId:this.contratistaId},
       ruta : {rutaId: this.rutaIdSeleccionado},
@@ -246,47 +248,80 @@ export class RegistrarVehiculoComponent implements OnInit {
       vehiculoModelo: this.modeloSeleccionado,
       vehiculoFechaCreacion: this.obtenerFecha()
      }
-     
-     this.registrarVehiculosService.registrarVehiculo(nuevoVehiculo).subscribe(
-       (response:Vehiculo)=>{
 
-        Swal.fire({
-          title: 'Vehículo registrado exitosamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-          width: '20%',
-          backdrop: false,
-          timer: 3000,
-          toast: true,
-          position:'top-end'
-        })    
-        
-        this.router.navigateByUrl("/Contratistas/administrarVehiculos")
-         console.log(response);
-         
-       },
-       (error: HttpErrorResponse) => {
-         if(error.status == 500){
-           Swal.fire({
-             title: 'Error al registrar el vehículo',
-             text: 'Ya hay un vehículo registrado con esta placa',
-             icon: 'error',
-             confirmButtonText: 'Aceptar',
-             width: '20%',
-             padding: '1rem',
-             heightAuto: true,
-             backdrop: true,
-             timer: 3000,
-             toast:true,
-             position:'bottom-end'
-           })
+     if(nuevoVehiculo.vehiculoPeso < 0){
+      Swal.fire({
+        title: 'El peso del vehiculo debe ser mayor a cero',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        width: '20%',
+        backdrop: false,
+        timer: 3000,
+        toast: true,
+        position:'top-end'
+      })  
+     }
+     else if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(nuevoVehiculo.vehiculoPlaca))){
+      Swal.fire({
+        title: 'Formato de placa no valido',
+        text: 'La placa del vehiculo debe tener tres letras mayusculas, seguidas de un guion y tres numeros',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        width: '20%',
+        backdrop: false,
+        timer: 8000,
+        toast: true,
+        position:'top-end'
+      })  
+     }
+     else{
+
+      this.registrarVehiculosService.registrarVehiculo(nuevoVehiculo).subscribe(
+        (response:Vehiculo)=>{
  
-         }
-       }
-     )
+         Swal.fire({
+           title: 'Vehículo registrado exitosamente',
+           icon: 'success',
+           confirmButtonText: 'Aceptar',
+           width: '20%',
+           backdrop: false,
+           timer: 3000,
+           toast: true,
+           position:'top-end'
+         })    
+         
+         this.router.navigateByUrl("/Contratistas/administrarVehiculos")
+          console.log(response);
+          
+        },
+        (error: HttpErrorResponse) => {
+          if(error.status == 500){
+            Swal.fire({
+              title: 'Error al registrar el vehículo',
+              text: 'Ya hay un vehículo registrado con esta placa',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+              width: '20%',
+              padding: '1rem',
+              heightAuto: true,
+              backdrop: true,
+              timer: 3000,
+              toast:true,
+              position:'bottom-end'
+            })
+  
+          }
+        }
+      )
+
+     }
+     
+     
   }
 
   onEditarVehiculo(formVehiculo : NgForm){
+
+   
 
     let editadoVehiculo  = {
       vehiculoId: this.vehiculoIdEditar,
@@ -301,7 +336,7 @@ export class RegistrarVehiculoComponent implements OnInit {
       vehiculoEstado: this.estadoVehiculoEditado,
      }
      console.log("NuevoEstado");
-     
+
      console.log(editadoVehiculo.vehiculoEstado);
      this.registrarVehiculosService.editarVehiculo(editadoVehiculo,this.vehiculoIdEditar).subscribe(
        
