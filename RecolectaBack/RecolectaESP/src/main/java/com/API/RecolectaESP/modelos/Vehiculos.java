@@ -22,7 +22,7 @@ import java.util.Date;
 )
 public class Vehiculos implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehiculo_generadorz")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehiculo_generador")
     @SequenceGenerator(name = "vehiculo_generador", sequenceName = "vehiculos_secuencia", initialValue = 1,allocationSize = 1)
     @Column(name = "vehiculo_id", nullable = false, updatable = false)
     private Long vehiculoId;

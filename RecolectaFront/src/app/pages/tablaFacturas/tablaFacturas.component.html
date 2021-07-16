@@ -64,18 +64,18 @@
                 <div class="ultima-facturacion">
                     <label for=""><b> Ultima facturación:</b></label>
                     <div>
-                        
-                    <label for=""><b>{{UltimaFacturacion }}</b></label>
+
+                        <label for=""><b>{{UltimaFacturacion | date:"dd/MM/yyyy"}}</b></label>
                     </div>
                 </div>
-    
+
                 <div class="text-center">
                     <button id="btn-iniciar-sesion" type="button" (click)="generarFacturas()"
                         class="btn btn-primary my-4">Generar Facturacion</button>
                 </div>
             </div>
 
-            
+
         </div>
 
     </div>

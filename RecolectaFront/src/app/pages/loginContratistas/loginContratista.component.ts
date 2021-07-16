@@ -4,7 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Contratista } from 'src/app/models/contratista';
-import { LoginContratistasServicio } from 'src/app/services/loginContratistas.service';
+import { LoginContratistasService } from 'src/app/services/loginContratistas.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
 
 
 export class LoginContratistaComponent implements OnInit, OnDestroy {
-  constructor(private router: Router, private loginContratistasServicio : LoginContratistasServicio) {}
+  constructor(private router: Router, private loginContratistasServicio : LoginContratistasService) {}
 
   contratista_nit: String;
   contratista_contrasena: String;
@@ -46,7 +46,7 @@ export class LoginContratistaComponent implements OnInit, OnDestroy {
   }
 
   public onLoginContratista(formularioLoggin: NgForm){
-    this.loginContratistasServicio.SolicitudLogginContratista(this.contratista_nit,this.contratista_contrasena).subscribe(
+    this.loginContratistasServicio.solicitudLogginContratista(this.contratista_nit,this.contratista_contrasena).subscribe(
       (response: Contratista)=>{
         Swal.fire({
           title: '¡Bienvenido, Contratista!',

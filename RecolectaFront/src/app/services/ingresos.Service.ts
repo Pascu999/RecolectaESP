@@ -13,7 +13,7 @@ import { Conductor } from '../models/conductor';
     providedIn: 'root'
 })
 
-export class IngresosServicio {
+export class IngresosService {
     Respuesta : Vehiculo
         
 
