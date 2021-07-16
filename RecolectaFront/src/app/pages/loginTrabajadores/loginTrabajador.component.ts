@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
   exports:[]
 })
 export class LoginTrabajadorComponent implements OnInit, OnDestroy {
-  constructor(private loginTrabajadoresServicio: LoginTrabajadoresService, public router: Router) {}
+  constructor(private loginTrabajadoresServicio: LoginTrabajadoresService, private router: Router) {}
 
   trabajador_documento: String;
   trabajador_contrasena: String;
@@ -35,12 +35,13 @@ export class LoginTrabajadorComponent implements OnInit, OnDestroy {
     if(Number(localStorage.getItem("trabajador_tipo")) == 1){
       this.router.navigateByUrl("/Administradores")
     }
-    if(localStorage.getItem("contratista_id") != null){
-      this.router.navigateByUrl("/Contratistas")
-    }
     else if(Number(localStorage.getItem("trabajador_tipo")) == 2){
       this.router.navigateByUrl("/Trabajadores")
     }
+    else if(localStorage.getItem("contratista_id") != null){
+      this.router.navigateByUrl("/Contratistas")
+    }
+    
   }
   ngOnDestroy() {
   }

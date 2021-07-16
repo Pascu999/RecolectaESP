@@ -34,9 +34,9 @@ public interface FacturasRepositorio extends JpaRepository<Facturas,Long> {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "demo_teamb", "6488");
 
-            CallableStatement cs= con.prepareCall("{call FACTURACION.Facturar_ingresos_contratista(?)}");
+            CallableStatement cs= con.prepareCall("{call FACTURACION.facturacion_masiva()}");
 
-            cs.setInt(1, Math.toIntExact(contratista_id));
+            //cs.setInt(1, Math.toIntExact(contratista_id));
 
             System.out.println("Hasta aqui bien");
 

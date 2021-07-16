@@ -30,6 +30,7 @@ export class LoginContratistaComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
 
+    localStorage.clear();
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");
 
