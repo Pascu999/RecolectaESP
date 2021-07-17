@@ -1,5 +1,5 @@
 export interface Celda {
-    celdaId : Number,
+    celdaId : number,
     celda_nombre: String,
 
 }

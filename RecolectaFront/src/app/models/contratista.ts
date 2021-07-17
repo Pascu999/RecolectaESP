@@ -1,5 +1,5 @@
 export interface Contratista {
-    contratistaId: Number,
+    contratistaId: number,
     contratistaNit: string,
     contratistaNombre: string,
     contratistaCelular: string,

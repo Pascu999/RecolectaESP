@@ -1,7 +1,7 @@
 import { CentroDisposicion } from "./centroDisposicion";
 
 export interface Trabajador {
-    trabajadorId: Number;
+    trabajadorId: number;
     centroDisposicion: CentroDisposicion;
     trabajadorNombre: String;
     trabajadorApellido: String;
@@ -9,11 +9,11 @@ export interface Trabajador {
     trabajadorCelular: String;
     trabajadorCorreo: String;
     trabajadorDireccion: String;
-    trabajadorTipo: Number;
+    trabajadorTipo: number;
     trabajadorFecha_ingreso: Date;
     trabajadorFecha_nacimiento: Date;
-    trabajadorContrasena: Number;
-    trabajadorEstado: Number;
+    trabajadorContrasena: number;
+    trabajadorEstado: number;
 
 }
 

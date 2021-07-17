@@ -1,26 +1,26 @@
 export interface Ingreso {
-    ingreso_id: Number;
-    vehiculo_id: Number;
-    conductor_id: Number;
-    desecho_id: Number;
-    trabajador_id: Number;
-    celda_id: Number;
-    factura_id: Number;
-    ingreso_peso: Number;
-    ingreso_valor_transporte: Number;
-    ingreso_peso_sobrecarga: Number;
-    ingreso_valor_sobrecarga: Number;
+    ingreso_id: number;
+    vehiculo_id: number;
+    conductor_id: number;
+    desecho_id: number;
+    trabajador_id: number;
+    celda_id: number;
+    factura_id: number;
+    ingreso_peso: number;
+    ingreso_valor_transporte: number;
+    ingreso_peso_sobrecarga: number;
+    ingreso_valor_sobrecarga: number;
     ingreso_fecha: String;
-    ingreso_estado: Number;
+    ingreso_estado: number;
 
 }
 export interface GeneracionIngreso {
-    ingreso_peso: Number;
-    conductor_id: Number;
-    desecho_id: Number;
-    trabajador_id: Number;
-    contratista_id: Number;
-    vehiculo_id: Number;
-    centro_disposicion_id: Number
+    ingreso_peso: number;
+    conductor_id: number;
+    desecho_id: number;
+    trabajador_id: number;
+    contratista_id: number;
+    vehiculo_id: number;
+    centro_disposicion_id: number
 
 }

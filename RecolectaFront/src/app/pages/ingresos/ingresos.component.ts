@@ -55,26 +55,15 @@ export class IngresosComponent implements OnInit {
   public onCrearIngreso(formularioIngreso: NgForm): void {
 
 
-    var conductor_contratista: Number;
-    var vehiculo_contratista: Number;
+    var conductor_contratista: number;
+    var vehiculo_contratista: number;
     var vehiculoIngresado: Vehiculo;
     var conductorIngresado: Conductor;
 
 
-    if (this.nuevoIngreso.ingreso_peso < 0) {
-      Swal.fire({
-        title: 'El peso del ingreso debe ser mayor a cero',
-        icon: 'error',
-        confirmButtonText: 'Aceptar',
-        width: '20%',
-        backdrop: false,
-        timer: 3000,
-        toast: true,
-        position: 'top-end'
-      })
-    }
+    
 
-    else if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(this.vehiculo_placa))) {
+    if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(this.vehiculo_placa))) {
       Swal.fire({
         title: 'Formato de placa no valido',
         text: 'La placa del vehiculo debe tener tres letras mayusculas, seguidas de un guion y tres numeros',
@@ -94,13 +83,30 @@ export class IngresosComponent implements OnInit {
 
         (response: Vehiculo) => {
           vehiculoIngresado = response;
-          conductor_contratista = vehiculoIngresado.contratista.contratistaId
+          vehiculo_contratista = vehiculoIngresado.contratista.contratistaId
+          this.nuevoIngreso.ingreso_peso = this.nuevoIngreso.ingreso_peso - vehiculoIngresado.vehiculoPeso
+
+          if(this.nuevoIngreso.ingreso_peso < 200 || this.nuevoIngreso.ingreso_peso > 1000){
+            Swal.fire({
+              title: 'Peso invalido',
+              text: 'El peso ingresado debe estar entre 200 y 1000 kilos (sin incluir el peso del vehículo)',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+              width: '20%',
+              backdrop: false,
+              timer: 3000,
+              toast: true,
+              position: 'top-end'
+            })
+          }
+          else{
+
           this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
             (response: Conductor) => {
               conductorIngresado = response;
-  
-              vehiculo_contratista = conductorIngresado.contratista.contratistaId
-  
+              conductor_contratista = conductorIngresado.conductorId
+
+           
               if (conductor_contratista == vehiculo_contratista) {
   
                 this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
@@ -183,6 +189,7 @@ export class IngresosComponent implements OnInit {
             }
 
           )
+        }
         },
         (error: HttpErrorResponse) => {
           if (error.status == 500) {

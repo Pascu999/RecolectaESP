@@ -96,10 +96,11 @@ export class TablafacturasComponent implements OnInit {
   generarFacturas() {
     console.log("Facturando");
     console.log(this.contratista);
+    location.reload();
     
     this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
       (response: any) => {
-        location.reload();
+        location.reload()
       },
       (error: any) => {
         console.error(error);
