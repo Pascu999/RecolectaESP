@@ -61,7 +61,7 @@ export class IngresosComponent implements OnInit {
     var conductorIngresado: Conductor;
 
 
-    
+
 
     if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(this.vehiculo_placa))) {
       Swal.fire({
@@ -86,7 +86,22 @@ export class IngresosComponent implements OnInit {
           vehiculo_contratista = vehiculoIngresado.contratista.contratistaId
           this.nuevoIngreso.ingreso_peso = this.nuevoIngreso.ingreso_peso - vehiculoIngresado.vehiculoPeso
 
-          if(this.nuevoIngreso.ingreso_peso < 200 || this.nuevoIngreso.ingreso_peso > 1000){
+          if (vehiculoIngresado.vehiculoEstado == 0) {
+            Swal.fire({
+              title: 'Vehículo no autorizado',
+              text: 'El vehículo que intenta ingresar ha sido desactivado por parte del contratista',
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+              width: '30%',
+              padding: '1rem',
+              heightAuto: true,
+              backdrop: true,
+              timer: 3000,
+              position: 'center'
+            })
+          }
+
+          else if (this.nuevoIngreso.ingreso_peso < 200 || this.nuevoIngreso.ingreso_peso > 1000) {
             Swal.fire({
               title: 'Peso invalido',
               text: 'El peso ingresado debe estar entre 200 y 1000 kilos (sin incluir el peso del vehículo)',
@@ -99,97 +114,97 @@ export class IngresosComponent implements OnInit {
               position: 'top-end'
             })
           }
-          else{
+          else {
 
-          this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
-            (response: Conductor) => {
-              conductorIngresado = response;
-              conductor_contratista = conductorIngresado.conductorId
+            this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
+              (response: Conductor) => {
+                conductorIngresado = response;
+                conductor_contratista = conductorIngresado.conductorId
 
-           
-              if (conductor_contratista == vehiculo_contratista) {
-  
-                this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
-                this.nuevoIngreso.contratista_id = conductor_contratista;
-                this.nuevoIngreso.vehiculo_id = vehiculoIngresado.vehiculoId;
-                this.nuevoIngreso.conductor_id = conductorIngresado.conductorId;
-                this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
-                this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
-  
-                this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
-                  (response: String) => {
-                    localStorage.setItem("celda_nombre", String(response))
-                    console.log(response);
-                    this.router.navigateByUrl("/Trabajadores/instruccionIngreso")
-                    Swal.fire({
-                      title: '¡Ingreso Exitoso!',
-                      icon: 'success',
-                      confirmButtonText: 'Aceptar',
-                      width: '20%',
-                      backdrop: false,
-                      timer: 3000,
-                      toast: true,
-                      position: 'top-end'
-                    })
-                  },
-                  (error: HttpErrorResponse) => {
-                    if (error.status == 500) {
+
+                if (conductor_contratista == vehiculo_contratista) {
+
+                  this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
+                  this.nuevoIngreso.contratista_id = conductor_contratista;
+                  this.nuevoIngreso.vehiculo_id = vehiculoIngresado.vehiculoId;
+                  this.nuevoIngreso.conductor_id = conductorIngresado.conductorId;
+                  this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
+                  this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
+
+                  this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
+                    (response: String) => {
+                      localStorage.setItem("celda_nombre", String(response))
+                      console.log(response);
+                      this.router.navigateByUrl("/Trabajadores/instruccionIngreso")
                       Swal.fire({
-                        title: 'No se pudo realizar el ingreso',
-                        text: 'no existe una celda que pueda admitir el ingreso',
-                        icon: 'error',
+                        title: '¡Ingreso Exitoso!',
+                        icon: 'success',
                         confirmButtonText: 'Aceptar',
-                        width: '30%',
-                        padding: '1rem',
-                        heightAuto: true,
-                        backdrop: true,
+                        width: '20%',
+                        backdrop: false,
                         timer: 3000,
-                        position: 'center'
+                        toast: true,
+                        position: 'top-end'
                       })
-  
+                    },
+                    (error: HttpErrorResponse) => {
+                      if (error.status == 500) {
+                        Swal.fire({
+                          title: 'No se pudo realizar el ingreso',
+                          text: 'no existe una celda que pueda admitir el ingreso',
+                          icon: 'error',
+                          confirmButtonText: 'Aceptar',
+                          width: '30%',
+                          padding: '1rem',
+                          heightAuto: true,
+                          backdrop: true,
+                          timer: 3000,
+                          position: 'center'
+                        })
+
+                      }
                     }
-                  }
-  
-  
-                )
-              }
-              else {
-                console.log("Conductor y/o contratistas invalidos");
-                Swal.fire({
-                  title: 'No se pudo realizar el ingreso',
-                  text: 'inconsistencia entre el vehiculo y el conductor que ingresa',
-                  icon: 'warning',
-                  confirmButtonText: 'Aceptar',
-                  width: '30%',
-                  padding: '1rem',
-                  heightAuto: true,
-                  backdrop: true,
-                  timer: 3000,
-                  position: 'center'
-                })
-              }
-  
-            },
-            (error: HttpErrorResponse) => {
-              if (error.status == 500) {
-                Swal.fire({
-                  title: 'No se pudo realizar el ingreso',
-                  text: 'no existe un registro del conductor ingresado',
-                  icon: 'error',
-                  confirmButtonText: 'Aceptar',
-                  width: '30%',
-                  padding: '1rem',
-                  heightAuto: true,
-                  backdrop: true,
-                  timer: 3000,
-                  position: 'center'
-                })
 
-              }
-            }
 
-          )
-        }
+                  )
+                }
+                else {
+                  console.log("Conductor y/o contratistas invalidos");
+                  Swal.fire({
+                    title: 'No se pudo realizar el ingreso',
+                    text: 'inconsistencia entre el vehiculo y el conductor que ingresa',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar',
+                    width: '30%',
+                    padding: '1rem',
+                    heightAuto: true,
+                    backdrop: true,
+                    timer: 3000,
+                    position: 'center'
+                  })
+                }
+
+              },
+              (error: HttpErrorResponse) => {
+                if (error.status == 500) {
+                  Swal.fire({
+                    title: 'No se pudo realizar el ingreso',
+                    text: 'no existe un registro del conductor ingresado',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    width: '30%',
+                    padding: '1rem',
+                    heightAuto: true,
+                    backdrop: true,
+                    timer: 3000,
+                    position: 'center'
+                  })
+
+                }
+              }
+
+            )
+          }
         },
         (error: HttpErrorResponse) => {
           if (error.status == 500) {
@@ -211,6 +226,6 @@ export class IngresosComponent implements OnInit {
       )
 
     }
-    
+
   }
 }

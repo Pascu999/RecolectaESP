@@ -38,7 +38,7 @@ export class FacturaComponent implements OnInit {
     this.facturaServicio.obtenerFacturasCentro(factura_id).subscribe(
       (response: Factura) => {
         this.detalles_factura ={
-          contratistaNombre : response.centroDisposicion.centroDisposicionNombre,
+          contratistaNombre : response.contratista.contratistaNombre,
           contratistaDireccion : response.contratista.contratistaDireccion,
           contratistaCelular : response.contratista.contratistaCelular,
           contratistaCorreo : response.contratista.contratistaCorreo,

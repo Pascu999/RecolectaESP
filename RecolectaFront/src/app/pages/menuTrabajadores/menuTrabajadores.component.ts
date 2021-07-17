@@ -12,7 +12,7 @@ declare interface facturasTabla {
   id: number,
   inicio: Date,
   fin: Date,
-  centro: string,
+  contratista: string,
   valor: number,
 
 }
@@ -25,7 +25,7 @@ declare interface facturasTabla {
 })
 export class MenuTrabajadoresComponent implements OnInit {
   facturasCentro: facturasTabla[] = [];
-  columnasFacturas: string[] = ['inicio', 'fin', 'centro', 'valor', 'info'];
+  columnasFacturas: string[] = ['inicio', 'fin', 'contratista', 'valor', 'info'];
   dataSourceFacturas: MatTableDataSource<facturasTabla>
   private FacturasCentro: Factura[];
 
@@ -38,7 +38,7 @@ export class MenuTrabajadoresComponent implements OnInit {
     id: null,
     inicio: null,
     fin: null,
-    centro: null,
+    contratista: null,
     valor: null,
   }
 
@@ -62,7 +62,7 @@ export class MenuTrabajadoresComponent implements OnInit {
           id: factura.facturaId,
           inicio: factura.facturaInicioPeriodo,
           fin: factura.facturaFinPeriodo,
-          centro: factura.centroDisposicion.centroDisposicionNombre,
+          contratista: factura.contratista.contratistaNombre,
           valor: factura.facturaCostoTransporte
           }
 

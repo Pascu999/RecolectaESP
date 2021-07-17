@@ -230,6 +230,7 @@ export class RegistrarVehiculoComponent implements OnInit {
         this.pesoVehiculoEditado = response.vehiculoPeso
         this.placaVehiculoEditado = response.vehiculoPlaca
         this.estadoVehiculoEditado = response.vehiculoEstado
+        this.rutaVehiculoEditadoId = response.ruta.rutaId
 
         console.log(this.estadoVehiculoEditado);
         
