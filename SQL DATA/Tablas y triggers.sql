@@ -473,69 +473,86 @@ create or replace PACKAGE facturacion AS
 
 END facturacion;
 /
-create or replace PACKAGE BODY facturacion AS
+CREATE OR REPLACE PACKAGE BODY facturacion AS
 
 --PROCEDIMIENTO QUE GENERA LAS FACTURAS DE UN CENTRO DE DISPOSICION EN UN PERIODO DE TIEMPO
-
-    PROCEDURE generar_facturas_centro (
-        centro          IN  NUMBER,
+    PROCEDURE generar_facturas (
         inicio_periodo  IN  DATE,
         fin_periodo     IN  DATE
     ) IS
 
-        contratista               NUMBER;
-        factura_costo_transporte  NUMBER;
-        factura_descuento         NUMBER;
-        cantidad_resultados       NUMBER;
+        contratista       NUMBER;
+        centro            NUMBER;
+        costo_transporte  NUMBER;
+        descuento         NUMBER;
         CURSOR ingresos_centro_facturar IS
 
 --OBTENER LOS INGRESOS DE UN CENTRO DE DISPOSICION EN ESPECIFICO, QUE NO HAYAN SIDO FACTURADOS Y EN UN RANGO DE FECHA DEFINIDO, JUNTO CON LA INFORMACIÓN DE QUE EMPRESA CONTRATISTA REALIZO ESTE INGRESO 
-        SELECT
+        SELECT DISTINCT
             contratista_id,
-            SUM(ingreso_valor_sobrecarga)     descuento,
-            SUM(ingreso_valor_transporte)     transporte
+            centro_disposicion_id
         FROM
                  (
-                SELECT
-                    ingreso_id,
-                    ingreso_valor_sobrecarga,
-                    ingreso_valor_transporte,
+                SELECT DISTINCT
                     contratista_id,
                     trabajador_id
-                FROM
+                FROM(   SELECT trabajador_id,vehiculo_id FROM
                          ingresos i
+                         WHERE ingreso_fecha BETWEEN inicio_periodo AND fin_periodo
+                         AND ingreso_estado = 2) i
                     INNER JOIN (
                         SELECT
-                            conductor_id,
-                            conductor_nombre,
-                            contratista_id
+                            contratista_id,
+                            vehiculo_id
                         FROM
-                            conductores
-                    ) c ON i.conductor_id = c.conductor_id
-                WHERE
-                    ingreso_fecha BETWEEN inicio_periodo AND fin_periodo
-                    AND ingreso_estado = 2
-            ) s1
+                            vehiculos
+                    ) v ON i.vehiculo_id = v.vehiculo_id
+            ) q1
             INNER JOIN (
                 SELECT
-                    trabajador_id,
-                    trabajador_nombre
+                    centro_disposicion_id,
+                    trabajador_id
                 FROM
                     trabajadores
-                WHERE
-                    centro_disposicion_id = centro
-            ) s2 ON s1.trabajador_id = s2.trabajador_id
-        GROUP BY
-            contratista_id;
+            ) q2 ON q1.trabajador_id = q1.trabajador_id;
 
     BEGIN
         OPEN ingresos_centro_facturar;
         LOOP
             FETCH ingresos_centro_facturar INTO
                 contratista,
-                factura_descuento,
-                factura_costo_transporte;
+                centro;
             EXIT WHEN ingresos_centro_facturar%notfound;
+            SELECT
+                SUM(ingreso_valor_transporte),
+                SUM(ingreso_valor_sobrecarga)
+            INTO
+                costo_transporte,
+                descuento
+            FROM
+                ingresos
+            WHERE
+                trabajador_id IN (
+                    SELECT
+                        trabajador_id
+                    FROM
+                        trabajadores
+                    WHERE
+                        centro_disposicion_id = centro
+                )
+                AND vehiculo_id IN (
+                    SELECT
+                        vehiculo_id
+                    FROM
+                        vehiculos
+                    WHERE
+                        contratista_id = contratista
+                AND ingreso_estado = 2
+                );
+            dbms_output.put_line(contratista);
+            dbms_output.put_line(centro);
+            dbms_output.put_line(costo_transporte);
+            dbms_output.put_line(descuento);
             INSERT INTO facturas (
                 factura_costo_transporte,
                 factura_descuento,
@@ -544,8 +561,8 @@ create or replace PACKAGE BODY facturacion AS
                 centro_disposicion_id,
                 contratista_id
             ) VALUES (
-                factura_costo_transporte,
-                factura_descuento,
+                costo_transporte,
+                descuento,
                 fin_periodo,
                 inicio_periodo,
                 centro,
@@ -560,34 +577,23 @@ create or replace PACKAGE BODY facturacion AS
 
 
 --PROCEDIMIENTO QUE MARCA CUALES SON LOS INGRESOS PERTENECIENTES A UN CENTRO QUE SE FACTURARAN EN EL SIGUIENTE PERIODO DE FACTURACION
-    PROCEDURE definir_ingresos_centro (
+    PROCEDURE definir_ingresos (
         inicio_periodo  IN  DATE,
-        fin_periodo     IN  DATE,
-        centro          IN  NUMBER
+        fin_periodo     IN  DATE
     ) IS
     BEGIN
         dbms_output.put_line('DEFINIENDO INGRESOS CENTRO');
         dbms_output.put_line(inicio_periodo);
         dbms_output.put_line(fin_periodo);
-        dbms_output.put_line(centro);
         dbms_output.put_line('********************************');
         UPDATE ingresos
         SET
             ingreso_estado = 2
         WHERE
                 ingreso_estado = 1
-            AND ingreso_fecha BETWEEN inicio_periodo AND fin_periodo
-            AND trabajador_id IN (
-                SELECT
-                    trabajador_id
-                FROM
-                    trabajadores t
-                WHERE
-                    t.centro_disposicion_id = centro
-            );
+            AND ingreso_fecha BETWEEN inicio_periodo AND fin_periodo;
 
     END;
-
 
 --PROCEDIMIENTO QUE MARCA CUALES SON LOS INGRESOS EN LOS QUE SE INVOLUCRA UN DETERMINADO CONTRATISTA Y QUE SE FACTURARAN EN EL SIGUIENTE PERIODO DE FACTURACION
 
@@ -596,16 +602,9 @@ create or replace PACKAGE BODY facturacion AS
     --PROCEDIMIENTO QUE PARA CADA CENTRO DE DISPOSICION GENERA SU FACTURACION MENSUAL
 
     PROCEDURE facturacion_masiva IS
-        centro          NUMBER;
         estado          NUMBER;
         inicio_periodo  DATE;
         fin_periodo     DATE;
-        CURSOR centros_disposicion IS
-        SELECT
-            centro_disposicion_id
-        FROM
-            centros_disposicion;
-
     BEGIN
         SELECT
             sysdate,
@@ -616,23 +615,18 @@ create or replace PACKAGE BODY facturacion AS
         FROM
             dual;
 
-        OPEN centros_disposicion;
-        LOOP
-            FETCH centros_disposicion INTO centro;
-            EXIT WHEN centros_disposicion%notfound;
-            definir_ingresos_centro(inicio_periodo, fin_periodo, centro);
-            generar_facturas_centro(centro, inicio_periodo, fin_periodo);
-            estado := estado;
-            UPDATE contratistas set contratista_ultima_facturacion = fin_periodo;
-            COMMIT;
-        END LOOP;
+        definir_ingresos(inicio_periodo, fin_periodo);
+        generar_facturas(inicio_periodo, fin_periodo);
+        estado := 1;
+        UPDATE contratistas
+        SET
+            contratista_ultima_facturacion = fin_periodo;
 
-
+        COMMIT;
         dbms_output.put_line('********************************');
         dbms_output.put_line(inicio_periodo);
         dbms_output.put_line(fin_periodo);
         dbms_output.put_line('********************************');
-
         IF estado = 1 THEN
             UPDATE contratistas
             SET
@@ -642,8 +636,7 @@ create or replace PACKAGE BODY facturacion AS
 
         END IF;
 
-        CLOSE centros_disposicion;
-END;
+    END;
 
 END facturacion;
 /
