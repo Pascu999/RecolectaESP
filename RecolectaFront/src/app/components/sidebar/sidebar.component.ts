@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
   public showRutasTrabajador :boolean = false ;
   public showRutasContratista :boolean = false ;
 
-  public href: string = "";
+  public rutaActual: string = "";
 
   public prueba : String = "xd";
 
@@ -42,11 +42,13 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.href = this.router.url;
-    if(this.href  == "/Administradores/MenuAdministradores"){
+
+    //Que rutas se mostrarán en el sidenav
+    this.rutaActual = this.router.url;
+    if(this.rutaActual  == "/Administradores/MenuAdministradores"){
       this.showRutasTrabajador = true;
     }
-    else if(this.href == "/Contratistas/menuContratistas" || this.href == "/Contratistas/menuVehiculos" || this.href == "/Contratistas/registrarVehiculo" || this.href.includes("/Contratistas/editarVehiculo/")){
+    else if(this.rutaActual == "/Contratistas/menuContratistas" || this.rutaActual == "/Contratistas/menuVehiculos" || this.rutaActual == "/Contratistas/registrarVehiculo" || this.rutaActual.includes("/Contratistas/editarVehiculo/")){
       this.showRutasContratista = true;
     }
     
@@ -57,10 +59,10 @@ export class SidebarComponent implements OnInit {
 
   cerrarSesion(){
     localStorage.clear();
-    if(this.href  == "/Administradores/MenuAdministradores"){
+    if(this.rutaActual  == "/Administradores/MenuAdministradores"){
       this.router.navigateByUrl("/LoginTrabajador");
     }
-    else if(this.href.includes("/Contratistas")){
+    else if(this.rutaActual.includes("/Contratistas")){
       this.router.navigateByUrl("/LoginContratista");
     }
   }

@@ -12,7 +12,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { TablafacturasComponent } from 'src/app/pages/facturasTabla/tablaFacturas.component';
+import { TablafacturasComponent } from 'src/app/pages/contratistaFacturas/contratistaFacturas.component';
 import { VehiculosTablaComponent } from 'src/app/pages/vehiculosTabla/vehiculosTabla.component';
 
 @NgModule({

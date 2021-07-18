@@ -145,19 +145,18 @@ export class VehiculoRegistrarComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
-
+    //Se obtiene la información del contratista y de la placa del vehículo en caso de que se vaya a editar un vehículo
     this.vehiculoPlacaEditar = this.aRoute.snapshot.paramMap.get("vehiculo_placa")
     this.contratistaId = Number(localStorage.getItem("contratista_id"))
     this.obtenerMunicipios();
+    
+    //Se comprueba si se va a registrar o editar un vehículo
     if (this.router.url == '/Contratistas/registrarVehiculo') {
       this.showRegistro = true
       this.obtenerTiposVehiculo();
     }
     else if (this.vehiculoPlacaEditar != null) {
       this.showEdicion = true
-
       this.obtenerVehiculoEditar(this.vehiculoPlacaEditar);
     }
   }
@@ -172,7 +171,7 @@ export class VehiculoRegistrarComponent implements OnInit {
   }
 
   obtenerMunicipios() {
-
+    //Se cargan los municipios que puede elegir el contratista
     this.registrarVehiculosService.obtenerMunicipios().subscribe(
       (response: Municipio[]) => {
         response.forEach(municipio => {
@@ -190,6 +189,7 @@ export class VehiculoRegistrarComponent implements OnInit {
 
   obtenerRutasMunicipio(municipio_id: number) {
 
+    //Se cargan las rutas que puede elegir el contratista
     this.registrarVehiculosService.obtenerRutasMunicipio(municipio_id).subscribe(
       (response: Ruta[]) => {
         this.rutas = []
@@ -205,6 +205,7 @@ export class VehiculoRegistrarComponent implements OnInit {
   }
 
   obtenerTiposVehiculo() {
+  //Se cargan los tipos de vehículos que puede elegir el contratista
     this.registrarVehiculosService.obtenerTiposVehiculos().subscribe(
       (response: Tipo[]) => {
         response.forEach(tipo => {
@@ -218,7 +219,9 @@ export class VehiculoRegistrarComponent implements OnInit {
     )
   }
 
+  //Se carga la información del vehículo en caso de que se desee editar
   obtenerVehiculoEditar(vehiculo_placa: string) {
+    
     this.registrarVehiculosService.obtenerVehiculo(vehiculo_placa).subscribe(
       (response: Vehiculo) => {
         this.vehiculoIdEditar = response.vehiculoId;
@@ -231,12 +234,12 @@ export class VehiculoRegistrarComponent implements OnInit {
         this.estadoVehiculoEditado = response.vehiculoEstado
         this.rutaVehiculoEditadoId = response.ruta.rutaId
 
-        console.log(this.estadoVehiculoEditado);
 
       }
     )
   }
 
+  //Creación del vehículo
   onCrearVehiculo() {
     let nuevoVehiculo: VehiculoRegistro = {
       contratista: { contratistaId: this.contratistaId },
@@ -249,6 +252,7 @@ export class VehiculoRegistrarComponent implements OnInit {
       vehiculoFechaCreacion: this.obtenerFecha()
     }
 
+    //Se verifica que el peso ingresado sea coherente
     if (nuevoVehiculo.vehiculoPeso < 0) {
       Swal.fire({
         title: 'El peso del vehiculo debe ser mayor a cero',
@@ -261,6 +265,7 @@ export class VehiculoRegistrarComponent implements OnInit {
         position: 'top-end'
       })
     }
+    //Se verifica que la placa cumpla con el formato establecido
     else if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(nuevoVehiculo.vehiculoPlaca))) {
       Swal.fire({
         title: 'Formato de placa no valido',

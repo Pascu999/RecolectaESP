@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministradorMenuComponent } from 'src/app/pages/administradorMenu/administradorMenu.component';
+import { AdministradorFacturasComponent } from 'src/app/pages/administradorFacturas/administradorFacturas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdministradorLayoutRoutingModule } from './administradorLayout.routing';
 import { MatInputModule } from '@angular/material/input';
@@ -13,7 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
-    AdministradorMenuComponent
+    AdministradorFacturasComponent
   ],
   imports: [
     AdministradorLayoutRoutingModule,
@@ -26,6 +26,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatPaginatorModule
   ],
-  bootstrap:[AdministradorMenuComponent]
+  bootstrap:[AdministradorFacturasComponent]
 })
 export class AdministradorLayoutModule { }

@@ -4,7 +4,7 @@ import { InstruccionIngresoComponent } from 'src/app/pages/instruccionIngreso/in
 import { IngresoComponent } from 'src/app/pages/ingreso/ingresos.component';
 
 
-
+//Rutas del trabajador
 export const routes: Routes = [
   {
     path:'',

@@ -20,8 +20,8 @@ export class IngresoComponent implements OnInit {
 
 
 
-  private vehiculo_placa: string;
-  private conductor_documento: string;
+  private vehiculo_placa: string;//Placa del vehículo que ingresa
+  private conductor_documento: string;//Documento del conductor que ingresa
   private nuevoIngreso: GeneracionIngreso = {
     ingreso_peso: null,
     conductor_id: null,
@@ -30,12 +30,13 @@ export class IngresoComponent implements OnInit {
     contratista_id: null,
     vehiculo_id: null,
     centro_disposicion_id: null
-  }
+  }//Datos del ingreso que se va a generar
 
 
 
   ngOnInit() {
 
+    //Se verifica que al acceder a la ruta se encuentre el trabajador loggeado 
     if (localStorage.getItem("contratista_id") == null && localStorage.getItem("trabajador_id") == null) {
       this.router.navigateByUrl("/LoginTrabajador")
     }
@@ -48,7 +49,8 @@ export class IngresoComponent implements OnInit {
   constructor(private ingresoServicio: IngresosService, private router: Router) { }
 
 
-  public onCrearIngreso(formularioIngreso: NgForm): void {
+  //Se crea el ingreso
+  public onCrearIngreso(): void {
 
 
     var conductor_contratista: number;
@@ -58,7 +60,7 @@ export class IngresoComponent implements OnInit {
 
 
 
-
+    //Validacion del formato de placa ingresado
     if (!(/^[A-Z][A-Z][A-Z][-][0-9][0-9][0-9]/.test(this.vehiculo_placa))) {
       Swal.fire({
         title: 'Formato de placa no valido',
@@ -73,6 +75,7 @@ export class IngresoComponent implements OnInit {
       })
     }
 
+    //Vehículo que ingresa
     else {
       this.ingresoServicio.obtenerVehiculo(this.vehiculo_placa).subscribe(
 
@@ -80,8 +83,9 @@ export class IngresoComponent implements OnInit {
         (response: Vehiculo) => {
           vehiculoIngresado = response;
           vehiculo_contratista = vehiculoIngresado.contratista.contratistaId
-          this.nuevoIngreso.ingreso_peso = this.nuevoIngreso.ingreso_peso - vehiculoIngresado.vehiculoPeso
+          this.nuevoIngreso.ingreso_peso = this.nuevoIngreso.ingreso_peso - vehiculoIngresado.vehiculoPeso//El peso del ingreso es el peso digitado menos el peso del vehículo
 
+          //Se verifica que tanto el vehículo como la ruta se encuentren activos
           if (vehiculoIngresado.vehiculoEstado == 0 || vehiculoIngresado.ruta.rutaEstado == 0) {
             Swal.fire({
               title: 'Vehículo no autorizado',
@@ -96,7 +100,7 @@ export class IngresoComponent implements OnInit {
               position: 'center'
             })
           }
-
+          //Se verifica que el peso ingresado corresponda a los limites establecidos
           else if (this.nuevoIngreso.ingreso_peso < 200 || this.nuevoIngreso.ingreso_peso > 1000) {
             Swal.fire({
               title: 'Peso invalido',
@@ -111,15 +115,16 @@ export class IngresoComponent implements OnInit {
             })
           }
           else {
-
+            //Conductor ingresado
             this.ingresoServicio.obtenerConductor(this.conductor_documento).subscribe(
               (response: Conductor) => {
                 conductorIngresado = response;
                 conductor_contratista = conductorIngresado.conductorId
 
-
+                //Se comprueba que tanto el conductor como el vehículo pertenezcan al mismo contratista
                 if (conductor_contratista == vehiculo_contratista) {
 
+                  //Datos del ingreso
                   this.nuevoIngreso.desecho_id = Number(this.nuevoIngreso.desecho_id);
                   this.nuevoIngreso.contratista_id = conductor_contratista;
                   this.nuevoIngreso.vehiculo_id = vehiculoIngresado.vehiculoId;
@@ -127,6 +132,7 @@ export class IngresoComponent implements OnInit {
                   this.nuevoIngreso.trabajador_id = Number(localStorage.getItem("trabajador_id"));
                   this.nuevoIngreso.centro_disposicion_id = Number(localStorage.getItem("centro_disposicion_id"));
 
+                  //Se crea el ingreso
                   this.ingresoServicio.crearIngreso(this.nuevoIngreso).subscribe(
                     (response: String) => {
                       this.router.navigateByUrl("/Trabajadores/instruccionIngreso/" + response)
@@ -163,7 +169,6 @@ export class IngresoComponent implements OnInit {
                   )
                 }
                 else {
-                  console.log("Conductor y/o contratistas invalidos");
                   Swal.fire({
                     title: 'No se pudo realizar el ingreso',
                     text: 'inconsistencia entre el vehiculo y el conductor que ingresa',

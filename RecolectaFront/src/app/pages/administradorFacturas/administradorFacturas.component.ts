@@ -7,7 +7,7 @@ import { Factura } from 'src/app/models/factura';
 import { AdministradorMenuService } from 'src/app/services/administradorMenu.service';
 
 
-
+//Información a mostrar de las facturas en la tabla
 declare interface facturasTabla {
   id: number,
   inicio: Date,
@@ -19,17 +19,17 @@ declare interface facturasTabla {
 
 
 @Component({
-  selector: 'app-administradorMenu',
-  templateUrl: './administradorMenu.component.html',
-  styleUrls: ['./administradorMenu.component.scss']
+  selector: 'app-administradorFacturas',
+  templateUrl: './administradorFacturas.component.html',
+  styleUrls: ['./administradorFacturas.component.scss']
 })
-export class AdministradorMenuComponent implements OnInit {
+export class AdministradorFacturasComponent implements OnInit {
 
-  private centro: number
-  private facturasCentro: facturasTabla[] = [];
-  private columnasFacturas: string[] = ['inicio', 'fin', 'contratista', 'valor', 'info'];
+
+  private centro: number //Centro al que pertenece el administrador a quien se le muestran las facturas
+  private facturasCentro: facturasTabla[] = []; //Facturas del centro
+  private columnasFacturas: string[] = ['inicio', 'fin', 'contratista', 'valor', 'info'];//Columnas a mostrar en la tabla
   private dataSourceFacturas: MatTableDataSource<facturasTabla>
-  private FacturasCentro: Factura[];
   private facturaAux: facturasTabla = {
     id: null,
     inicio: null,
@@ -38,8 +38,8 @@ export class AdministradorMenuComponent implements OnInit {
     valor: null,
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;//Paginator de la tabla
+  @ViewChild(MatSort) sort: MatSort;//Sorter de la tabla
 
 
 
@@ -51,13 +51,13 @@ export class AdministradorMenuComponent implements OnInit {
     this.centro = Number(localStorage.getItem("centro_disposicion_id"));
     this.generarMenuFacturas();
 
-
   }
 
   generarMenuFacturas() {
     this.menuTrabajadoresServicio.obtenerFacturasCentro(this.centro).subscribe(
       (response: Factura[]) => {
 
+        //Se obtienen las facturas del centro y se agrega la información que se va a mostrar de ellas al arreglo
         response.forEach(factura => {
           this.facturaAux = {
             id: factura.facturaId,
@@ -83,6 +83,7 @@ export class AdministradorMenuComponent implements OnInit {
 
   }
 
+  //Filtro de resultados
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceFacturas.filter = filterValue.trim().toLowerCase();

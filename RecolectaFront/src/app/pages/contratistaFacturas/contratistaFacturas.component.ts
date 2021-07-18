@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 
 
+//Información a mostrar de las facturas en la tabla
 declare interface facturasTabla {
   id: number,
   inicio: Date,
@@ -20,18 +21,18 @@ declare interface facturasTabla {
 
 @Component({
   selector: 'app-tablafacturas',
-  templateUrl: './tablaFacturas.component.html',
-  styleUrls: ['./tablaFacturas.component.scss']
+  templateUrl: './contratistaFacturas.component.html',
+  styleUrls: ['./contratistaFacturas.component.scss']
 })
 
 export class TablafacturasComponent implements OnInit {
 
-  private facturasContratista: facturasTabla[] = [];
-  private columnasFacturas: string[] = ['inicio', 'fin', 'centro', 'valor', 'info'];
+  private facturasContratista: facturasTabla[] = []; //Facturas pertenecientes al contratista
+  private columnasFacturas: string[] = ['inicio', 'fin', 'centro', 'valor', 'info'];//Columnas a mostrar en la tabla
   private dataSourceFacturas: MatTableDataSource<facturasTabla>
-  private UltimaFacturacion: String;
-  private contratista: number;
-  
+  private UltimaFacturacion: String;//Ultima facturación del contratista
+  private contratista: number;//Contratista al que se le presentarán sus tablas
+
   private facturaAux: facturasTabla = {
     id: null,
     inicio: null,
@@ -39,6 +40,7 @@ export class TablafacturasComponent implements OnInit {
     centro: null,
     valor: null,
   }
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -48,6 +50,7 @@ export class TablafacturasComponent implements OnInit {
   constructor(private menuContratistasServicio: ContratistaMenuService, private router: Router) { }
 
   ngOnInit() {
+    //Se generan las facturas
     this.contratista = Number(localStorage.getItem("contratista_id"));
     this.generarMenuFacturas();
 
@@ -57,6 +60,7 @@ export class TablafacturasComponent implements OnInit {
     this.menuContratistasServicio.obtenerFacturasContratista(this.contratista).subscribe(
       (response: Factura[]) => {
 
+        //Se obtienen las facturas del contratista y se agrega la información que se va a mostrar de ellas al arreglo
         response.forEach(factura => {
           this.facturaAux = {
             id: factura.facturaId,
@@ -69,10 +73,12 @@ export class TablafacturasComponent implements OnInit {
           this.facturasContratista.push(this.facturaAux)
         })
 
+        //Datasource para la tabla y su correspondiende sorter y paginator
         this.dataSourceFacturas = new MatTableDataSource<facturasTabla>(this.facturasContratista);
         this.dataSourceFacturas.sort = this.sort;
         this.dataSourceFacturas.paginator = this.paginator;
 
+        //Se obtiene la fecha de la ultima facturación del contratista
         this.menuContratistasServicio.obtenerUltimaFacturacionContratista(this.contratista).subscribe(
           (response: String) => {
             this.UltimaFacturacion = response;

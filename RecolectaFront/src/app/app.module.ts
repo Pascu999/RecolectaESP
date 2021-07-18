@@ -11,7 +11,7 @@ import { AdministradorLayoutComponent } from './layouts/administradorLayout/admi
 import { TrabajadorLayoutComponent } from './layouts/trabajadorLayout/trabajadorLayout.component';
 import { ContratistaLayoutComponent } from './layouts/contratistaLayout/contratistaLayout.component';
 import { TrabajadorLoginComponent } from './pages/trabajadorLogin/trabajadorLogin.component';
-import { ContratistaLoginComponent } from './pages/contratistasLogin/contratistaLogin.component';
+import { ContratistaLoginComponent } from './pages/contratistaLogin/contratistaLogin.component';
 
 @NgModule({
   imports: [

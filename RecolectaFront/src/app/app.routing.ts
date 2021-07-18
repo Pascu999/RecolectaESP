@@ -4,7 +4,7 @@ import { FacturaComponent } from './components/factura/factura.component';
 import { AdministradorLayoutComponent } from './layouts/administradorLayout/administradorLayout.component';
 import { ContratistaLayoutComponent } from './layouts/contratistaLayout/contratistaLayout.component';
 import { TrabajadorLayoutComponent } from './layouts/trabajadorLayout/trabajadorLayout.component';
-import { ContratistaLoginComponent } from './pages/contratistasLogin/contratistaLogin.component';
+import { ContratistaLoginComponent } from './pages/contratistaLogin/contratistaLogin.component';
 import { TrabajadorLoginComponent } from './pages/trabajadorLogin/trabajadorLogin.component';
 
 const routes: Routes = [

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdministradorMenuComponent } from 'src/app/pages/administradorMenu/administradorMenu.component';
+import { AdministradorFacturasComponent } from 'src/app/pages/administradorFacturas/administradorFacturas.component';
 
+//Rutas del administrador
 export const routes: Routes = [
   {
     path:'',
     children:[
       
-       {path:'MenuAdministradores',component: AdministradorMenuComponent},
+       {path:'MenuAdministradores',component: AdministradorFacturasComponent},
        {path: '**', redirectTo: 'MenuAdministradores'}
     ]
   }

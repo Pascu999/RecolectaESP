@@ -19,13 +19,12 @@ import Swal from 'sweetalert2';
 })
 
 
-export class ContratistaLoginComponent implements OnInit, OnDestroy {
+export class ContratistaLoginComponent implements OnInit {
 
 
   constructor(private router: Router, private loginContratistasServicio: ContratistaLoginService) { }
-  private contratista_nit: String;
-  private contratista_contrasena: String;
-  private contratista: Contratista;
+  private contratista_nit: String;//Nit del contratista que ingresa
+  private contratista_contrasena: String;//Contraseña del contratista que ingresa
 
 
   ngOnInit() {
@@ -34,6 +33,7 @@ export class ContratistaLoginComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");
 
+    //Se verifica que no haya un trabajador o un contratista loggeados
     if (localStorage.getItem("contratista_id") == null && localStorage.getItem("trabajador_id") != null) {
       this.router.navigateByUrl("/Trabajadores")
     }
@@ -41,8 +41,6 @@ export class ContratistaLoginComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl("/Contratistas")
     }
 
-  }
-  ngOnDestroy() {
   }
 
   public onLoginContratista(formularioLoggin: NgForm) {
@@ -58,16 +56,15 @@ export class ContratistaLoginComponent implements OnInit, OnDestroy {
           toast: true,
           position: 'top-end'
         })
-        this.contratista = response;
+        
+        //Se almacena el id del contratista que se loggeó
         localStorage.setItem("contratista_id", response.contratistaId.toString());
-
-        console.log(localStorage.getItem("ultima_facturacion"));
-
         this.router.navigateByUrl("/Contratistas")
 
       }
       ,
       (error: HttpErrorResponse) => {
+
         if (error.status == 500) {
           Swal.fire({
             title: 'No se pudo iniciar sesión',

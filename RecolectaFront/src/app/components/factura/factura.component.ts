@@ -16,10 +16,9 @@ import { FacturaService } from 'src/app/services/factura.service';
 
 export class FacturaComponent implements OnInit {
 
-  private factura_id: Number;
-
-  private detalles_factura = {}
-  private Ingresos: IngresosProyeccion[];
+  private factura_id: Number;// Id de la factura que se mostrará en pantalla
+  private detalles_factura = {}// Detalles de la factura que se mostrarán
+  private Ingresos: IngresosProyeccion[];//Ingresos pertenecientes a la factura
 
   constructor(private router: Router, private facturaServicio: FacturaService, private aRoute: ActivatedRoute) { }
 
@@ -28,13 +27,12 @@ export class FacturaComponent implements OnInit {
     body.classList.add("bg-default");
 
     this.factura_id = Number(this.aRoute.snapshot.paramMap.get("factura_id"));
-    console.log("/////////////////////////////////////");
-
 
     this.obtenerFactura(this.factura_id);
   }
 
   obtenerFactura(factura_id: Number): void {
+    //Se usa el servicio de factura para obtener la información de la factura a mostrar
     this.facturaServicio.obtenerFacturasCentro(factura_id).subscribe(
       (response: Factura) => {
         this.detalles_factura ={
@@ -62,6 +60,7 @@ export class FacturaComponent implements OnInit {
       }
   }
 
+  //Obtener ingresos a detallar de la factura
   obtenerIngresosFactura(factura_id: Number): void {
     this.facturaServicio.obtenerIngresosFactura(factura_id).subscribe(
       (response: IngresosProyeccion[]) => {
