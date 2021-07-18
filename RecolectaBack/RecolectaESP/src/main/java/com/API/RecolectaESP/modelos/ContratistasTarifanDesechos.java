@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Entity
 @Cacheable(false)
 public class ContratistasTarifanDesechos implements Serializable {
+    //Entidad con una llave primaria formada  por una tupla, por lo que su id es embedido
     @EmbeddedId
     private ContratistasTarifanDesechosId contratistasTarifanDesechosId;
     @Column(nullable = false,updatable = false)

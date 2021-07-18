@@ -28,6 +28,7 @@ public class FacturasControlador {
         this.facturasServicio = facturasServicio;
     }
 
+    //Se obtienen las facturas de un contratista a partir de su id
     @GetMapping("/obtenerFacturasContratista/{contratista_id}")
     public ResponseEntity<List<Facturas>> obtenerFacturasContratista(
             @ApiParam(
@@ -38,10 +39,10 @@ public class FacturasControlador {
             @PathVariable ("contratista_id") Long contratista_id
     ){
         List<Facturas> listaFacturas = facturasServicio.obtenerFacturasContratista(contratista_id);
-        System.out.println(contratista_id);
         return new ResponseEntity<>(listaFacturas,HttpStatus.OK);
     }
 
+    //Se obtienen las facturas de un centro a partir de su id
     @GetMapping("/obtenerFacturasCentro/{centro_disposicion_id}")
     public ResponseEntity<List<Facturas>> obtenerFacturasCentro(
             @ApiParam(
@@ -55,22 +56,7 @@ public class FacturasControlador {
         return new ResponseEntity<>(listaFacturas,HttpStatus.OK);
     }
 
-
-
-    @GetMapping("/GenerarFacturas/{contratista_id}")
-    public ResponseEntity<HttpStatus> generarFacturas(
-            @ApiParam(
-
-                    value = "Id del contratista al que se le generan sus facturas",
-                    example = "1",
-                    required = true
-            )
-            @PathVariable ("contratista_id") Long contratista_id
-    ) throws SQLException, ClassNotFoundException {
-        facturasServicio.generarFacturasContratista(contratista_id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
+    //Se obtiene la información de una factura a partir de su id
     @GetMapping("/ObtenerFactura/{factura_id}")
     public ResponseEntity<Facturas> obtenerFactura(
             @ApiParam(

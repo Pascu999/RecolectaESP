@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Embeddable
 public final class ContratistasTarifanDesechosId implements Serializable {
+    //La llave primaria de esta entidad esta formada por la tupla(contratista,desecho)
     @ManyToOne
     @JoinColumn(name = "contratista_id",referencedColumnName = "contratista_id",foreignKey = @ForeignKey(name = "FK_Contratista_tarifa_Desecho"))
     private Contratistas contratista;

@@ -21,6 +21,7 @@ public class ContratistasServicio {
         this.contratistasRepositorio = contratistasRepositorio;
     }
 
+    //Retorna la información del contratista si sus datos de ingreso son correctos, en caso de que no sea así se genera un error dependiendo del caso
     public Contratistas SolicitudLoggin(String NIT,String contraseña){
         Contratistas respuestaContratista = contratistasRepositorio.findContratistasByContratistaNit(NIT)
                 .orElseThrow(() -> new ContratistaNoEncontradoExcepcion("No se encontró contratista con el NIT especificado" ));
@@ -33,6 +34,7 @@ public class ContratistasServicio {
         }
     }
 
+    //Retorna la fecha de la ultima facturación realizada a un contratista
     public String ultimaFacturacion(Long contratista_id){
         Contratistas obtenerContratista = contratistasRepositorio.findById(contratista_id)
                 .orElseThrow(() -> new ContratistaNoEncontradoExcepcion("No se encontró contratista con el NIT especificado" ));

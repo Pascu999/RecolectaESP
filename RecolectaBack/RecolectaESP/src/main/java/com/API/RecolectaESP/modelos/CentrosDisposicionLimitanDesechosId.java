@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Embeddable
 public final class CentrosDisposicionLimitanDesechosId implements Serializable {
+    //La entidad tiene como llave primaria a la tupla(centro_disposicion,desecho,tipo)
     @ManyToOne
     @JoinColumn(name = "centro_disposicion_id",referencedColumnName = "centro_disposicion_id",foreignKey = @ForeignKey(name = "FK_centro_disposicion_limitando"))
     private CentrosDisposicion centroDisposicion;

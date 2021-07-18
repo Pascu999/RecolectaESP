@@ -25,29 +25,7 @@ public interface FacturasRepositorio extends JpaRepository<Facturas,Long> {
     @Transactional(readOnly=true)
     public Facturas findFacturasByFacturaId(Long factura_id);
 
-    @Transactional(readOnly=true)
-    public default void generarFacturasContratista(Long contratista_id) throws ClassNotFoundException, SQLException {
 
-        System.out.println("contratista_id");
-        try {
-
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.15:1521/XEPDB1", "recolecta", "6488");
-
-            CallableStatement cs= con.prepareCall("{call FACTURACION.facturacion_masiva()}");
-
-            //cs.setInt(1, Math.toIntExact(contratista_id));
-
-            System.out.println("Hasta aqui bien");
-
-            cs.execute();
-
-
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-    }
 
 
 }

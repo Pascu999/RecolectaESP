@@ -36,9 +36,4 @@ public class FacturasServicio {
         return facturasRepositorio.findFacturasByFacturaId(factura_id);
     }
 
-    public void generarFacturasContratista(Long contratista_id) throws SQLException, ClassNotFoundException {
-
-
-        facturasRepositorio.generarFacturasContratista(contratista_id);
-    }
 }

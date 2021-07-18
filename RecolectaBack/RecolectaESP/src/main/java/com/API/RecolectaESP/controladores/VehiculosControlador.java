@@ -26,24 +26,7 @@ public class VehiculosControlador {
         this.vehiculosServicio = vehiculosServicio;
     }
 
-    @DeleteMapping("/CambiarEstado/{vehiculo_id}")
-    public ResponseEntity<HttpStatus> cambiarEstadoVehiculo(
-            @ApiParam(
-
-                    value = "Id del vehiculo que se va a desactivar",
-                    example = "1",
-                    required = true
-            )
-            @PathVariable ("vehiculo_id") Long vehiculo_id
-    ){
-
-        System.out.println(vehiculo_id);
-         vehiculosServicio.cambiarEstadoVehiculo(vehiculo_id);
-
-         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
+    //Consultar información de un vehículo a partir de su placa
     @GetMapping("/Consultar/{vehiculo_placa}")
     public ResponseEntity<Vehiculos> consultarVehiculo(
             @ApiParam(
@@ -55,13 +38,12 @@ public class VehiculosControlador {
             @PathVariable ("vehiculo_placa") String vehiculo_placa
 
     ){
-        System.out.println(vehiculo_placa);
         Vehiculos vehiculoConsultado = vehiculosServicio.consultarVehiculo(vehiculo_placa);
-        System.out.println(vehiculoConsultado);
 
         return new ResponseEntity<>(vehiculoConsultado,HttpStatus.OK);
     }
 
+    //Actualizar un vehículo
     @PutMapping("/Actualizar/{vehiculo_id}")
     public ResponseEntity<Vehiculos> actualizarVehiculo(
 
@@ -84,6 +66,7 @@ public class VehiculosControlador {
         return new ResponseEntity<>(vehiculoEditado, HttpStatus.OK);
     }
 
+    //Listar vehículos asociados a un contratista
     @GetMapping("/Listar/{contratista_id}")
     public ResponseEntity<List<Vehiculos>> obtenerVehiculosContratista(
             @ApiParam(
@@ -100,15 +83,16 @@ public class VehiculosControlador {
 
     }
 
+    //Obtener tipos de vehículos
     @GetMapping("/Tipos/buscar")
     public ResponseEntity<List<TiposVehiculos>> obtenerTiposVehiculos(
     ){
         List<TiposVehiculos> listadoTipos = vehiculosServicio.otenerTiposVehiculos();
-
         return new ResponseEntity<>(listadoTipos,HttpStatus.OK);
 
     }
 
+    //Crear un vehículo
     @PostMapping("/Crear")
     public ResponseEntity<Vehiculos> registrarVehiculo(
             @ApiParam(

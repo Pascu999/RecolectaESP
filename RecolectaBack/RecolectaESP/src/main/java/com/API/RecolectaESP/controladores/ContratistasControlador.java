@@ -21,9 +21,8 @@ public class ContratistasControlador {
 
     public ContratistasControlador(ContratistasServicio contratistasServicio) {this.contratistasServicio = contratistasServicio;}
 
-
+    //Loggin a partir del nit del contratista y su contraseña
     @GetMapping("/SolicitudLoggin/{contratista_nit}/{contratista_contrasena}")
-
     public ResponseEntity<Contratistas> SolicitudLoggin(
             @ApiParam(
                     value = "NIT ingresado por el contratista",
@@ -40,12 +39,11 @@ public class ContratistasControlador {
             )
 
     {
-        System.out.println(contratista_nit);
-        System.out.println(contratista_contrasena   );
         Contratistas contratista = contratistasServicio.SolicitudLoggin(contratista_nit,contratista_contrasena);
         return  new ResponseEntity<>(contratista, HttpStatus.OK);
     }
 
+    //Obtener ultima facturación de un contratista en base a su id
     @GetMapping("/ObtenerUltimaFacturacion/{contratista_id}")
     public ResponseEntity<String> UltimaFacturacion(
             @ApiParam(
@@ -55,9 +53,7 @@ public class ContratistasControlador {
             )
             @PathVariable ("contratista_id") Long contratista_id
     )
-
     {
-        System.out.println(contratista_id);
         String contratistaUltimaFacturacion = contratistasServicio.ultimaFacturacion(contratista_id);
         return  new ResponseEntity<>(contratistaUltimaFacturacion, HttpStatus.OK);
     }

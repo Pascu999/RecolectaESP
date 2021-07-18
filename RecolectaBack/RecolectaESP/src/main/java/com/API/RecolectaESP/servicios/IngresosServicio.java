@@ -29,6 +29,7 @@ public class IngresosServicio {
     }
 
 
+    //Crea un ingreso y en caso de que no sea posible realizarlo(la celda que retorna es null), lanza una excepción
     public static String crearIngreso(ObjectNode ingreso) throws SQLException, ClassNotFoundException {
         String nuevoIngreso = IngresosRepositorio.crearIngreso(ingreso);
 

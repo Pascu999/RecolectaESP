@@ -23,10 +23,10 @@ public class RutasControlador {
         this.rutasServicio = rutasServicio;
     }
 
+    //Se obtienen las rutas relacionadas con un municipio
     @GetMapping("/obtenerRutas/{municipio_id}")
     public ResponseEntity<List<Rutas>> obtenerRutasMunicipio(@PathVariable Long municipio_id){
         List<Rutas> rutasMunicipio = rutasServicio.obtenerRutasMunicipio(municipio_id);
-
         return new ResponseEntity<>(rutasMunicipio, HttpStatus.OK);
     }
 }

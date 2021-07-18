@@ -22,8 +22,8 @@ public class TrabajadoresControlador {
         this.trabajadoresServicio = trabajadoresServicio;
     }
 
+    //Loggin a partir del nit del documento y su contraseña
     @GetMapping("/SolicitudLoggin/{trabajador_documento}/{trabajador_contrasena}")
-
     public ResponseEntity<Trabajadores> SolicitudLoggin(
 
             @ApiParam(

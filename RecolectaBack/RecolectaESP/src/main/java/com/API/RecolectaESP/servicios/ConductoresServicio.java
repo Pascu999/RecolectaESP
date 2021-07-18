@@ -19,8 +19,6 @@ public class ConductoresServicio {
     }
 
     public Conductores consultarConductor(String Documento){
-        System.out.println("//////////////////////////");
-        System.out.println(Documento);
         return conductoresRepositorio.findConductoresByConductorDocumento(Documento)
                 .orElseThrow(() -> new VehiculoNoEncontradoExcepcion("No se encontró un conductor con el documento especificado" ));
     }

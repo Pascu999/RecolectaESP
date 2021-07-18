@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Conductores")
 public class ConductoresControlador {
     private final ConductoresServicio conductoresServicio;
-
     public ConductoresControlador(ConductoresServicio conductoresServicio){
         this.conductoresServicio = conductoresServicio;
     }
 
+    //Obtener conductor en base a su documento de identificacion
     @GetMapping("/Consultar/{conductor_documento}")
     public ResponseEntity<Conductores> consultarConductor(
             @ApiParam(
@@ -29,13 +29,9 @@ public class ConductoresControlador {
             )
             @PathVariable ("conductor_documento") String conductor_documento
     ){
-        System.out.println("RECIBIDO");
-        System.out.println(conductor_documento);
+
+
         Conductores conductorConsultado = conductoresServicio.consultarConductor(conductor_documento);
-
-
-
-        System.out.println(conductorConsultado);
         return new ResponseEntity<>(conductorConsultado,HttpStatus.OK);
     }
 

@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Entity
 @Cacheable(false)
 public class CeldasAdmitenDesechos implements Serializable {
+
+    //Entidad cuya clave primaria es una tupla, por esta razón se especifica que su id es embedido
     @EmbeddedId
     private CeldasAdmitenDesechosId celdasAdmitenDesechosId;
 }

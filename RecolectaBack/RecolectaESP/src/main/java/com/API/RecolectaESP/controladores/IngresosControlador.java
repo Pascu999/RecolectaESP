@@ -22,6 +22,7 @@ public class IngresosControlador {
 
     public IngresosControlador(IngresosServicio ingresosServicio) {this.ingresosServicio = ingresosServicio;}
 
+    //Ingresos relacionados a una factura a partir de su id
     @GetMapping("/obtenerIngresosFactura/{factura_id}")
     public ResponseEntity<List<IngresosProyeccion>> obtenerIngresosFactura(
             @ApiParam(
@@ -36,8 +37,9 @@ public class IngresosControlador {
         return new ResponseEntity<>(listaIngresos, HttpStatus.OK);
     }
 
+    //Crear un nuevo ingreso
     @PostMapping(value = "/Crear")
-    public ResponseEntity<Integer> crearIngreso(
+    public ResponseEntity<String> crearIngreso(
             @ApiParam(
 
                     value = "Valores del nuevo ingreso",
@@ -48,8 +50,7 @@ public class IngresosControlador {
     ) throws SQLException, ClassNotFoundException {
 
             String nuevoIngreso = IngresosServicio.crearIngreso(ingreso);
-
-            return new ResponseEntity(nuevoIngreso, HttpStatus.OK);
+            return new ResponseEntity<>(nuevoIngreso, HttpStatus.OK);
 
     }
 }

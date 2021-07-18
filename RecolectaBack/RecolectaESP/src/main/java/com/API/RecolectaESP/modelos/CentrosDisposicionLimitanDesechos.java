@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Cacheable(false)
 
 public class CentrosDisposicionLimitanDesechos implements Serializable {
+    //Entidad con una llave primaria formada  por una tupla, por lo que su id es embedido
     @EmbeddedId
     private CentrosDisposicionLimitanDesechosId centrosDisposicionLimitanDesechosiD;
     @Column(nullable = false,updatable = false)

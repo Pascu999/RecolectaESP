@@ -24,6 +24,7 @@ public class MunicipiosControlador {
         this.municipiosServicio = municipiosServicio;
     }
 
+    //Obtener la lista de municipios registrados
     @RequestMapping("/obtener")
     public ResponseEntity<List<Municipios>> obtenerMunicipio(){
         List<Municipios> listaMunicipios = municipiosServicio.obtenerMunicipios();

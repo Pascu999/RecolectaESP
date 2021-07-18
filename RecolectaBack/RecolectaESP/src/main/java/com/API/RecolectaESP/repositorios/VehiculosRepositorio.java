@@ -1,7 +1,6 @@
 package com.API.RecolectaESP.repositorios;
 
 
-import com.API.RecolectaESP.modelos.Facturas;
 import com.API.RecolectaESP.modelos.Vehiculos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -22,9 +21,6 @@ public interface VehiculosRepositorio extends JpaRepository<Vehiculos,Long> {
     public List<Vehiculos> findVehiculosByContratistaId(@Param("contratista_id") Long contratista_id);
 
 
-    @Transactional
-    @Modifying(clearAutomatically = true,flushAutomatically = true)
-    @Query(value = "UPDATE VEHICULOS set vehiculo_estado = CASE  when vehiculo_estado = 0  THEN 1 when vehiculo_estado = 1 THEN 0 END WHERE vehiculo_id= :vehiculo_id" ,nativeQuery = true)
-    public void cambiarEstadoVehiculo(@Param("vehiculo_id") Long vehiculo_id);
+
 }
 

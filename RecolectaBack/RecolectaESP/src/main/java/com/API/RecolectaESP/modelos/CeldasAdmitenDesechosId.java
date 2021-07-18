@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Embeddable
 public final class CeldasAdmitenDesechosId implements Serializable {
+    //La tupla (celda,desecho) forma la llave primaria de esta entidad
     @ManyToOne
     @JoinColumn(name = "celda_id",referencedColumnName = "celda_id",foreignKey = @ForeignKey(name = "FK_celda_admitiendo"))
     private Celdas celda;

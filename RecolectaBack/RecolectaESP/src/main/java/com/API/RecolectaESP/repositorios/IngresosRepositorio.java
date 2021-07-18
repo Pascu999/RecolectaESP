@@ -13,6 +13,7 @@ import java.util.List;
 
 public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
 
+    //Se obtienen los subtotales del valor del transporte y la multa de los ingresos asociados a una factura. Agrupando dichos resultados por vehiculo
     @Transactional(readOnly=true)
     @Query(value = "SELECT vehiculo_marca marca,vehiculo_placa placa, SUM(ingreso_valor_transporte) valorTransportado FROM ingresos i INNER JOIN (SELECT  vehiculo_placa,  vehiculo_marca,  vehiculo_id     FROM  vehiculos ) v ON i.vehiculo_id = v.vehiculo_id WHERE i.factura_id = :factura_id GROUP BY v.vehiculo_placa, v.vehiculo_marca"
     ,nativeQuery = true)
@@ -20,7 +21,7 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
 
 
 
-
+    //Se crea un nuevo ingreso
     public static String crearIngreso(ObjectNode ingreso) throws ClassNotFoundException, SQLException {
         try {
      Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -33,6 +34,7 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
 
      System.out.println(ingreso);
 
+     //Deserializando JACKSON
      peso = ingreso.get("ingreso_peso").asInt();
      conductor = ingreso.get("conductor_id").asInt();
      desecho = ingreso.get("desecho_id").asInt();
@@ -42,6 +44,7 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
      centro = ingreso.get("centro_disposicion_id").asInt();
 
 
+     //Se asignan los parametros de entrada y salida
      cs.setInt(1,peso);
      cs.setInt(2,conductor);
      cs.setInt(3,desecho);
@@ -57,10 +60,9 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
      cs.execute();
 
      int celda_id = cs.getInt(8);
-     String celda_nombre = cs.getString(9);
 
 
-     return celda_nombre;
+            return cs.getString(9);
 
         } catch (Exception ex) {
      System.out.println(ex);

@@ -45,14 +45,10 @@ public class VehiculosServicio {
         return vehiculosRepositorio.save(vehiculo);
     }
 
-    public void cambiarEstadoVehiculo(Long vehiculo_id) {
-        System.out.println(vehiculo_id);
-        vehiculosRepositorio.cambiarEstadoVehiculo(vehiculo_id);
 
-    }
-
+    //Edición de un vehículo
     public Vehiculos actualizarVehiculo(Vehiculos vehiculoActualizado, Long vehiculo_id){
-
+        
         Vehiculos vehiculoBuscar = vehiculosRepositorio.findById(vehiculo_id)
                 .orElseThrow(()->new VehiculoNoExisteExcepcion("No se puede editar este vehiculo"));
 
