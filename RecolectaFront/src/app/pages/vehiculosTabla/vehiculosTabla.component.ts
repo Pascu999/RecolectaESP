@@ -8,6 +8,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 import { ContratistaMenuService } from 'src/app/services/contratistaMenu.service';
 import Swal from 'sweetalert2';
 
+//Interfaz de los vehículos que se mostrarán 
 declare interface vehiculosTabla {
   id: number,
   ruta: string,
@@ -31,11 +32,10 @@ declare interface vehiculosTabla {
 
 export class VehiculosTablaComponent implements OnInit {
 
-  private vehiculosContratista: vehiculosTabla[] = [];
-  private columnasVehiculos: string[] = ['ruta', 'placa', 'tipo', 'fechaCreacion', 'estado', 'editar'];
+  private vehiculosContratista: vehiculosTabla[] = [];//Vehiculos pertenecientes al contratista
+  private columnasVehiculos: string[] = ['ruta', 'placa', 'tipo', 'fechaCreacion', 'estado', 'editar'];//Columnas a mostrar en la tabla
   private dataSourceVehiculos: MatTableDataSource<vehiculosTabla>
-
-  private contratista: number;
+  private contratista: number;//Contratista al que se le presentarán sus vehículos
 
   private vehiculoAux: vehiculosTabla = {
     id: null,
@@ -66,6 +66,7 @@ export class VehiculosTablaComponent implements OnInit {
   constructor(private menuContratistasServicio: ContratistaMenuService, private router: Router) { }
 
   ngOnInit() {
+    //Se generan los vehículos
     this.contratista = Number(localStorage.getItem("contratista_id"));
     this.generarMenuVehiculos();
 
@@ -76,7 +77,7 @@ export class VehiculosTablaComponent implements OnInit {
     this.menuContratistasServicio.obtenerVehiculosContratista(this.contratista).subscribe(
       (response: Vehiculo[]) => {
 
-
+        //Se obtienen las facturas del contratista y se agrega la información que se va a mostrar de ellas al arreglo
         response.forEach(vehiculo => {
           this.vehiculoAux = {
             id: vehiculo.vehiculoId,
@@ -86,12 +87,12 @@ export class VehiculosTablaComponent implements OnInit {
             fechaCreacion: vehiculo.vehiculoFechaCreacion,
             tipo: vehiculo.tipo.tipoNombre
           }
+
           this.vehiculosContratista.push(this.vehiculoAux)
         })
 
+        //Datasource para la tabla y su correspondiende sorter y paginator
         this.dataSourceVehiculos = new MatTableDataSource<vehiculosTabla>(this.vehiculosContratista)
-
-        console.log(this.dataSourceVehiculos.data);
         this.dataSourceVehiculos.sort = this.sort;
         this.dataSourceVehiculos.paginator = this.paginator;
       },
@@ -101,29 +102,8 @@ export class VehiculosTablaComponent implements OnInit {
     )
   }
 
-  cambiarEstado(vehiculo_id: number) {
-    this.menuContratistasServicio.cambiarEstadoVehiculo(vehiculo_id).subscribe(
-      (response: any) => {
-        Swal.fire({
-          title: 'Vehiculo desactivado/activado',
-          icon: 'warning',
-          confirmButtonText: 'Aceptar',
-          width: '20%',
-          backdrop: false,
-          timer: 3000,
-          toast: true,
-          position: 'top-end'
-        })
-
-
-      }
-    )
-
-
-    this.generarMenuVehiculos()
-
-  }
-
+ 
+  //Filtrado
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceVehiculos.filter = filterValue.trim().toLowerCase();

@@ -324,10 +324,11 @@ export class VehiculoRegistrarComponent implements OnInit {
 
   }
 
+  //Edicion de vehículo
   onEditarVehiculo(formVehiculo: NgForm) {
 
 
-
+    //Vehículo que se va a editar
     let editadoVehiculo = {
       vehiculoId: this.vehiculoIdEditar,
       contratista: { contratistaId: this.contratistaId },
@@ -340,9 +341,8 @@ export class VehiculoRegistrarComponent implements OnInit {
       vehiculoFechaCreacion: this.obtenerFecha(),
       vehiculoEstado: this.estadoVehiculoEditado,
     }
-    console.log("NuevoEstado");
 
-    console.log(editadoVehiculo.vehiculoEstado);
+    //edicion de vehículo
     this.registrarVehiculosService.editarVehiculo(editadoVehiculo, this.vehiculoIdEditar).subscribe(
 
 
