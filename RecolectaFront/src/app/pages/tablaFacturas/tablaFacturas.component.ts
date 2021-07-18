@@ -5,6 +5,7 @@ import { MenuContratistasService } from 'src/app/services/menu-contratistas.serv
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 declare interface facturasTabla {
   id: number,
@@ -96,17 +97,25 @@ export class TablafacturasComponent implements OnInit {
   generarFacturas() {
     console.log("Facturando");
     console.log(this.contratista);
-    location.reload();
+    Swal.fire({
+      title: '¡Generando Facturas!',
+      didOpen: () =>{
+        // Muestra un spinner mientras el servicio envia la respuesta
+        Swal.showLoading();
+        this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
+          (response: any) => {
+            Swal.close();
+            location.reload();
+          },
+          (error: any) => {
+            console.error(error);
     
-    this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
-      (response: any) => {
-        location.reload();
-      },
-      (error: any) => {
-        console.error(error);
-
+          }
+        )
       }
-    )
+    });
+    
+    
       
 
 

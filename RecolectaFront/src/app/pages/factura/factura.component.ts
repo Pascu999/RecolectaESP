@@ -49,7 +49,7 @@ export class FacturaComponent implements OnInit {
           facturaCostoTransporte : response.facturaCostoTransporte,
           facturaDescuento : response.facturaDescuento,
           facturaFinPeriodo : response.facturaFinPeriodo,
-          facturaInicioPeriodo : response.facturaInicioPeriodo,
+          facturaInicioPeriodo : response.facturaInicioPeriodo
         };
         
         

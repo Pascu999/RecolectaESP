@@ -86,10 +86,10 @@ export class IngresosComponent implements OnInit {
           vehiculo_contratista = vehiculoIngresado.contratista.contratistaId
           this.nuevoIngreso.ingreso_peso = this.nuevoIngreso.ingreso_peso - vehiculoIngresado.vehiculoPeso
 
-          if (vehiculoIngresado.vehiculoEstado == 0) {
+          if (vehiculoIngresado.vehiculoEstado == 0 ||  vehiculoIngresado.ruta.rutaEstado == 0) {
             Swal.fire({
               title: 'Vehículo no autorizado',
-              text: 'El vehículo que intenta ingresar ha sido desactivado por parte del contratista',
+              text: 'El vehículo que intenta ingresar y/o la ruta que recorre se encuentran inactivos',
               icon: 'error',
               confirmButtonText: 'Aceptar',
               width: '30%',
