@@ -1,0 +1,24 @@
+.cerrarSesion{
+    width: 10%;
+    margin-left: 85%;
+    justify-content: left;
+
+
+    >button{
+        
+        margin-left: 3%;
+        width: 150px;
+        background-color:red;
+        border:0px;
+        color: white;
+        font-weight: normal;
+
+    }
+    
+}
+
+::ng-deep{
+    body{
+        width: 100%;
+    }
+}

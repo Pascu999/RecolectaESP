@@ -3,22 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
-import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
-import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
-import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
-import { FacturaComponent } from './pages/factura/factura.component';
-import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
-import { TablafacturasComponent } from './pages/tablaFacturas/tablaFacturas.component';
-import { TablavehiculosComponent } from './pages/tablaVehiculos/tablaVehiculos.component';
-
+import { AdministradorLayoutComponent } from './layouts/administradorLayout/administradorLayout.component';
+import { TrabajadorLayoutComponent } from './layouts/trabajadorLayout/trabajadorLayout.component';
+import { ContratistaLayoutComponent } from './layouts/contratistaLayout/contratistaLayout.component';
+import { TrabajadorLoginComponent } from './pages/trabajadorLogin/trabajadorLogin.component';
+import { ContratistaLoginComponent } from './pages/contratistasLogin/contratistaLogin.component';
 
 @NgModule({
   imports: [
@@ -35,9 +28,8 @@ import { TablavehiculosComponent } from './pages/tablaVehiculos/tablaVehiculos.c
     AdministradorLayoutComponent,
     TrabajadorLayoutComponent,
     ContratistaLayoutComponent,
-    LoginTrabajadorComponent,
-    LoginContratistaComponent,
-    FacturaComponent,
+    TrabajadorLoginComponent,
+    ContratistaLoginComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

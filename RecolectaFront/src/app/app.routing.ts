@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
-import { ContratistaLayoutComponent } from './layouts/contratista-layout/contratista-layout.component';
-import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
-import { FacturaComponent } from './pages/factura/factura.component';
-import { LoginContratistaComponent } from './pages/loginContratistas/loginContratista.component';
-import { LoginTrabajadorComponent } from './pages/loginTrabajadores/loginTrabajador.component';
-
-
+import { FacturaComponent } from './components/factura/factura.component';
+import { AdministradorLayoutComponent } from './layouts/administradorLayout/administradorLayout.component';
+import { ContratistaLayoutComponent } from './layouts/contratistaLayout/contratistaLayout.component';
+import { TrabajadorLayoutComponent } from './layouts/trabajadorLayout/trabajadorLayout.component';
+import { ContratistaLoginComponent } from './pages/contratistasLogin/contratistaLogin.component';
+import { TrabajadorLoginComponent } from './pages/trabajadorLogin/trabajadorLogin.component';
 
 const routes: Routes = [
   {
     path: 'LoginTrabajador',
-    component: LoginTrabajadorComponent
+    component: TrabajadorLoginComponent
   },
   {
     path: 'LoginContratista',
-    component: LoginContratistaComponent
+    component: ContratistaLoginComponent
   },
   {
     path: 'Factura/:factura_id',
@@ -26,24 +24,21 @@ const routes: Routes = [
   {
     path: 'Contratistas',
     component: ContratistaLayoutComponent,
-    loadChildren: () => import('./layouts/contratista-layout/contratistas-layout.module').then(m => m.ContratistasModule)
+    loadChildren: () => import('./layouts/contratistaLayout/contratistaLayout.module').then(m => m.ContratistasLayoutModule)
   },
   {
     path: 'Trabajadores',
     component:  TrabajadorLayoutComponent,
-    loadChildren: () => import('./layouts/trabajador-layout/trabajador-layout.module').then(m => m.TrabajadorModule)
+    loadChildren: () => import('./layouts/trabajadorLayout/trabajadorLayout.module').then(m => m.TrabajadorLayoutModule)
   },
   {
     path: 'Administradores',
     component:  AdministradorLayoutComponent,
-    loadChildren: () => import('./layouts/administrador-layout/administrador-layout.module').then(m => m.AdministradorModule )
+    loadChildren: () => import('./layouts/administradorLayout/administradorLayout.module').then(m => m.AdministradorLayoutModule )
   },
-
-  
-
   {
     path: '**',
-    redirectTo: 'Autenticacion'
+    redirectTo: 'LoginTrabajador'
   },
 
 
