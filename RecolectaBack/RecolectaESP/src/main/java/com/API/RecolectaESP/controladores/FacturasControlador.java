@@ -70,6 +70,13 @@ public class FacturasControlador {
         Facturas facturaEncontrada = facturasServicio.obtenerFactura(factura_id);
         return new ResponseEntity<>(facturaEncontrada,HttpStatus.OK);
     }
+    //Llamado al proceso masivo
+    @GetMapping("/GenerarFacturas")
+    public ResponseEntity<HttpStatus> generarFacturas() throws SQLException, ClassNotFoundException {
+    	System.out.println("FACTURANDO");
+        facturasServicio.generarFacturas();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 

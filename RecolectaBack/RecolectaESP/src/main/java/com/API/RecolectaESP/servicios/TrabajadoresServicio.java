@@ -20,11 +20,11 @@ public class TrabajadoresServicio {
 
 
     //Retorna la información del trabajador si sus datos de ingreso son correctos, en caso de que no sea así se genera un error dependiendo del caso
-    public Trabajadores SolicitudLoggin(String Documento, String contraseña){
+    public Trabajadores SolicitudLoggin(String Documento, String contrasena){
         Trabajadores respuestTrabajador = trabajadoresRepositorio.findTrabajadoresByTrabajadorDocumento(Documento)
                 .orElseThrow(() -> new TrabajadorNoEncontradoExcepcion("No se encontró contratista con el NIT especificado" ));
 
-        if(respuestTrabajador.getTrabajadorContrasena().equals(contraseña) ){
+        if(respuestTrabajador.getTrabajadorContrasena().equals(contrasena) ){
             return respuestTrabajador;
         }
         else{

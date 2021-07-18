@@ -36,4 +36,10 @@ public class FacturasServicio {
         return facturasRepositorio.findFacturasByFacturaId(factura_id);
     }
 
+    public void generarFacturas() throws SQLException, ClassNotFoundException {
+
+    	System.out.print("FACTURANDO");
+        facturasRepositorio.generarFacturas();
+    }
+
 }

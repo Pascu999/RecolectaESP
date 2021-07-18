@@ -22,11 +22,11 @@ public class ContratistasServicio {
     }
 
     //Retorna la información del contratista si sus datos de ingreso son correctos, en caso de que no sea así se genera un error dependiendo del caso
-    public Contratistas SolicitudLoggin(String NIT,String contraseña){
+    public Contratistas SolicitudLoggin(String NIT,String contrasena){
         Contratistas respuestaContratista = contratistasRepositorio.findContratistasByContratistaNit(NIT)
                 .orElseThrow(() -> new ContratistaNoEncontradoExcepcion("No se encontró contratista con el NIT especificado" ));
 
-        if(respuestaContratista.getContratistaContrasena().equals(contraseña) ){
+        if(respuestaContratista.getContratistaContrasena().equals(contrasena) ){
             return respuestaContratista;
         }
         else{
