@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE BODY facturacion AS
 
     END;
 
-/
+
     --Procedimiento que genera una factura por cada tupla (contratista,centro).Estas tuplas se forman en un periodo de facturación y son únicas
 
     PROCEDURE generar_facturas (
@@ -151,7 +151,7 @@ CREATE OR REPLACE PACKAGE BODY facturacion AS
     END;
 
 
-/
+
 
 --Procedimiento que controla el proceso masivo
 
@@ -423,7 +423,7 @@ create or replace PACKAGE BODY registrar_ingreso AS
                        vehiculo);
 
     END crear_ingreso;
-/
+
     --Procedimiento para insertar de forma masiva ingresos(No hace parte de la logica de la aplicación)
     PROCEDURE Insertar_ingresos  IS
 

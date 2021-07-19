@@ -1,0 +1,36 @@
+En este archivo se encuentran los archivos sql que contienen los datos,indices,trabajos,paquetes,tablas y triggers 
+que se emplean en la base de datos. Adicionalmente se encuentra el archivo SCRIPT.SQL, al ejecutar este codigo en 
+la consola de sql developeruna hoja de trabajo de sql developer se crean inmediatamente todo contenido en los otros .SQL.
+Esto con el bien de facilitar la experiencia del usuario.
+
+Recordar los siguientes datos de acceso:
+
+Trabajadores:
+usuario:admin
+contraseña:admin
+
+usuario:trabajador
+contraseña:trabajador
+
+Contratistas:
+usuario:contratista1
+contraseña:contratista1
+
+usuario:contratista2
+contraseña:contratista2
+
+El script solo provee la eleccion de:
+- los tres primeros residuos al momento de realizar el ingreso. 
+- cuatro vehiculos con las siguientes placas: AAA-123,BBB-123,CCC-123,DDD-123
+- 2 conductores con los siguientes documentos: 1111111111 y 2222222222
+
+Si desea realizar la inserción de los ingresos suministrados en la tabla ingresosData por favor en la hoja de trabajo de sql developer
+escribir lo siguiente:
+
+BEGIN
+    registrar_ingreso.insertar_ingresos();
+END;
+
+Esto insertara los ingresos para que pueda probar el funcionamiento de la aplicación.
+
+Gracias por su atención.
