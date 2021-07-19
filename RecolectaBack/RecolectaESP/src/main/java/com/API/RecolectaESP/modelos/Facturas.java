@@ -19,7 +19,6 @@ import java.util.Date;
         indexes = {
                 @Index(name = "IDX_Facturas_Contratista",columnList = "contratista_id"),
                 @Index(name = "IDX_Facturas_Centro_Disposicion",columnList = "centro_disposicion_id"),
-                @Index(name = "IDX_Facturas_Rango_Fecha",columnList = "facturaInicioPeriodo DESC,facturaFinPeriodo DESC")
         }
 )
 public class Facturas implements Serializable {

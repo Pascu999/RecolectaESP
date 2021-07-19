@@ -8,7 +8,7 @@ import { Vehiculo } from '../models/vehiculo';
 @Injectable({
   providedIn: 'root'
 })
-export class ContratistaMenuService {
+export class ContratistaFacturasService {
 
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
@@ -29,8 +29,8 @@ export class ContratistaMenuService {
     return this.http.delete<void>(`${this.apiServerUrl}/Vehiculos/CambiarEstado/${vehiculo_id}`);
   }
 
-  public generarFacturacionContratista(contratista_id: Number): Observable<void>{
-    return this.http.get<void>(`${this.apiServerUrl}/Facturas/GenerarFacturas/${contratista_id}`);
+  public generarFacturacion(): Observable<void>{
+    return this.http.get<void>(`${this.apiServerUrl}/Facturas/GenerarFacturas`);
   }
 
 }

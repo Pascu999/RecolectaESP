@@ -25,6 +25,8 @@ public interface IngresosRepositorio extends JpaRepository<Ingresos,Long> {
     //Se crea un nuevo ingreso
     public static String crearIngreso(ObjectNode ingreso) throws ClassNotFoundException, SQLException {
         try {
+     
+     //Conexión a la BD
      Class.forName("oracle.jdbc.driver.OracleDriver");
      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.15:1521/XEPDB1", "recolecta", "6488");
 

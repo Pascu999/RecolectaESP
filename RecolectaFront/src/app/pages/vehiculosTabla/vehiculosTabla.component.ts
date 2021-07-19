@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
-import { ContratistaMenuService } from 'src/app/services/contratistaMenu.service';
+import { ContratistaFacturasService } from 'src/app/services/contratistaFacturas.service';
 import Swal from 'sweetalert2';
 
 //Interfaz de los vehículos que se mostrarán 
@@ -63,7 +63,7 @@ export class VehiculosTablaComponent implements OnInit {
 
 
 
-  constructor(private menuContratistasServicio: ContratistaMenuService, private router: Router) { }
+  constructor(private menuContratistasServicio: ContratistaFacturasService, private router: Router) { }
 
   ngOnInit() {
     //Se generan los vehículos

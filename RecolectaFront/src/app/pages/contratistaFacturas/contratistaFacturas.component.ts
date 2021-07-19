@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Factura } from 'src/app/models/factura';
-import { ContratistaMenuService } from 'src/app/services/contratistaMenu.service';
+import { ContratistaFacturasService } from 'src/app/services/contratistaFacturas.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -47,7 +47,7 @@ export class TablafacturasComponent implements OnInit {
 
 
 
-  constructor(private menuContratistasServicio: ContratistaMenuService, private router: Router) { }
+  constructor(private menuContratistasServicio: ContratistaFacturasService, private router: Router) { }
 
   ngOnInit() {
     //Se generan las facturas
@@ -109,7 +109,7 @@ export class TablafacturasComponent implements OnInit {
       didOpen: () => {
         // Muestra un spinner mientras el servicio envia la respuesta
         Swal.showLoading();
-        this.menuContratistasServicio.generarFacturacionContratista(this.contratista).subscribe(
+        this.menuContratistasServicio.generarFacturacion().subscribe(
           (response: any) => {
             Swal.close();
             location.reload();
