@@ -15,11 +15,11 @@ public interface FacturasRepositorio extends JpaRepository<Facturas,Long> {
 
 
     @Transactional(readOnly=true)
-    @Query("FROM Facturas factura WHERE factura.contratista.contratistaId = :contratista_id ORDER BY factura.facturaInicioPeriodo DESC")
+    @Query(value = "SELECT /*+ INDEX(facturas IDX_FACTURAS_CONTRATISTA)*/ FROM Facturas factura WHERE factura.contratista.contratistaId = :contratista_id ORDER BY factura.facturaInicioPeriodo DESC",nativeQuery = true)
     public List<Facturas> findFacturasByContratistaId(@Param("contratista_id") Long contratista_id);
 
     @Transactional(readOnly=true)
-    @Query("FROM Facturas factura WHERE factura.centroDisposicion.centroDisposicionId = :centro_disposicion_id ORDER BY factura.facturaInicioPeriodo DESC")
+    @Query(value = "SELECT /*+ INDEX(facturas IDX_FACTURAS_CENTRO_DISPOSICION)*/ FROM Facturas factura WHERE factura.centroDisposicion.centroDisposicionId = :centro_disposicion_id ORDER BY factura.facturaInicioPeriodo DESC",nativeQuery = true)
     public List<Facturas> findFacturasByCentroDisposionId(@Param("centro_disposicion_id") Long centro_disposicion_id);
 
     @Transactional(readOnly=true)

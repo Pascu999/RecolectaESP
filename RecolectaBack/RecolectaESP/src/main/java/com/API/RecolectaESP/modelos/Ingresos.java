@@ -18,7 +18,8 @@ import java.util.Date;
         indexes = {
                 @Index(name = "IDX_Ingresos_Fecha", columnList = "ingresoFecha DESC"),
                 @Index(name = "IDX_Ingresos_Factura", columnList = "factura_id"),
-                @Index(name = "IDX_Ingresos_Vehiculo", columnList = "vehiculo_id")
+                @Index(name = "IDX_Ingresos_Vehiculo", columnList = "vehiculo_id"),
+                @Index(name = "IDX_Ingresos", columnList = "ingreso_id"),
         }
 
 )
